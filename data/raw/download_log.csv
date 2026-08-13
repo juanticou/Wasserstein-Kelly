@@ -1,0 +1,25 @@
+symbol,source,start_requested,end_requested,download_date,file,n_rows
+AAPL,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\AAPL_daily.csv,4045
+MSFT,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\MSFT_daily.csv,4045
+AMZN,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\AMZN_daily.csv,4045
+JPM,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\JPM_daily.csv,4045
+JNJ,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\JNJ_daily.csv,4045
+XOM,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\XOM_daily.csv,4045
+PG,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\PG_daily.csv,4045
+CAT,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\CAT_daily.csv,4045
+KO,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\KO_daily.csv,4045
+WMT,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\WMT_daily.csv,4045
+SPY,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\SPY_daily.csv,4045
+^VIX,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\VIX_daily.csv,4045
+AAPL,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\AAPL_daily.csv,4045
+MSFT,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\MSFT_daily.csv,4045
+AMZN,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\AMZN_daily.csv,4045
+JPM,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\JPM_daily.csv,4045
+JNJ,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\JNJ_daily.csv,4045
+XOM,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\XOM_daily.csv,4045
+PG,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\PG_daily.csv,4045
+CAT,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\CAT_daily.csv,4045
+KO,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\KO_daily.csv,4045
+WMT,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\WMT_daily.csv,4045
+SPY,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\SPY_daily.csv,4045
+^VIX,Yahoo Finance,2009-12-01,2025-12-31,2026-08-12,data\raw\VIX_daily.csv,4045
