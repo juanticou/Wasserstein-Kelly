@@ -19,7 +19,7 @@ params.tau   = 0.001;
 params.xbar  = 0.25;
 params.gamma = 1;
 params.delta = 0.75;
-solver_name  = 'mosek';   % cambia a 'sedumi' si aun no tienes mosek
+solver_name  = 'mosek';   
 
 %% 2. Cargar datos y tomar la primera ventana disponible
 data = load_monthly_data(CSV_PATH, TICKERS);

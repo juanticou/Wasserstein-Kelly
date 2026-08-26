@@ -26,7 +26,10 @@ function results = run_backtest_nominal_kelly(data, params)
 %   cost         : (T_dec x 1) costo monetario del rebalanceo, Ck = tau*Wk*TOk
 %   growth_real  : (T_dec x 1) factor de crecimiento realizado G^real_{k+1}
 %   violations   : indices (dentro de T_dec) donde growth_real < delta
-%   status       : cell array con cvx_status de cada fecha
+%   status       : cell array con cvx_status de cada fecha ('Solved' u
+%                  otro). Cuando no es 'Solved', esa fecha NO rebalanceo
+%                  (fallback: se sostuvo hk); usar mean(strcmp(status,
+%                  'Solved')) como fraccion de factibilidad de la corrida.
 %   params       : parametros efectivamente usados
 
     if nargin < 2
@@ -37,6 +40,7 @@ function results = run_backtest_nominal_kelly(data, params)
     params = set_default(params, 'xbar', 0.25);
     params = set_default(params, 'gamma', 1);
     params = set_default(params, 'delta', 0.75);
+    params = set_default(params, 'solver', 'mosek');
 
     N = params.N;
     [T, d] = size(data.R);
@@ -79,13 +83,24 @@ function results = run_backtest_nominal_kelly(data, params)
 
         % 7. Resolver el modelo nominal con costos.
         [xk, bk, sk, x0k, ~, status] = solve_nominal_kelly( ...
-            h_current, Rk, rf_k, params.tau, params.xbar, params.gamma, params.delta);
+            h_current, Rk, rf_k, params.tau, params.xbar, params.gamma, params.delta, ...
+            params.solver);
 
         status_hist{i} = status;
         if ~strcmp(status, 'Solved')
             warning('run_backtest_nominal_kelly:notSolved', ...
-                'Fecha %d (indice %d): cvx_status = %s. Se mantiene la ultima solucion factible si existe.', ...
+                ['Fecha %d (indice %d): cvx_status = %s. Se mantiene el portafolio ', ...
+                 'heredado sin rebalancear este mes (fallback de factibilidad).'], ...
                 i, k, status);
+            % CVX deja NaN en las variables cuando el problema es
+            % infactible o falla; en vez de propagar NaN a toda la
+            % trayectoria, se conserva hk sin operar (turnover y costo
+            % cero). Esto permite que una malla de parametros identifique
+            % regiones infactibles sin que el backtest completo se rompa.
+            xk = h_current(2:end);
+            x0k = h_current(1);
+            bk = zeros(d, 1);
+            sk = zeros(d, 1);
         end
 
         TOk = sum(bk + sk);

@@ -1,0 +1,6 @@
+Hacer malla de delta - eta para evaluar regiones en los parámetros donde el problema es y no es factible, además de buscar ganarle al nominal.
+Hacer gráfica de retornos, no solo con la riqueza acumulada
+
+Resolver el problema para más empresas y en otros escenarios de tiempo (desde más atras)
+
+

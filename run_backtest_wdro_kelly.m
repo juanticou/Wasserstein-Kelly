@@ -84,7 +84,14 @@ function results = run_backtest_wdro_kelly(data, params)
         status_hist{i} = status;
         if ~strcmp(status, 'Solved')
             warning('run_backtest_wdro_kelly:notSolved', ...
-                'Fecha %d (indice %d): cvx_status = %s.', i, k, status);
+                ['Fecha %d (indice %d): cvx_status = %s. Se mantiene el portafolio ', ...
+                 'heredado sin rebalancear este mes (fallback de factibilidad).'], ...
+                i, k, status);
+            xk = h_current(2:end);
+            x0k = h_current(1);
+            bk = zeros(d, 1);
+            sk = zeros(d, 1);
+            lambda_k = NaN;   % no hay solucion dual valida esta fecha
         end
 
         TOk = sum(bk + sk);
