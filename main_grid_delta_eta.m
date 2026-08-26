@@ -36,7 +36,7 @@ base_params.eps_esc = 1e-6;
 % Malla completa: nucleo del Cuadro 8 (delta<=0.90, eta<=0.30) + rango
 % explorado antes (eta hasta 1.00) + valores por ENCIMA de 1 en ambos.
 % eta=0 se conserva como baseline equivalente al nominal (ver nota arriba).
-DELTA_GRID = [0.50, 0.60, 0.70, 0.75, 0.80, 0.90, 1.00, 1.05, 1.10, 1.20, 1.30];
+DELTA_GRID = [0.50, 0.60, 0.70, 0.75, 0.80, 0.90, 1.00];
 ETA_GRID   = [0, 0.05, 0.15, 0.30, 0.50, 1.00, 1.50, 2.00, 3.00];
 
 OUT_DIR = 'results_eta_delta_grid_wdro';   % misma carpeta de la malla anterior
