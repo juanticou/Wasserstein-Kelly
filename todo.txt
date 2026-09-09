@@ -1,6 +1,17 @@
-Hacer malla de delta - eta para evaluar regiones en los parámetros donde el problema es y no es factible, además de buscar ganarle al nominal.
-Hacer gráfica de retornos, no solo con la riqueza acumulada
-
-Resolver el problema para más empresas y en otros escenarios de tiempo (desde más atras)
+ (P)    
+ Generar turnover y grafica de evolucion de riqueza para delta = 0.9 (la que tiene los mejores desempeños)
 
 
+(P)
+Encerrar datos en hipercubo y muestrear uniformemente. A partir de ahí hallar la bola soportada en esos datos. 
+
+(P)
+Resolver para geometría con estados del mercado.
+
+Comparación con el S&P 500.
+
+
+
+Resolver el problema para más empresas y en otros escenarios de tiempo (desde más atras). 
+
+Arrancar la inversión antes de la pandemia.
