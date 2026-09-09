@@ -1,4 +1,4 @@
-function grid = run_grid_delta_eta_wdro_only(data, base_params, delta_grid, eta_grid)
+function grid = run_grid_delta_eta_wdro_only(data, base_params, delta_grid, eta_grid, alpha)
 % RUN_GRID_DELTA_ETA_WDRO_ONLY  Version mas liviana de run_grid_delta_eta.m
 % que NO llama a run_backtest_nominal_kelly por separado. En vez de eso,
 % usa la corrida con eta=0 dentro de la propia malla WDRO como el
@@ -8,10 +8,14 @@ function grid = run_grid_delta_eta_wdro_only(data, base_params, delta_grid, eta_
 % mismo problema por cada delta.
 %
 % IMPORTANTE: si eta_grid NO incluye 0, no hay baseline con el cual
-% calcular CAGR_diff / MDD_diff / beats_nominal para esa fila; esos
-% campos quedan en NaN y se emite una advertencia. Para conservar la
-% comparacion, incluye 0 en eta_grid aunque el resto de valores sean
-% mayores a 1.
+% calcular CAGR_diff / MDD_diff para esa fila; esos campos quedan en NaN
+% y se emite una advertencia. Para conservar la comparacion, incluye 0 en
+% eta_grid aunque el resto de valores sean mayores a 1.
+%
+% NOTA: CAGR_diff y MDD_diff se calculan solo como referencia informativa
+% frente al baseline (eta=0); esta funcion NO selecciona una combinacion
+% "ganadora" -- eso se deja para que el usuario lo decida a partir de la
+% tabla maestra (build_grid_summary_table.m) y los heatmaps individuales.
 %
 % ENTRADAS
 %   data        : struct de load_monthly_data.m
@@ -24,18 +28,26 @@ function grid = run_grid_delta_eta_wdro_only(data, base_params, delta_grid, eta_
 %                 se angoste rapido ahi -- justo lo que se quiere mapear)
 %   eta_grid    : vector de valores de eta a explorar (incluir 0 para
 %                 tener baseline; el resto puede ser > 1)
+%   alpha       : (opcional) nivel de confianza para VaR/CVaR (default 0.95,
+%                 ver compute_metrics.m)
 %
 % SALIDA (struct `grid`) -- mismos campos de resultados que
 % run_grid_delta_eta.m para la parte WDRO (feas_wdro, CAGR_wdro,
 % MDD_wdro, Turnover_wdro, Neff_wdro, Wealth_wdro, results_wdro), MAS:
+%   Variance_wdro, CVaR_wdro : (nd x ne) varianza y CVaR de los retornos
+%                      mensuales realizados de cada combinacion
 %   baseline_col     : indice de columna en eta_grid usado como baseline
 %                      (eta=0), o [] si eta_grid no incluye 0
 %   CAGR_baseline, MDD_baseline : (nd x 1) metricas de esa columna, una
 %                      por fila de delta (equivalen al "nominal" de esa fila)
-%   CAGR_diff, MDD_diff, beats_nominal : igual que en run_grid_delta_eta.m,
-%                      pero calculados contra CAGR_baseline/MDD_baseline
-%                      en vez de una corrida nominal separada. Si no hay
-%                      baseline, quedan en NaN / false.
+%   CAGR_diff, MDD_diff : igual que en run_grid_delta_eta.m, pero
+%                      calculados contra CAGR_baseline/MDD_baseline en vez
+%                      de una corrida nominal separada. Si no hay
+%                      baseline, quedan en NaN.
+
+    if nargin < 5 || isempty(alpha)
+        alpha = 0.95;
+    end
 
     nd = numel(delta_grid);
     ne = numel(eta_grid);
@@ -46,14 +58,16 @@ function grid = run_grid_delta_eta_wdro_only(data, base_params, delta_grid, eta_
     Turnover_wdro = nan(nd, ne);
     Neff_wdro     = nan(nd, ne);
     Wealth_wdro   = nan(nd, ne);
+    Variance_wdro = nan(nd, ne);
+    CVaR_wdro     = nan(nd, ne);
     results_wdro  = cell(nd, ne);
 
     baseline_col = find(eta_grid == 0, 1);
     if isempty(baseline_col)
         warning('run_grid_delta_eta_wdro_only:noBaseline', ...
             ['eta_grid no incluye 0: no habra baseline equivalente al nominal ', ...
-             'para calcular CAGR_diff/MDD_diff/beats_nominal. Se recomienda ', ...
-             'incluir 0 en eta_grid aunque el resto de valores sean > 1.']);
+             'para calcular CAGR_diff/MDD_diff. Se recomienda incluir 0 en ', ...
+             'eta_grid aunque el resto de valores sean > 1.']);
     end
 
     for i = 1:nd
@@ -70,7 +84,7 @@ function grid = run_grid_delta_eta_wdro_only(data, base_params, delta_grid, eta_
 
             try
                 r_w = run_backtest_wdro_kelly(data, p_wdro);
-                m_w = compute_metrics(r_w);
+                m_w = compute_metrics(r_w, alpha);
 
                 feas_wdro(i, j)     = mean(strcmp(r_w.status, 'Solved'));
                 CAGR_wdro(i, j)     = m_w.CAGR;
@@ -78,6 +92,8 @@ function grid = run_grid_delta_eta_wdro_only(data, base_params, delta_grid, eta_
                 Turnover_wdro(i, j) = m_w.turnover_total;
                 Neff_wdro(i, j)     = m_w.Neff_mean;
                 Wealth_wdro(i, j)   = m_w.wealth_final;
+                Variance_wdro(i, j) = m_w.variance_monthly;
+                CVaR_wdro(i, j)     = m_w.CVaR_loss;
                 results_wdro{i, j}  = r_w;
 
                 fprintf('factibilidad = %.0f%% | CAGR = %.2f%% | MDD = %.2f%%\n', ...
@@ -95,17 +111,16 @@ function grid = run_grid_delta_eta_wdro_only(data, base_params, delta_grid, eta_
         MDD_baseline  = MDD_wdro(:, baseline_col);
         CAGR_diff = CAGR_wdro - CAGR_baseline;     % broadcast (nd x ne) - (nd x 1)
         MDD_diff  = MDD_wdro - MDD_baseline;
-        beats_nominal = (CAGR_diff > 0) & (MDD_diff < 0);
     else
         CAGR_baseline = nan(nd, 1);
         MDD_baseline  = nan(nd, 1);
         CAGR_diff = nan(nd, ne);
         MDD_diff  = nan(nd, ne);
-        beats_nominal = false(nd, ne);
     end
 
     grid.delta_grid    = delta_grid;
     grid.eta_grid      = eta_grid;
+    grid.alpha         = alpha;
     grid.baseline_col  = baseline_col;
     grid.feas_wdro     = feas_wdro;
     grid.CAGR_wdro     = CAGR_wdro;
@@ -113,11 +128,12 @@ function grid = run_grid_delta_eta_wdro_only(data, base_params, delta_grid, eta_
     grid.Turnover_wdro = Turnover_wdro;
     grid.Neff_wdro     = Neff_wdro;
     grid.Wealth_wdro   = Wealth_wdro;
+    grid.Variance_wdro = Variance_wdro;
+    grid.CVaR_wdro     = CVaR_wdro;
     grid.CAGR_baseline = CAGR_baseline;
     grid.MDD_baseline  = MDD_baseline;
     grid.CAGR_diff     = CAGR_diff;
     grid.MDD_diff      = MDD_diff;
-    grid.beats_nominal = beats_nominal;
     grid.results_wdro  = results_wdro;
     grid.base_params   = base_params;
 end

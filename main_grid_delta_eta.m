@@ -1,18 +1,20 @@
 %% main_grid_delta_eta.m
-% Malla COMPLETA de delta y eta -- valores por debajo Y por encima de 1
-% para ambos parametros -- para mapear regiones de (in)factibilidad y
-% comparar riqueza, retornos y demas metricas contra el caso eta=0.
+% Malla de delta (<=1) y eta -- REFINADA por debajo de 0.05 -- para mapear
+% factibilidad y comparar riqueza, retornos, varianza, CVaR y demas
+% metricas de la Seccion 19 entre ejecuciones. Esta version YA NO busca
+% una combinacion que "domine" al baseline en todas las metricas: genera
+% una tabla maestra con todas las metricas de cada ejecucion para que la
+% comparacion se haga a mano, cruzando las columnas que interesen.
 %
-% CAMBIO IMPORTANTE respecto a versiones anteriores de este script:
-% ya NO se corre el Kelly nominal por separado. eta=0 dentro de la propia
-% malla WDRO es matematicamente equivalente al nominal (verificado en
-% test_wdro_nominal_equivalence.m y en la corrida completa de
-% main_wdro_kelly.m), asi que se usa esa columna como baseline en vez de
-% duplicar el computo con run_backtest_nominal_kelly.
+% delta se mantiene <= 1 (ver justificacion en corridas anteriores: con
+% delta > 1 la region factible se angosta o desaparece en casi toda la
+% malla). eta=0 sigue sirviendo de baseline equivalente al nominal (no se
+% corre run_backtest_nominal_kelly por separado).
 %
 % Requiere: CVX + MOSEK, Statistics and Machine Learning Toolbox
 % (boxplot, prctile dentro de compute_metrics.m), y todos los .m del
-% proyecto incluyendo run_grid_delta_eta_wdro_only.m.
+% proyecto incluyendo run_grid_delta_eta_wdro_only.m,
+% build_grid_summary_table.m y matrix_to_wide_table.m.
 
 clear; clc; close all;
 
@@ -33,11 +35,16 @@ base_params.solver  = 'mosek';
 base_params.eps_esc = 1e-6;
 % delta y eta se sobrescriben dentro de run_grid_delta_eta_wdro_only.m
 
-% Malla completa: nucleo del Cuadro 8 (delta<=0.90, eta<=0.30) + rango
-% explorado antes (eta hasta 1.00) + valores por ENCIMA de 1 en ambos.
-% eta=0 se conserva como baseline equivalente al nominal (ver nota arriba).
-DELTA_GRID = [0.50, 0.60, 0.70, 0.75, 0.80, 0.90, 1.00];
-ETA_GRID   = [0, 0.05, 0.15, 0.30, 0.50, 1.00, 1.50, 2.00, 3.00];
+ALPHA = 0.95;   % nivel de confianza para VaR/CVaR (Seccion 4.2 de la propuesta)
+
+% Malla: nucleo del Cuadro 8 (delta<=0.90) + resolucion FINA de eta por
+% debajo de 0.05 (antes se saltaba directo de 0 a 0.05) + eta hasta 1.00.
+% Se quitan los valores muy altos (1.5, 2.0, 3.0): ya se vio en la corrida
+% anterior que ahi el modelo se vuelve excesivamente conservador sin
+% aportar nada nuevo, y asi se compensa el costo computacional de la
+% malla mas fina cerca de cero.
+DELTA_GRID = [0.50, 0.60, 0.70, 0.75, 0.80, 0.90];
+ETA_GRID   = [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.10, 0.15, 0.30, 0.50, 1.00];
 
 OUT_DIR = 'results_eta_delta_grid_wdro';   % misma carpeta de la malla anterior
 if ~exist(OUT_DIR, 'dir')
@@ -45,7 +52,7 @@ if ~exist(OUT_DIR, 'dir')
 end
 
 n_total = numel(DELTA_GRID) * numel(ETA_GRID);
-fprintf('Malla completa: %d valores de delta x %d valores de eta = %d backtests WDRO (sin nominal por separado).\n', ...
+fprintf('Malla: %d valores de delta x %d valores de eta = %d backtests WDRO (sin nominal por separado).\n', ...
     numel(DELTA_GRID), numel(ETA_GRID), n_total);
 
 %% 2. Cargar datos
@@ -71,17 +78,28 @@ fprintf(['Tiempo de una sola fecha WDRO: %.2f s. Estimado por cada (delta,eta) (
     n_total, n_total * t_one * n_dates_total / 60, n_total * t_one * n_dates_total / 3600);
 
 %% 4. Correr la malla completa (solo WDRO, eta=0 como baseline)
-grid = run_grid_delta_eta_wdro_only(data, base_params, DELTA_GRID, ETA_GRID);
+grid = run_grid_delta_eta_wdro_only(data, base_params, DELTA_GRID, ETA_GRID, ALPHA);
 
 %% 5. Guardar resultados crudos
 save(fullfile(OUT_DIR, 'grid_delta_eta.mat'), 'grid', '-v7.3');
 
-%% 6. Mapa de factibilidad
+%% 6. Heatmaps individuales (una metrica a la vez sobre toda la malla)
 plot_heatmap(grid.feas_wdro, ETA_GRID, DELTA_GRID, ...
     'Factibilidad WDRO (fraccion de fechas resueltas)', 'Fraccion Solved', '%.2f', ...
     OUT_DIR, 'heatmap_factibilidad.png');
 
-%% 7. Mapas de desempeno vs. baseline (eta=0 de cada fila)
+plot_heatmap(grid.Wealth_wdro, ETA_GRID, DELTA_GRID, ...
+    'Riqueza final W_T / W_0 (WDRO)', 'Riqueza final', '%.2f', ...
+    OUT_DIR, 'heatmap_riqueza_final.png');
+
+plot_heatmap(100 * grid.Variance_wdro, ETA_GRID, DELTA_GRID, ...
+    'Varianza de retornos mensuales (WDRO)  [x100]', 'Varianza x100', '%.3f', ...
+    OUT_DIR, 'heatmap_varianza.png');
+
+plot_heatmap(100 * grid.CVaR_wdro, ETA_GRID, DELTA_GRID, ...
+    sprintf('CVaR %.0f%% de perdida mensual (WDRO)  [pp]', 100*ALPHA), ...
+    'CVaR (pp)', '%.2f', OUT_DIR, 'heatmap_cvar.png');
+
 if ~isempty(grid.baseline_col)
     plot_heatmap(100 * grid.CAGR_diff, ETA_GRID, DELTA_GRID, ...
         'CAGR(WDRO) - CAGR(\eta=0), mismo \delta  [pp]', 'Diferencia de CAGR (pp)', '%.2f', ...
@@ -91,74 +109,85 @@ if ~isempty(grid.baseline_col)
         'MaxDrawdown(WDRO) - MaxDrawdown(\eta=0), mismo \delta  [pp]', ...
         'Diferencia de MDD (pp, negativo = mejor)', '%.2f', ...
         OUT_DIR, 'heatmap_mdd_diff.png');
-
-    plot_heatmap(double(grid.beats_nominal), ETA_GRID, DELTA_GRID, ...
-        'WDRO domina al baseline \eta=0 (mas CAGR y menos MDD)', '1 = si, 0 = no', '%.0f', ...
-        OUT_DIR, 'heatmap_dominancia.png');
 else
     warning('main_grid_delta_eta:noBaseline', ...
-        'eta_grid no incluyo 0; se omiten los mapas de comparacion.');
+        'eta_grid no incluyo 0; se omiten los mapas de comparacion contra baseline.');
 end
 
-%% 8. Mapa adicional: riqueza final (util para ver el efecto combinado
-% delta-eta sobre la riqueza total, no solo el CAGR anualizado)
-plot_heatmap(grid.Wealth_wdro, ETA_GRID, DELTA_GRID, ...
-    'Riqueza final W_T / W_0 (WDRO)', 'Riqueza final', '%.2f', ...
-    OUT_DIR, 'heatmap_riqueza_final.png');
+%% 7. Tablas (no solo heatmaps): varianza, CVaR y la tabla maestra
+% Tablas anchas (delta en filas, eta en columnas) para varianza y CVaR --
+% el formato "tabla" pedido explicitamente, ademas de su heatmap.
+variance_table = matrix_to_wide_table(grid.Variance_wdro, DELTA_GRID, ETA_GRID);
+writetable(variance_table, fullfile(OUT_DIR, 'tabla_varianza.csv'));
 
-%% 9. Reportar combinaciones donde el WDRO domina al baseline
-fprintf('\n=== Combinaciones (delta, eta) donde WDRO domina al baseline eta=0 ===\n');
-[iBeat, jBeat] = find(grid.beats_nominal);
-if isempty(iBeat)
-    fprintf('  Ninguna combinacion en la malla domina estrictamente al baseline.\n');
-    fprintf('  (Resultado valido y reportable -- Secciones 13.4 y 22 de la propuesta.)\n');
-else
-    for k = 1:numel(iBeat)
-        i = iBeat(k); j = jBeat(k);
-        fprintf(['  delta=%.2f, eta=%.2f -> CAGR: %.2f%% vs %.2f%% (eta=0) | ', ...
-            'MDD: %.2f%% vs %.2f%% (eta=0) | Riqueza final: %.2f vs %.2f (eta=0)\n'], ...
-            DELTA_GRID(i), ETA_GRID(j), ...
-            100*grid.CAGR_wdro(i,j), 100*grid.CAGR_baseline(i), ...
-            100*grid.MDD_wdro(i,j), 100*grid.MDD_baseline(i), ...
-            grid.Wealth_wdro(i,j), grid.Wealth_wdro(i, grid.baseline_col));
+cvar_table = matrix_to_wide_table(grid.CVaR_wdro, DELTA_GRID, ETA_GRID);
+writetable(cvar_table, fullfile(OUT_DIR, 'tabla_cvar.csv'));
+
+% Tabla maestra: una fila por ejecucion (delta, eta), TODAS las metricas
+% como columnas -- riqueza final, CAGR, crecimiento log, varianza, MDD,
+% peor mes, VaR, CVaR, turnover, costos, concentracion, supervivencia.
+% No hay seleccion de "ganador" aqui: se deja para el analisis manual.
+summary_table = build_grid_summary_table(grid);
+writetable(summary_table, fullfile(OUT_DIR, 'tabla_maestra_metricas.csv'));
+
+fprintf('\n=== Primeras filas de la tabla maestra (delta, eta, riqueza, CAGR, varianza, CVaR) ===\n');
+disp(summary_table(1:min(10, height(summary_table)), ...
+    {'delta', 'eta', 'riqueza_final', 'CAGR', 'varianza_mensual', 'CVaR_perdida', 'max_drawdown'}));
+
+%% 8. Graficas de retornos: comparacion EXPLICITA (no automatica)
+% delta = 0.75 (nucleo del Cuadro 8) como referencia fija, comparando el
+% baseline (eta=0) contra el refinamiento cerca de cero: eta = 0.01,
+% 0.05, 0.15. El objetivo es ver el efecto de radios pequenos, no elegir
+% un ganador.
+DELTA_REF = 0.75;
+ETA_COMPARE = [0, 0.01, 0.05, 0.15];
+
+i_ref = find(DELTA_GRID == DELTA_REF, 1);
+if isempty(i_ref)
+    warning('main_grid_delta_eta:deltaRefNotFound', ...
+        'delta=%.2f no esta en DELTA_GRID; se usa el primer valor disponible.', DELTA_REF);
+    i_ref = 1;
+end
+
+results_compare = {};
+labels_compare  = {};
+for e = 1:numel(ETA_COMPARE)
+    j_e = find(ETA_GRID == ETA_COMPARE(e), 1);
+    if isempty(j_e)
+        warning('main_grid_delta_eta:etaCompareNotFound', ...
+            'eta=%.3f no esta en ETA_GRID; se omite de la comparacion de retornos.', ETA_COMPARE(e));
+        continue
     end
+    r_e = grid.results_wdro{i_ref, j_e};
+    if isempty(r_e)
+        continue
+    end
+    results_compare{end+1} = r_e; %#ok<SAGROW>
+    labels_compare{end+1}  = sprintf('\\eta=%.2f', ETA_GRID(j_e)); %#ok<SAGROW>
 end
 
-%% 10. Graficas para un caso representativo: baseline (eta=0) vs. la mejor
-% combinacion encontrada (o, si ninguna domina, delta=0.75/eta=0.15 -- el
-% caso nucleo del Cuadro 8).
-if ~isempty(iBeat)
-    [~, best] = max(grid.CAGR_diff(sub2ind(size(grid.CAGR_diff), iBeat, jBeat)));
-    i_sel = iBeat(best); j_sel = jBeat(best);
-else
-    i_sel = find(DELTA_GRID == 0.75, 1);
-    j_sel = find(ETA_GRID == 0.15, 1);
-    if isempty(i_sel), i_sel = 1; end
-    if isempty(j_sel), j_sel = 1; end
-end
-
-r_baseline_sel = grid.results_wdro{i_sel, grid.baseline_col};
-r_wdro_sel     = grid.results_wdro{i_sel, j_sel};
-label_baseline = sprintf('\\eta=0 (\\delta=%.2f)', DELTA_GRID(i_sel));
-label_wdro     = sprintf('WDRO (\\delta=%.2f, \\eta=%.2f)', DELTA_GRID(i_sel), ETA_GRID(j_sel));
-
-% Riqueza total (no solo CAGR)
+% Riqueza acumulada de todas las etas comparadas, mismo delta
 figure('Position', [100, 100, 950, 550]);
-plot([r_baseline_sel.dates(1); r_baseline_sel.dates], r_baseline_sel.wealth, ...
-    'LineWidth', 1.6, 'DisplayName', label_baseline);
 hold on;
-plot([r_wdro_sel.dates(1); r_wdro_sel.dates], r_wdro_sel.wealth, ...
-    'LineWidth', 1.6, 'DisplayName', label_wdro);
+colors = lines(numel(results_compare));
+for k = 1:numel(results_compare)
+    r_k = results_compare{k};
+    plot([r_k.dates(1); r_k.dates], r_k.wealth, 'LineWidth', 1.4, ...
+        'DisplayName', labels_compare{k}, 'Color', colors(k, :));
+end
 hold off;
-title('Riqueza acumulada: baseline (\eta=0) vs. combinacion seleccionada');
+title(sprintf('Riqueza acumulada, \\delta=%.2f -- comparacion de \\eta cerca de cero', DELTA_REF));
 xlabel('Fecha'); ylabel('W_t / W_0');
 legend('Location', 'best'); grid on;
-saveas(gcf, fullfile(OUT_DIR, 'riqueza_baseline_vs_seleccionado.png'));
+saveas(gcf, fullfile(OUT_DIR, 'riqueza_comparacion_eta_bajo.png'));
 
 % Retornos: serie de tiempo, boxplot y barras individuales
-plot_returns_timeseries({r_baseline_sel, r_wdro_sel}, {label_baseline, label_wdro}, [], OUT_DIR);
-plot_returns_boxplot({r_baseline_sel, r_wdro_sel}, {label_baseline, label_wdro}, [], OUT_DIR);
-plot_returns_bar(r_baseline_sel, label_baseline, OUT_DIR);
-plot_returns_bar(r_wdro_sel, label_wdro, OUT_DIR);
+plot_returns_timeseries(results_compare, labels_compare, ...
+    sprintf('Retornos mensuales, \\delta=%.2f', DELTA_REF), OUT_DIR);
+plot_returns_boxplot(results_compare, labels_compare, ...
+    sprintf('Distribucion de retornos, \\delta=%.2f', DELTA_REF), OUT_DIR);
+for k = 1:numel(results_compare)
+    plot_returns_bar(results_compare{k}, labels_compare{k}, OUT_DIR);
+end
 
 fprintf('\nResultados guardados en la carpeta "%s".\n', OUT_DIR);

@@ -1,18 +1,16 @@
 %% generate_missing_returns_plots.m
-% Regenera el boxplot (y las graficas de barras que se saltaron por el
-% mismo error, ya que MATLAB detiene el script en la linea que falla)
-% SIN volver a correr los backtests de main_grid_delta_eta.m.
+% Regenera las graficas de retornos (boxplot, barras, timeseries) SIN
+% volver a correr los backtests de main_grid_delta_eta.m -- util si el
+% boxplot fallo por no tener el Statistics and Machine Learning Toolbox
+% instalado (lo cual detiene el script en esa linea y salta lo que sigue).
 %
-% Actualizado para la malla WDRO-only (eta=0 como baseline, sin
-% grid.results_nominal por separado).
+% Actualizado para la comparacion EXPLICITA (delta=0.75, eta en
+% {0, 0.01, 0.05, 0.15}) que usa la version actual de main_grid_delta_eta.m
+% -- ya no hay logica de "mejor combinacion" ni grid.beats_nominal.
 %
 % Requiere que ya hayas corrido main_grid_delta_eta.m al menos hasta el
 % paso 5 (el guardado de resultados/grid_delta_eta.mat ocurre antes de
 % las graficas, asi que sobrevive aunque alguna fallara).
-%
-% Corre esto DESPUES de instalar el Statistics and Machine Learning
-% Toolbox (necesario para boxplot() y para prctile(), que usa
-% compute_metrics.m).
 
 clear; clc; close all;
 
@@ -30,33 +28,41 @@ load(mat_path, 'grid');
 DELTA_GRID = grid.delta_grid;
 ETA_GRID   = grid.eta_grid;
 
-if isempty(grid.baseline_col)
-    error('generate_missing_returns_plots:noBaseline', ...
-        'Esta malla no incluyo eta=0, asi que no hay baseline para comparar.');
+DELTA_REF = 0.75;
+ETA_COMPARE = [0, 0.01, 0.05, 0.15];
+
+i_ref = find(DELTA_GRID == DELTA_REF, 1);
+if isempty(i_ref)
+    warning('generate_missing_returns_plots:deltaRefNotFound', ...
+        'delta=%.2f no esta en la malla guardada; se usa el primer valor disponible.', DELTA_REF);
+    i_ref = 1;
 end
 
-% --- Misma logica de seleccion que main_grid_delta_eta.m paso 10 ---
-[iBeat, jBeat] = find(grid.beats_nominal);
-if ~isempty(iBeat)
-    [~, best] = max(grid.CAGR_diff(sub2ind(size(grid.CAGR_diff), iBeat, jBeat)));
-    i_sel = iBeat(best); j_sel = jBeat(best);
-else
-    i_sel = find(DELTA_GRID == 0.75, 1);
-    j_sel = find(ETA_GRID == 0.15, 1);
-    if isempty(i_sel), i_sel = 1; end
-    if isempty(j_sel), j_sel = 1; end
+results_compare = {};
+labels_compare  = {};
+for e = 1:numel(ETA_COMPARE)
+    j_e = find(ETA_GRID == ETA_COMPARE(e), 1);
+    if isempty(j_e)
+        warning('generate_missing_returns_plots:etaCompareNotFound', ...
+            'eta=%.3f no esta en la malla guardada; se omite.', ETA_COMPARE(e));
+        continue
+    end
+    r_e = grid.results_wdro{i_ref, j_e};
+    if isempty(r_e)
+        continue
+    end
+    results_compare{end+1} = r_e; %#ok<SAGROW>
+    labels_compare{end+1}  = sprintf('\\eta=%.2f', ETA_GRID(j_e)); %#ok<SAGROW>
 end
 
-r_baseline_sel = grid.results_wdro{i_sel, grid.baseline_col};
-r_wdro_sel     = grid.results_wdro{i_sel, j_sel};
-label_baseline = sprintf('\\eta=0 (\\delta=%.2f)', DELTA_GRID(i_sel));
-label_wdro     = sprintf('WDRO (\\delta=%.2f, \\eta=%.2f)', DELTA_GRID(i_sel), ETA_GRID(j_sel));
+fprintf('Comparando delta=%.2f, eta = %s\n', DELTA_GRID(i_ref), mat2str(ETA_COMPARE));
 
-fprintf('Caso seleccionado: delta=%.2f, eta=%.2f\n', DELTA_GRID(i_sel), ETA_GRID(j_sel));
-
-% --- Regenerar lo que falto ---
-plot_returns_boxplot({r_baseline_sel, r_wdro_sel}, {label_baseline, label_wdro}, [], OUT_DIR);
-plot_returns_bar(r_baseline_sel, label_baseline, OUT_DIR);
-plot_returns_bar(r_wdro_sel, label_wdro, OUT_DIR);
+plot_returns_timeseries(results_compare, labels_compare, ...
+    sprintf('Retornos mensuales, \\delta=%.2f', DELTA_GRID(i_ref)), OUT_DIR);
+plot_returns_boxplot(results_compare, labels_compare, ...
+    sprintf('Distribucion de retornos, \\delta=%.2f', DELTA_GRID(i_ref)), OUT_DIR);
+for k = 1:numel(results_compare)
+    plot_returns_bar(results_compare{k}, labels_compare{k}, OUT_DIR);
+end
 
 fprintf('Graficas regeneradas en la carpeta "%s".\n', OUT_DIR);

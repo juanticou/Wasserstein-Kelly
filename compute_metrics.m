@@ -1,13 +1,22 @@
-function metrics = compute_metrics(results)
+function metrics = compute_metrics(results, alpha)
 % COMPUTE_METRICS  Metricas nucleo del backtest (Seccion 19 de la propuesta):
-% crecimiento, perdidas, costos, concentracion y supervivencia.
+% crecimiento, perdidas (incluyendo varianza y CVaR), costos, concentracion
+% y supervivencia.
 %
 % ENTRADA
-%   results : struct devuelto por run_backtest_nominal_kelly.m
+%   results : struct devuelto por run_backtest_nominal_kelly.m /
+%             run_backtest_wdro_kelly.m
+%   alpha   : (opcional) nivel de confianza para VaR/CVaR, en (0,1).
+%             Default: 0.95 (es decir, CVaR del peor 5% de los meses,
+%             consistente con la Seccion 4.2 de la propuesta).
 %
 % SALIDA
 %   metrics : struct con los campos descritos abajo, y un
 %             metrics.table (table de MATLAB) para impresion rapida.
+
+    if nargin < 2 || isempty(alpha)
+        alpha = 0.95;
+    end
 
     wealth      = results.wealth;
     growth_real = results.growth_real;
@@ -31,6 +40,23 @@ function metrics = compute_metrics(results)
     simple_ret  = growth_real - 1;                % retorno mensual del portafolio
     worst_month = min(simple_ret);
     var5        = prctile(simple_ret, 5);         % percentil 5 (proxy de VaR empirico)
+    ret_variance = var(simple_ret);                % varianza de los retornos mensuales
+                                                     % (la cantidad que penaliza Markowitz,
+                                                     % ecuacion 5, aqui sobre el retorno
+                                                     % REALIZADO del portafolio completo)
+
+    % VaR y CVaR empiricos sobre la PERDIDA L = -R^p (ecuaciones 8-10).
+    % Con la convencion de perdida (L > 0 = mes malo), el VaR_alpha es el
+    % cuantil alpha de la perdida, y el CVaR_alpha es el promedio de las
+    % perdidas que superan ese cuantil (el peor (1-alpha) de los meses).
+    losses = -simple_ret;
+    VaR_loss = prctile(losses, 100 * alpha);
+    tail = losses(losses >= VaR_loss);
+    if isempty(tail)
+        CVaR_loss = VaR_loss;
+    else
+        CVaR_loss = mean(tail);
+    end
 
     % --- Costos ---
     turnover_total = sum(turnover);
@@ -59,6 +85,10 @@ function metrics = compute_metrics(results)
     metrics.max_drawdown     = MDD;
     metrics.worst_month      = worst_month;
     metrics.var5_monthly     = var5;
+    metrics.variance_monthly = ret_variance;
+    metrics.alpha_used       = alpha;
+    metrics.VaR_loss         = VaR_loss;
+    metrics.CVaR_loss        = CVaR_loss;
     metrics.turnover_total   = turnover_total;
     metrics.cost_total       = cost_total;
     metrics.cost_mean        = cost_mean;
@@ -73,11 +103,14 @@ function metrics = compute_metrics(results)
 
     names = {'Riqueza final'; 'Crecimiento log. medio (mensual)'; 'CAGR (anual)'; ...
         'Maximo drawdown'; 'Peor retorno mensual'; 'Percentil 5 mensual'; ...
+        'Varianza retornos mensuales'; sprintf('VaR %.0f%% (perdida)', 100*alpha); ...
+        sprintf('CVaR %.0f%% (perdida)', 100*alpha); ...
         'Turnover acumulado'; 'Costo acumulado'; 'Costo medio por rebalanceo'; ...
         'Peso maximo promedio'; 'Peso maximo (pico)'; 'N efectivo promedio'; ...
         'Violaciones de delta fuera de muestra'; 'Minimo factor de crecimiento'; ...
         'Fallos del solucionador'; 'Numero de meses'};
     values = [wealth_final; g_mean; CAGR; MDD; worst_month; var5; ...
+        ret_variance; VaR_loss; CVaR_loss; ...
         turnover_total; cost_total; cost_mean; mean(max_weight_series); ...
         max(max_weight_series); mean(Neff(valid)); n_violations; min_growth; ...
         n_failed; T_dec];
