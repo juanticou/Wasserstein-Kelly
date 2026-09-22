@@ -1,5 +1,5 @@
  (P)    
- Generar turnover y grafica de evolucion de riqueza para delta = 0.9 (la que tiene los mejores desempeños)
+Grafica de evolucion de riqueza para delta = 0.9 (la que tiene los mejores desempeños)
 
 
 (P)

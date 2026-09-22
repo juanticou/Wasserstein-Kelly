@@ -62,6 +62,15 @@ function metrics = compute_metrics(results, alpha)
     turnover_total = sum(turnover);
     cost_total     = sum(cost);
     cost_mean      = mean(cost);
+    TRADE_EPS      = 1e-8;   % umbral numerico: turnover por debajo de esto
+                              % se considera "no hubo transaccion" ese mes
+                              % (evita contar ruido de punto flotante como
+                              % un rebalanceo real)
+    n_rebalances   = sum(turnover > TRADE_EPS);   % # de meses con transaccion
+    turnover_mean_active = NaN;
+    if n_rebalances > 0
+        turnover_mean_active = mean(turnover(turnover > TRADE_EPS));
+    end
 
     % --- Concentracion ---
     risky_sum = sum(x, 2);                        % (T_dec x 1)
@@ -92,6 +101,8 @@ function metrics = compute_metrics(results, alpha)
     metrics.turnover_total   = turnover_total;
     metrics.cost_total       = cost_total;
     metrics.cost_mean        = cost_mean;
+    metrics.n_rebalances     = n_rebalances;
+    metrics.turnover_mean_active = turnover_mean_active;
     metrics.max_weight_mean  = mean(max_weight_series);
     metrics.max_weight_max   = max(max_weight_series);
     metrics.Neff_mean        = mean(Neff(valid));
@@ -106,12 +117,14 @@ function metrics = compute_metrics(results, alpha)
         'Varianza retornos mensuales'; sprintf('VaR %.0f%% (perdida)', 100*alpha); ...
         sprintf('CVaR %.0f%% (perdida)', 100*alpha); ...
         'Turnover acumulado'; 'Costo acumulado'; 'Costo medio por rebalanceo'; ...
+        'Numero de meses con transaccion'; 'Turnover medio (meses con transaccion)'; ...
         'Peso maximo promedio'; 'Peso maximo (pico)'; 'N efectivo promedio'; ...
         'Violaciones de delta fuera de muestra'; 'Minimo factor de crecimiento'; ...
         'Fallos del solucionador'; 'Numero de meses'};
     values = [wealth_final; g_mean; CAGR; MDD; worst_month; var5; ...
         ret_variance; VaR_loss; CVaR_loss; ...
-        turnover_total; cost_total; cost_mean; mean(max_weight_series); ...
+        turnover_total; cost_total; cost_mean; ...
+        n_rebalances; turnover_mean_active; mean(max_weight_series); ...
         max(max_weight_series); mean(Neff(valid)); n_violations; min_growth; ...
         n_failed; T_dec];
 
