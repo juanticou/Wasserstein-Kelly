@@ -1,13 +1,10 @@
- (P)    
-Grafica de evolucion de riqueza para delta = 0.9 (la que tiene los mejores desempeños)
-
-
 (P)
-Encerrar datos en hipercubo y muestrear uniformemente. A partir de ahí hallar la bola soportada en esos datos. 
+Encerrar datos en hipercubo y muestrear uniformemente (incluir distribuciones con más puntos que la empírica). 
 
 (P)
 Resolver para geometría con estados del mercado.
 
+(P)
 Comparación con el S&P 500.
 
 
