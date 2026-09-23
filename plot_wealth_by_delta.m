@@ -1,4 +1,4 @@
-function plot_wealth_by_delta(grid, delta_value, outDir)
+function plot_wealth_by_delta(grid, delta_value, outDir, results_row, title_suffix)
 % PLOT_WEALTH_BY_DELTA  Grafica la riqueza acumulada de TODOS los valores
 % de eta disponibles en la malla, para un delta fijo -- util para ver de
 % un vistazo el efecto del radio de robustez sobre la trayectoria de
@@ -6,14 +6,27 @@ function plot_wealth_by_delta(grid, delta_value, outDir)
 %
 % ENTRADAS
 %   grid        : struct de run_grid_delta_eta_wdro_only.m (o cargado
-%                 desde el .mat que guarda main_grid_delta_eta.m)
+%                 desde el .mat que guarda main_grid_delta_eta.m). Se usa
+%                 para delta_grid, eta_grid y baseline_col; si
+%                 results_row no se da, tambien para results_wdro.
 %   delta_value : escalar, el valor de delta a graficar (debe existir en
 %                 grid.delta_grid; si no hay coincidencia exacta se usa
 %                 el mas cercano y se avisa)
 %   outDir      : (opcional) carpeta de salida. Default: 'results_out'.
+%   results_row : (opcional) 1 x ne cell array de structs `results` ya
+%                 recortados a un periodo (p.ej. una fila de
+%                 pm.sub_results de compute_period_grid_matrices.m). Si
+%                 se da, se usa esto EN VEZ de grid.results_wdro(i_sel,:)
+%                 -- asi se puede graficar solo el periodo de validacion
+%                 o solo el de prueba sin tocar `grid`.
+%   title_suffix: (opcional) texto a anadir al titulo, p.ej.
+%                 '(validacion 2015-2018)'.
 
     if nargin < 3 || isempty(outDir)
         outDir = 'results_out';
+    end
+    if nargin < 5
+        title_suffix = '';
     end
 
     i_sel = find(grid.delta_grid == delta_value, 1);
@@ -28,11 +41,17 @@ function plot_wealth_by_delta(grid, delta_value, outDir)
     ne = numel(grid.eta_grid);
     colors = lines(ne);
 
+    if nargin >= 4 && ~isempty(results_row)
+        row_source = results_row;
+    else
+        row_source = grid.results_wdro(i_sel, :);
+    end
+
     figure('Position', [100, 100, 1000, 600]);
     hold on;
     n_plotted = 0;
     for j = 1:ne
-        r = grid.results_wdro{i_sel, j};
+        r = row_source{j};
         if isempty(r)
             continue
         end
@@ -53,10 +72,14 @@ function plot_wealth_by_delta(grid, delta_value, outDir)
     if n_plotted == 0
         close(gcf);
         error('plot_wealth_by_delta:noResults', ...
-            'No hay resultados guardados para delta=%.4f en esta malla.', delta_actual);
+            'No hay resultados guardados para delta=%.4f en esta malla/periodo.', delta_actual);
     end
 
-    title(sprintf('Riqueza acumulada para \\delta=%.2f, todos los valores de \\eta', delta_actual));
+    ttl = sprintf('Riqueza acumulada para \\delta=%.2f, todos los valores de \\eta', delta_actual);
+    if ~isempty(title_suffix)
+        ttl = [ttl, ' ', title_suffix];
+    end
+    title(ttl);
     xlabel('Fecha'); ylabel('W_t / W_0');
     legend('Location', 'best', 'NumColumns', 2);
     grid on;

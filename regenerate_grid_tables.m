@@ -61,7 +61,5 @@ plot_heatmap(NRebalances, ETA_GRID, DELTA_GRID, ...
     'Numero de meses con transaccion (WDRO)', '# transacciones', '%.0f', ...
     OUT_DIR, 'heatmap_n_transacciones.png');
 
-%% 5. Riqueza acumulada para delta=0.9, todos los eta de la malla
-plot_wealth_by_delta(grid, 0.90, OUT_DIR);
 
 fprintf('\nTablas y graficas regeneradas en la carpeta "%s".\n', OUT_DIR);
