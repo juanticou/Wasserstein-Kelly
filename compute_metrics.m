@@ -58,6 +58,36 @@ function metrics = compute_metrics(results, alpha)
         CVaR_loss = mean(tail);
     end
 
+    % --- Riesgo ajustado (Seccion 19, fila EXTENSION: Sharpe/Sortino/Calmar) ---
+    % Anualizados asumiendo 12 periodos por ano (datos mensuales). No se
+    % resta una tasa libre de riesgo aparte porque ya esta incorporada
+    % dentro del propio retorno del portafolio (el activo de bajo riesgo
+    % es una posicion mas de x).
+    ret_std = std(simple_ret);
+    if ret_std > 0
+        sharpe = (mean(simple_ret) / ret_std) * sqrt(12);
+    else
+        sharpe = NaN;
+    end
+
+    downside = simple_ret(simple_ret < 0);
+    if isempty(downside)
+        sortino = Inf;   % ningun mes negativo en la muestra
+    else
+        downside_std = sqrt(mean(downside.^2));
+        if downside_std > 0
+            sortino = (mean(simple_ret) / downside_std) * sqrt(12);
+        else
+            sortino = NaN;
+        end
+    end
+
+    if MDD > 0
+        calmar = CAGR / MDD;
+    else
+        calmar = NaN;   % sin drawdown no hay forma de normalizar (division por cero)
+    end
+
     % --- Costos ---
     turnover_total = sum(turnover);
     cost_total     = sum(cost);
@@ -98,6 +128,9 @@ function metrics = compute_metrics(results, alpha)
     metrics.alpha_used       = alpha;
     metrics.VaR_loss         = VaR_loss;
     metrics.CVaR_loss        = CVaR_loss;
+    metrics.sharpe           = sharpe;
+    metrics.sortino          = sortino;
+    metrics.calmar           = calmar;
     metrics.turnover_total   = turnover_total;
     metrics.cost_total       = cost_total;
     metrics.cost_mean        = cost_mean;
@@ -116,6 +149,7 @@ function metrics = compute_metrics(results, alpha)
         'Maximo drawdown'; 'Peor retorno mensual'; 'Percentil 5 mensual'; ...
         'Varianza retornos mensuales'; sprintf('VaR %.0f%% (perdida)', 100*alpha); ...
         sprintf('CVaR %.0f%% (perdida)', 100*alpha); ...
+        'Sharpe (anualizado)'; 'Sortino (anualizado)'; 'Calmar'; ...
         'Turnover acumulado'; 'Costo acumulado'; 'Costo medio por rebalanceo'; ...
         'Numero de meses con transaccion'; 'Turnover medio (meses con transaccion)'; ...
         'Peso maximo promedio'; 'Peso maximo (pico)'; 'N efectivo promedio'; ...
@@ -123,6 +157,7 @@ function metrics = compute_metrics(results, alpha)
         'Fallos del solucionador'; 'Numero de meses'};
     values = [wealth_final; g_mean; CAGR; MDD; worst_month; var5; ...
         ret_variance; VaR_loss; CVaR_loss; ...
+        sharpe; sortino; calmar; ...
         turnover_total; cost_total; cost_mean; ...
         n_rebalances; turnover_mean_active; mean(max_weight_series); ...
         max(max_weight_series); mean(Neff(valid)); n_violations; min_growth; ...
