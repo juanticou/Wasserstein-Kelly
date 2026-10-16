@@ -1,0 +1,29 @@
+check,asset,date,value,reference,rel_error,detail
+missing_trading_day,AAPL,2025-12-31,,,,día hábil NYSE ausente en el crudo
+missing_trading_day,MSFT,2025-12-31,,,,día hábil NYSE ausente en el crudo
+missing_trading_day,AMZN,2025-12-31,,,,día hábil NYSE ausente en el crudo
+missing_trading_day,JPM,2025-12-31,,,,día hábil NYSE ausente en el crudo
+missing_trading_day,JNJ,2025-12-31,,,,día hábil NYSE ausente en el crudo
+missing_trading_day,XOM,2025-12-31,,,,día hábil NYSE ausente en el crudo
+missing_trading_day,PG,2025-12-31,,,,día hábil NYSE ausente en el crudo
+missing_trading_day,CAT,2025-12-31,,,,día hábil NYSE ausente en el crudo
+missing_trading_day,KO,2025-12-31,,,,día hábil NYSE ausente en el crudo
+missing_trading_day,WMT,2025-12-31,,,,día hábil NYSE ausente en el crudo
+missing_trading_day,SPY,2025-12-31,,,,día hábil NYSE ausente en el crudo
+missing_trading_day,VIX,2025-12-31,,,,día hábil NYSE ausente en el crudo
+download_log_duplicate,AAPL,,,,,símbolo registrado más de una vez
+download_log_duplicate,MSFT,,,,,símbolo registrado más de una vez
+download_log_duplicate,AMZN,,,,,símbolo registrado más de una vez
+download_log_duplicate,JPM,,,,,símbolo registrado más de una vez
+download_log_duplicate,JNJ,,,,,símbolo registrado más de una vez
+download_log_duplicate,XOM,,,,,símbolo registrado más de una vez
+download_log_duplicate,PG,,,,,símbolo registrado más de una vez
+download_log_duplicate,CAT,,,,,símbolo registrado más de una vez
+download_log_duplicate,KO,,,,,símbolo registrado más de una vez
+download_log_duplicate,WMT,,,,,símbolo registrado más de una vez
+download_log_duplicate,SPY,,,,,símbolo registrado más de una vez
+download_log_duplicate,^VIX,,,,,símbolo registrado más de una vez
+download_log_missing,DGS3MO,,,,,la descarga FRED no queda registrada en download_log.csv
+extreme_monthly_return,CAT,2022-10-31,0.3280618943593358,,,|r| > 30% en el panel mensual
+vix_not_last_day,vix,2025-12-31,,,,último dato usado 2025-12-30 vs último día hábil 2025-12-31
+panel_row_dropped,panel,2009-12-31,,,,fila producida por el código actual pero ausente del CSV (primer mes sin retornos)
