@@ -1,0 +1,257 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{enumitem}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage[authoryear]{natbib}
+
+\title{Portafolios de crecimiento robusto con costos de transacción:\\
+una aproximación Wasserstein--Kelly informada por estados del mercado estadounidense}
+\author{Juan Tomás Macías Yepes}
+\date{\today}
+
+\begin{document}
+\maketitle{}
+
+\section{Introducción}
+
+\subsection{Contexto y antecedentes del problema}
+
+%%% [C1] Dir. p.1 (Rockafellar y Uryasev / repetición de Kelly): YA APLICADO por el autor («por ejemplo, ... para este último» y Kelly (1956) solo una vez). Sin cambios.
+Construir un portafolio consiste en decidir cómo repartir una cantidad de riqueza entre un
+conjunto de activos riesgosos y un activo de bajo riesgo, antes de conocer los retornos que
+esos activos producirán. Los enfoques más conocidos para esta decisión en sus formulaciones estáticas estándar -- el modelo media–varianza de \citet{markowitz1952} y los enfoques de optimización basados en VaR o CVaR  (por ejemplo,  \citet{rockafellaruryasev2000} para este último) -- priorizan compromisos entre retorno y riesgo o el control de pérdidas adversas. El criterio introducido por \citet{kelly1956}, en cambio, tiene como objetivo directo el crecimiento multiplicativo de la riqueza a largo plazo.
+Formalizado por \citet{breiman1961}, responde
+directamente a esa pregunta: maximiza la esperanza del logaritmo del factor de crecimiento
+del portafolio, lo cual --bajo retornos independientes e idénticamente distribuidos-- maximiza
+la tasa asintótica de crecimiento de la riqueza entre los portafolios de ponderaciones
+constantes. El problema práctico es que la distribución de los retornos futuros es
+desconocida; el portafolio de Kelly empírico se calcula sobre una distribución estimada a
+partir de una ventana histórica finita, y el criterio logarítmico es conocido por ser sensible a
+errores en esa estimación: un portafolio que parece óptimo sobre los escenarios pasados
+puede estar sobreajustado a ellos y presentar un desempeño deficiente fuera de muestra \citep{li2023}.
+
+La optimización robusta distribucionalmente (DRO) ofrece una respuesta a ese problema:
+en lugar de optimizar contra la distribución empírica, se optimiza contra el peor caso dentro
+de un conjunto de distribuciones plausibles construido alrededor de ella. Cuando ese
+conjunto se define mediante una bola de Wasserstein, la protección incorpora además una
+noción de geometría entre escenarios --trasladar probabilidad hacia un escenario similar es
+más barato que trasladarla hacia uno muy distinto--, lo cual resulta natural cuando se quiere
+comparar meses históricos usando tanto sus retornos como el contexto de mercado en que
+ocurrieron. La combinación de Kelly con robustez distribucional de Wasserstein ya ha sido estudiada en la literatura: \citet{sunboyd2018} formularon el Kelly robusto distribucionalmente y
+estudiaron sus propiedades de largo plazo; \citet{li2023} propuso un portafolio Wasserstein-Kelly
+centrado en la distribución empírica y mostró mejoras de estabilidad fuera de muestra frente
+al Kelly nominal; \citet{hsiehyu2024} incorporaron costos de transacción convexos y
+condiciones de supervivencia al portafolio logarítmico robusto. Por separado, \citet{liu2022}
+mostraron que la geometría utilizada para comparar los datos --no solo el tamaño del
+conjunto de ambigüedad-- puede afectar de manera sustancial el comportamiento de un
+modelo DRO.
+
+\subsection{Vacío que se atiende}\label{sec:vacio}
+
+Hasta donde alcanza la revisión bibliográfica realizada, no se ha identificado una comparación controlada que, dentro de un portafolio Wasserstein–Kelly con costos de transacción, contraste una geometría definida únicamente sobre retornos con una geometría que incorpore explícitamente variables de estado del mercado como el retorno agregado y el VIX. Se incorporan el VIX y el retorno del mercado como variables exógenas debido a la información que proporcionan sobre las condiciones actuales y las expectativas de los participantes del mercado. En particular, el VIX constituye una medida de la volatilidad esperada, construida a partir de los precios de opciones sobre índices, por lo que refleja las expectativas del mercado acerca de la volatilidad futura \citep{whaley2000}. Por otra parte, existe evidencia de una relación sistemática entre los retornos del mercado y la volatilidad, encontrándose una relación negativa entre los retornos inesperados y los 
+%%% [C3a] Dir. p.2 (French et al.): se precisa que French et al. (1987) estudian volatilidad REALIZADA, distinta del VIX (volatilidad implícita prospectiva).
+%%% Texto anterior: cambios inesperados en la volatilidad \citep{french1987}.
+cambios inesperados en la volatilidad realizada \citep{french1987}.
+%%% [fin C3a]
+ 
+%%% [C3b] Dir. p.2 (French et al.): se presenta la elección como motivación a probar, no como evidencia de mejora ni de régimen predictivo.
+%%% Texto anterior: En conjunto, estas variables permiten incorporar tanto información sobre la volatilidad esperada como sobre la dirección y condiciones recientes del mercado.
+Esta evidencia no demuestra, por sí sola, que añadir el retorno de mercado y el VIX a la distancia de transporte mejore la optimización ni que exista un régimen predictivo; además, el VIX es una medida prospectiva de volatilidad implícita, mientras que \citet{french1987} estudian la volatilidad realizada. Por ello, la incorporación de estas variables se presenta como una motivación económicamente razonable que este estudio pone a prueba empíricamente, y no como un resultado supuesto.
+%%% [fin C3b]
+ 
+
+%%% [C2] Dir. p.2 (Sun y Zou): referencia ya incorporada por el autor; se corrige \citep -> \citet porque funciona como sujeto de la oración.
+%%% Texto anterior: El estudio de \citep{sunzou2025} plantea
+El estudio de \citet{sunzou2025} plantea
+%%% [fin C2]
+ una nueva clase de modelos coherentes de optimización de portafolios de Kelly basados en datos y en la métrica de Wasserstein, donde compara su desempeño con el modelo nominal de Kelly. Sin embargo, este no necesariamente reproduce distintos tipos de geometrías de transporte concretas, ni incorpora costos de transacción.  
+
+%%% [C4] Dir. p.2 (redacción del vacío): ya reformulada por el autor; solo se corrige la concordancia («consisten» -> «consiste»).
+%%% Texto anterior: El vacío identificado consisten en
+El vacío identificado consiste en
+%%% [fin C4]
+ la falta de evidencia sobre si definir la distancia entre escenarios históricos
+únicamente en los retornos de los activos, frente a anclarla también en el estado del mercado en que esos retornos ocurrieron, produce un compromiso distinto entre crecimiento, pérdidas, concentración y costos de transacción. Ninguna de las referencias anteriores compara directamente estas dos
+geometrías bajo el mismo universo de activos, el mismo periodo, las mismas restricciones y
+el mismo protocolo de backtest.
+
+\subsection{Pregunta de investigación}
+
+\begin{displayquote}
+\textbf{¿Cómo afecta la incorporación de variables de estado del mercado en la geometría de transporte de un portafolio Wasserstein–Kelly con costos de transacción al desempeño del portafolio, en comparación con una geometría basada únicamente en los retornos de los activos?}
+\end{displayquote}
+
+\subsection{Objetivo general}
+
+Evaluar el efecto de incorporar el retorno de mercado y el VIX en la geometría de transporte de un portafolio Wasserstein–Kelly con costos de transacción proporcionales sobre su desempeño fuera de muestra, en comparación con una geometría basada únicamente en los retornos de los activos, utilizando el criterio de Kelly nominal como referencia adicional y considerando crecimiento, pérdidas, concentración y costos de transacción.
+
+\subsection{Objetivos específicos}
+
+\begin{enumerate}
+    \item \textbf{Establecer} el desempeño de referencia del modelo de Kelly nominal con costos de transacción proporcionales, bajo las restricciones de balance de cartera, límites de posición y supervivencia consideradas en el estudio.
+\item \textbf{Formular} y validar el modelo Wasserstein–Kelly bajo dos geometrías de transporte: una definida únicamente sobre los retornos y otra informada por el retorno de mercado y el VIX, estableciendo las condiciones de equivalencia con el modelo nominal cuando el radio de robustez es cero.
+
+\item \textbf{Evaluar} el desempeño fuera de muestra de las alternativas consideradas durante el periodo de prueba 2019–2025, manteniendo controlados los parámetros comunes para aislar el efecto de la geometría de transporte y del radio de robustez.
+
+\item \textbf{Comparar} las alternativas consideradas en términos de crecimiento, pérdidas, concentración y costos de transacción, cuantificando además la incertidumbre asociada a las diferencias de crecimiento logarítmico.
+
+
+%%% [C19b] Dir. p.8 (mapas de factibilidad, dffonsecav): con estas restricciones y δ<=0.90 el problema siempre es factible (ver Sec. de validación), por lo que el objetivo 5 ya no habla de «factibilidad» sino de estabilidad numérica.
+%%% Texto anterior: \item \textbf{Analizar} la sensibilidad de la factibilidad y del desempeño del modelo Wasserstein–Kelly frente a cambios en el radio de robustez $\eta$ y en el parámetro de supervivencia $\delta$.
+\item \textbf{Analizar} la sensibilidad del desempeño y de la estabilidad numérica del modelo Wasserstein–Kelly frente a cambios en el radio de robustez $\eta$ y en el parámetro de supervivencia $\delta$.
+%%% [fin C19b]
+
+\end{enumerate}
+
+\subsection{Delimitación de la contribución}
+
+Este trabajo no reclama ser el primero en proponer un portafolio de Kelly robusto
+distribucionalmente, una bola de Wasserstein para retornos financieros, costos de
+transacción en un portafolio logarítmico, o una reformulación convexa de un modelo WDRO
+--todos estos elementos ya existen en la literatura citada arriba. La contribución es
+específicamente \textbf{empírica y metodológica}: una comparación controlada, bajo un
+protocolo de backtest idéntico, de si una geometría de transporte informada por el estado
+del mercado aporta valor frente a una geometría más simple, dentro del contexto particular
+de un portafolio Wasserstein--Kelly con costos de transacción.
+
+
+\input{metodologia_1}
+
+%%% [C33] Dir. p.10 (bibliografía): se unifican las etiquetas autor-año en español («y» en lugar de «and») y las iniciales de Li. Pendiente de revisión manual: formato de las referencias técnicas de CVX/MOSEK (versión y fecha de consulta).
+\begin{thebibliography}{99}
+
+
+\bibitem[Markowitz(1952)]{markowitz1952}
+H.~Markowitz.
+\newblock Portfolio Selection.
+\newblock \emph{The Journal of Finance}, 7(1):77--91, 1952.
+\newblock DOI: 10.1111/j.1540-6261.1952.tb01525.x.
+
+\bibitem[Rockafellar y Uryasev(2000)]{rockafellaruryasev2000}
+R.~T. Rockafellar y S.~Uryasev.
+\newblock Optimization of Conditional Value-at-Risk.
+\newblock \emph{Journal of Risk}, 2(3):21--41, 2000.
+
+\bibitem[Kelly(1956)]{kelly1956}
+J.~L. Kelly Jr.
+\newblock A New Interpretation of Information Rate.
+\newblock \emph{Bell System Technical Journal}, 35(4):917--926, 1956.
+\newblock DOI: 10.1002/j.1538-7305.1956.tb03809.x.
+
+\bibitem[Breiman(1961)]{breiman1961}
+L.~Breiman.
+\newblock Optimal Gambling Systems for Favorable Games.
+\newblock En \emph{Proceedings of the Fourth Berkeley Symposium on
+  Mathematical Statistics and Probability}, vol.~1, pp.~65--78, 1961.
+
+\bibitem[Sun y Boyd(2018)]{sunboyd2018}
+Q.~Sun y S.~Boyd.
+\newblock Distributional Robust Kelly Gambling: Optimal Strategy under
+  Uncertainty in the Long Run.
+\newblock arXiv:1812.10371, 2018.
+\newblock \url{https://arxiv.org/abs/1812.10371}.
+
+\bibitem[Whaley(2000)]{whaley2000}
+R.~E. Whaley.
+\newblock The Investor Fear Gauge.
+\newblock \emph{The Journal of Portfolio Management}, 26(3):12--17, 2000.
+\newblock DOI: 10.3905/jpm.2000.319728.
+
+\bibitem[French et al.(1987)]{french1987}
+K.~R. French, G.~W. Schwert y R.~F. Stambaugh.
+\newblock Expected Stock Returns and Volatility.
+\newblock \emph{Journal of Financial Economics}, 19(1):3--29, 1987.
+\newblock DOI: 10.1016/0304-405X(87)90026-2.
+
+\bibitem[Li(2023)]{li2023}
+J.~Y.-M. Li.
+\newblock Wasserstein--Kelly Portfolios: A Robust Data-Driven Solution to
+  Optimize Portfolio Growth.
+\newblock arXiv:2302.13979, 2023.
+\newblock \url{https://arxiv.org/abs/2302.13979}.
+
+\bibitem[Hsieh y Yu(2024)]{hsiehyu2024}
+C.-H. Hsieh y X.-R. Yu.
+\newblock On Cost-Sensitive Distributionally Robust Log-Optimal Portfolio.
+\newblock arXiv:2410.23536, 2024.
+\newblock \url{https://arxiv.org/abs/2410.23536}.
+
+\bibitem[Liu et al.(2022)]{liu2022}
+J.~Liu, J.~Wu, B.~Li y P.~Cui.
+\newblock Distributionally Robust Optimization with Data Geometry.
+\newblock En \emph{Advances in Neural Information Processing Systems 35},
+2022.
+\newblock \url{https://proceedings.neurips.cc/paper_files/paper/2022/hash/da535999561b932f56efdd559498282e-Abstract-Conference.html}.
+
+\bibitem[Mohajerin Esfahani y Kuhn(2018)]{mohajerin2018}
+ P.~Mohajerin Esfahani y D.~Kuhn.
+\newblock Data-driven distributionally robust optimization using the
+   Wasserstein metric: performance guarantees and tractable reformulations.
+\newblock \emph{Mathematical Programming}, 171:115--166, 2018.
+\newblock DOI: 10.1007/s10107-017-1172-1.
+
+ \bibitem[Kuhn et al.(2019)]{kuhn2019}
+ D.~Kuhn, P.~Mohajerin Esfahani, V.~A. Nguyen y S.~Shafieezadeh-Abadeh.
+ \newblock Wasserstein Distributionally Robust Optimization: Theory and
+  Applications in Machine Learning.
+\newblock En \emph{INFORMS TutORials in Operations Research}, pp.~130--166, 2019.
+
+
+%%% [C2b] Faltaba la barra invertida en \bibitem (la entrada no se compilaba).
+\bibitem[Sun y Zou(2025)]{sunzou2025}
+Y.~Sun y Z.~Zou.
+\newblock Data-driven distributionally robust Kelly portfolio optimization
+  based on coherent Wasserstein metrics.
+\newblock \emph{Journal of University of Science and Technology of China
+  (JUSTC)}, 55(8):0805-1--0805-11, 2025.
+\newblock DOI: 10.52396/JUSTC-2024-0030.
+
+ \bibitem[Grant y Boyd(s.f.)]{grantboyd}
+ M.~Grant y S.~Boyd.
+ \newblock Using MOSEK with CVX.
+ \newblock CVX Users' Guide. \url{https://cvxr.com/cvx/doc/mosek.html}.
+
+\bibitem[Sharpe(1994)]{sharpe1994}
+W.~F. Sharpe.
+\newblock The Sharpe Ratio.
+\newblock \emph{The Journal of Portfolio Management}, 21(1):49--58, 1994.
+\newblock DOI: 10.3905/jpm.1994.409501.
+
+\bibitem[Sortino y Price(1994)]{sortinoprice1994}
+F.~A. Sortino y L.~N. Price.
+\newblock Performance Measurement in a Downside Risk Framework.
+\newblock \emph{The Journal of Investing}, 3(3):59--64, 1994.
+\newblock DOI: 10.3905/joi.3.3.59.
+
+\bibitem[Young(1991)]{young1991}
+T.~W. Young.
+\newblock Calmar Ratio: A Smoother Tool.
+\newblock \emph{Futures}, 20(1):40, 1991.
+
+\bibitem[K{\"u}nsch(1989)]{kunsch1989}
+H.~R. K{\"u}nsch.
+\newblock The Jackknife and the Bootstrap for General Stationary Observations.
+\newblock \emph{The Annals of Statistics}, 17(3):1217--1241, 1989.
+\newblock DOI: 10.1214/aos/1176347265.
+
+%%% [C34] Dir. p.11: se decidió el bootstrap MÓVIL por bloques (Künsch, 1989); Politis y Romano (1994) corresponde al bootstrap estacionario y no se usa, por lo que se retira de la bibliografía.
+%% \bibitem[Politis y Romano(1994)]{politisromano1994}
+%% D.~N. Politis y J.~P. Romano.
+%% \newblock The Stationary Bootstrap.
+%% \newblock \emph{Journal of the American Statistical Association}, 89(428):1303--1313, 1994.
+%% \newblock DOI: 10.1080/01621459.1994.10476870.
+
+\bibitem[MOSEK ApS(s.f.)]{mosek}
+MOSEK ApS.
+\newblock \emph{MOSEK Optimization Toolbox for MATLAB}.
+\newblock \url{https://docs.mosek.com}.
+\end{thebibliography}
+
+\end{document}

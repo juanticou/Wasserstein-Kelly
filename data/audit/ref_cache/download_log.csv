@@ -1,0 +1,13 @@
+symbol,source,url,download_date,n_rows,first,last
+VIX,CBOE,https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv,2026-10-19,4073,2009-12-01,2025-12-31
+AAPL,Tiingo,https://api.tiingo.com/tiingo/daily/aapl/prices?startDate=2009-12-01&endDate=2025-12-31&format=csv&resampleFreq=daily,2026-10-19,4046,2009-12-01,2025-12-31
+MSFT,Tiingo,https://api.tiingo.com/tiingo/daily/msft/prices?startDate=2009-12-01&endDate=2025-12-31&format=csv&resampleFreq=daily,2026-10-19,4046,2009-12-01,2025-12-31
+AMZN,Tiingo,https://api.tiingo.com/tiingo/daily/amzn/prices?startDate=2009-12-01&endDate=2025-12-31&format=csv&resampleFreq=daily,2026-10-19,4046,2009-12-01,2025-12-31
+JPM,Tiingo,https://api.tiingo.com/tiingo/daily/jpm/prices?startDate=2009-12-01&endDate=2025-12-31&format=csv&resampleFreq=daily,2026-10-19,4046,2009-12-01,2025-12-31
+JNJ,Tiingo,https://api.tiingo.com/tiingo/daily/jnj/prices?startDate=2009-12-01&endDate=2025-12-31&format=csv&resampleFreq=daily,2026-10-19,4046,2009-12-01,2025-12-31
+XOM,Tiingo,https://api.tiingo.com/tiingo/daily/xom/prices?startDate=2009-12-01&endDate=2025-12-31&format=csv&resampleFreq=daily,2026-10-19,4046,2009-12-01,2025-12-31
+PG,Tiingo,https://api.tiingo.com/tiingo/daily/pg/prices?startDate=2009-12-01&endDate=2025-12-31&format=csv&resampleFreq=daily,2026-10-19,4046,2009-12-01,2025-12-31
+CAT,Tiingo,https://api.tiingo.com/tiingo/daily/cat/prices?startDate=2009-12-01&endDate=2025-12-31&format=csv&resampleFreq=daily,2026-10-19,4046,2009-12-01,2025-12-31
+KO,Tiingo,https://api.tiingo.com/tiingo/daily/ko/prices?startDate=2009-12-01&endDate=2025-12-31&format=csv&resampleFreq=daily,2026-10-19,4046,2009-12-01,2025-12-31
+WMT,Tiingo,https://api.tiingo.com/tiingo/daily/wmt/prices?startDate=2009-12-01&endDate=2025-12-31&format=csv&resampleFreq=daily,2026-10-19,4046,2009-12-01,2025-12-31
+SPY,Tiingo,https://api.tiingo.com/tiingo/daily/spy/prices?startDate=2009-12-01&endDate=2025-12-31&format=csv&resampleFreq=daily,2026-10-19,4046,2009-12-01,2025-12-31

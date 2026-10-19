@@ -1,0 +1,365 @@
+% =====================================================================
+% metodologia.tex -- BOCETO de la seccion de Metodologia
+% Para usar: reemplaza el \section{Metodologia} vacio de main.tex por el
+% contenido de este archivo (o usa \input{metodologia}).
+%
+% Convenciones:
+%  - Lo marcado como \textbf{[PENDIENTE: ...]} NO esta hecho o decidido
+%    todavia; buscalo con Ctrl+F "PENDIENTE" antes de entregar.
+%  - Redactado en pasado (informe final). Las partes pendientes estan
+%    escritas como se leeran cuando se completen.
+%  - Solo usa los paquetes ya cargados en main.tex (amsmath, enumitem,
+%    natbib, hyperref); no requiere booktabs.
+%  - Al final del archivo hay entradas nuevas para thebibliography.
+% =====================================================================
+
+\section{Metodología}\label{sec:metodologia}
+
+\subsection{Diseño general del estudio}\label{sec:diseno}
+
+El estudio es una comparación computacional controlada de tres estrategias de asignación sobre el mismo universo de activos, el mismo periodo, las mismas restricciones y el mismo protocolo de backtest:
+\begin{enumerate}[label=(\roman*)]
+    \item el criterio de Kelly nominal \citep{kelly1956} con costos de transacción, que sirve de referencia;
+    \item el modelo Wasserstein--Kelly con una geometría de transporte definida únicamente sobre los retornos de las acciones (geometría~1);
+    \item el modelo Wasserstein--Kelly con una geometría informada además por el retorno agregado del mercado y el VIX (geometría~2).
+\end{enumerate}
+
+%%% [C5a] Dir. p.3 (identificación del efecto de la geometría): se elimina «difieren únicamente» y se separan el contraste emparejado y el de estrategias seleccionadas; Liu et al. solo justifica estudiar la geometría.
+%%% Texto anterior: La comparación entre (ii) y (iii), que difieren únicamente en la geometría de transporte \citep{liu2022}, responde directamente a la pregunta de investigación; (i) permite medir qué aporta la robustez distribucional en sí misma.
+La comparación entre (ii) y (iii), que se diferencian en la geometría de transporte, responde a la pregunta de investigación. Solo el contraste con parámetros $(\delta,\eta)$ emparejados aísla el efecto de la geometría; el contraste entre las configuraciones seleccionadas por validación para cada geometría compara, en cambio, estrategias calibradas, en las que cambian a la vez la geometría y los parámetros (Sección~\ref{sec:contrastes}). La cita de \citet{liu2022} respalda estudiar la geometría en DRO de manera general, pero la identificación experimental de su efecto proviene del contraste emparejado. La estrategia (i) permite medir qué aporta la robustez distribucional en sí misma.
+%%% [fin C5a]
+ En cada fecha de rebalanceo se resuelve un problema de optimización convexa con información disponible hasta ese momento y la decisión se evalúa con el retorno del mes siguiente (backtest de origen móvil). La Tabla~\ref{tab:objetivos} relaciona cada objetivo específico con la subsección que lo desarrolla.
+
+\begin{table}[h]
+\centering
+\caption{Correspondencia entre objetivos específicos y metodología.}\label{tab:objetivos}
+\begin{tabular}{|p{6.3cm}|p{8.7cm}|}
+\hline
+\textbf{Objetivo específico} & \textbf{Subsecciones} \\ \hline
+1. Desempeño de referencia del Kelly nominal & \ref{sec:decision} (modelo de decisión y Kelly nominal) \\ \hline
+2. Formular y validar el modelo Wasserstein--Kelly con dos geometrías & \ref{sec:wk} (modelo), \ref{sec:geom} (geometrías) y \ref{sec:impl} (verificación) \\ \hline
+3. Evaluación fuera de muestra con parámetros comunes controlados & \ref{sec:protocolo} (partición temporal y protocolo) \\ \hline
+4. Comparación de alternativas e incertidumbre de las diferencias & \ref{sec:metricas} (métricas e inferencia) \\ \hline
+5. Sensibilidad a $\eta$ y a $\delta$ & \ref{sec:protocolo} (mallas de validación) \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Datos}\label{sec:datos}
+
+\subsubsection{Universo y fuentes}
+
+El universo invertible estuvo formado por $d=10$ acciones estadounidenses líquidas, 
+%%% [C6] Dir. p.3 («de sectores distintos» no es correcto: AAPL/MSFT y PG/KO comparten sector). REVISAR: la clasificación GICS la propuse yo; verifícala con tu fuente.
+%%% Texto anterior: de sectores distintos y con historia completa desde diciembre de 2009: AAPL, MSFT, AMZN, JPM, JNJ, XOM, PG, CAT, KO y WMT.
+pertenecientes a siete sectores según la clasificación GICS (tecnología de la información: AAPL y MSFT; consumo discrecional: AMZN; finanzas: JPM; salud: JNJ; energía: XOM; consumo básico: PG, KO y WMT; industriales: CAT), de modo que algunos sectores están representados por más de una acción, y con historia completa desde diciembre de 2009: AAPL, MSFT, AMZN, JPM, JNJ, XOM, PG, CAT, KO y WMT. Los criterios de selección fueron la liquidez y la disponibilidad de historia completa; no se buscó un equilibrio sectorial. \textbf{[PENDIENTE: confirmar el criterio de selección y la fuente de la clasificación sectorial.]}
+%%% [fin C6]
+ Se utilizaron precios diarios ajustados de Yahoo Finance\footnote{\url{https://finance.yahoo.com}}, el ETF SPY como aproximación al mercado accionario estadounidense, el índice VIX de volatilidad implícita \citep{whaley2000}\footnote{\url{https://www.cboe.com/tradable_products/vix/}}, y la tasa del Tesoro a tres meses (serie DGS3MO de FRED\footnote{\url{https://fred.stlouisfed.org/series/DGS3MO}}) como aproximación del activo de bajo riesgo. 
+%%% [C9] Dir. p.4 (SPY como «benchmark externo»): se elimina esa promesa. Alternativa: incluir explícitamente una estrategia SPY comprar-y-mantener con su supuesto de costos, si se decide hacer esa comparación.
+%%% Texto anterior: SPY no es una variable de decisión: se usó solo como benchmark externo y para calcular el retorno agregado de mercado.
+SPY no es una variable de decisión: se usó únicamente como serie para calcular el retorno agregado de mercado, y no se incluyó como estrategia de comparación.
+%%% [fin C9]
+ Los archivos originales se conservaron sin modificación y se auditaron fechas duplicadas o faltantes, precios no positivos, retornos extremos y 
+%%% [C7] Dir. p.4 (reproducibilidad de la auditoría): se agrega el tipo de cierre y los datos de descarga. Lo que depende de tus archivos de auditoría queda como PENDIENTE.
+%%% Texto anterior: divisiones de acciones contra los datos históricos extraídos de Stooq\footnote{\url{https://stooq.com}}.
+divisiones de acciones contra los datos históricos extraídos de Stooq\footnote{\url{https://stooq.com}}. Se usaron cierres ajustados por dividendos y desdoblamientos (\emph{Adj Close} de Yahoo Finance), y la tasa DGS3MO se completó con su última observación disponible cuando faltaba un dato. Los datos se descargaron el \textbf{[PENDIENTE: fecha de descarga, registrada en \texttt{download\_log.csv}]}; el periodo efectivo por ticker fue \textbf{[PENDIENTE: confirmar con \texttt{audit\_report.csv}]}. Ante datos faltantes se \textbf{[PENDIENTE: criterio usado]}, y cuando Yahoo Finance y Stooq discrepaban \textbf{[PENDIENTE: regla de resolución; p.~ej., prevaleció Yahoo Finance y se registró la discrepancia]}.
+%%% [fin C7]
+
+
+\subsubsection{Retornos mensuales y activo de bajo riesgo}
+
+Con el último cierre ajustado de cada mes, $P_{j,m}$, el retorno simple mensual de la acción $j$ fue
+\begin{equation}\label{eq:ret}
+r_{j,m}=\frac{P_{j,m}}{P_{j,m-1}}-1,
+\end{equation}
+y el retorno mensual de mercado $m_m$ se calculó igual con SPY. Para cada mes se tomó el último valor diario del VIX, $V_m$. Si $y_k$ es el rendimiento anual porcentual de la serie DGS3MO al cierre del mes $k$, el retorno de bajo riesgo aplicable al periodo $k\to k+1$ fue
+\begin{equation}\label{eq:rf}
+r^f_k=\Bigl(1+\frac{y_k}{100}\Bigr)^{1/12}-1,
+\end{equation}
+
+%%% [C8] Dir. p.4 (disponibilidad temporal y alineación de fechas). REVISAR: describe lo que hace 01_import_data.py (resample('ME').last() + ffill); confirma el supuesto de observabilidad.
+%%% Texto anterior: conocido en la fecha de decisión $k$. Esta transformación es un proxy
+conocido en la fecha de decisión $k$. En cada mes se usaron el último cierre diario de SPY y del VIX y la última observación de DGS3MO publicada hasta el cierre del mes calendario; si la fecha de FRED no coincidía con el último día bursátil, se tomó el último dato disponible hasta esa fecha (completando con el valor anterior cuando faltaba). Se supone que estas series son observables al cierre del mes $k$, instante en que se rebalancea. \textbf{[PENDIENTE: confirmar que ningún dato posterior al último día bursátil del mes interviene en la decisión.]} Esta transformación es un proxy
+%%% [fin C8]
+ operativo del retorno de una posición de corto plazo, no el retorno realizado exacto de una cuenta monetaria.
+
+\subsubsection{Partición temporal}
+
+Los retornos mensuales cubren enero de 2010 en adelante. Los primeros 60 retornos (enero de 2010 a diciembre de 2014) formaron la primera ventana de estimación. El periodo de \emph{validación} (enero de 2015 a diciembre de 2018) se usó para depurar la implementación, explorar mallas de parámetros y elegir configuraciones; el periodo de \emph{prueba} (enero de 2019 a diciembre de 2025) se reservó para la evaluación final y no se usó para escoger ningún parámetro.
+
+\subsection{Modelo de decisión en cada fecha de rebalanceo}\label{sec:decision}
+
+En la fecha mensual $k$ el inversionista posee una riqueza $W_k>0$ distribuida según el portafolio heredado $h_k=(h_{0k},h_{1k},\dots,h_{dk})^\top$, con $h_{jk}\ge 0$ y $\sum_{j=0}^d h_{jk}=1$, donde el índice $0$ denota el activo de bajo riesgo. Sean $b_{jk}\ge0$ y $s_{jk}\ge0$ las compras y ventas de la acción $j$, expresadas como fracción de $W_k$, y $\tau\ge0$ el costo proporcional por unidad monetaria negociada \citep{hsiehyu2024}. Las posiciones después de operar y de pagar los costos son
+\begin{align}
+x_{jk}&=h_{jk}+b_{jk}-s_{jk}, \qquad j=1,\dots,d, \label{eq:bal_j}\\
+x_{0k}&=h_{0k}-\sum_{j=1}^{d}b_{jk}+\sum_{j=1}^{d}s_{jk}-\tau\sum_{j=1}^{d}(b_{jk}+s_{jk}). \label{eq:bal_0}
+\end{align}
+Con $\mathrm{TO}_k=\sum_{j=1}^d(b_{jk}+s_{jk})$, esto implica $x_{0k}+\sum_{j=1}^d x_{jk}=1-\tau\,\mathrm{TO}_k$: las posiciones se expresan respecto a $W_k$ y la diferencia con uno es exactamente la fracción de riqueza consumida por los costos. Las compras y ventas simultáneas del mismo activo no son óptimas cuando $\tau>0$, por lo que no se requieren variables binarias.
+
+En la fecha $k$ se dispone de la ventana de los $N$ retornos mensuales más recientes, $\mathcal D_k=\{\hat r_{k1},\dots,\hat r_{kN}\}$ con $\hat r_{ks}=r_{k-N+1+(s-1)}$, 
+%%% [C10] Dir. p.5 (equiprobabilidad): se aclara que es la distribución empírica de referencia, no un supuesto i.i.d./estacionario.
+%%% Texto anterior: que se interpretan como $N$ escenarios equiprobables para evaluar un portafolio candidato.
+que se interpretan como $N$ escenarios equiprobables para evaluar un portafolio candidato. La equiprobabilidad es la distribución empírica de referencia de la ventana; no supone que los retornos sean independientes, estacionarios ni idénticamente distribuidos, y esta limitación se retoma en la Sección~\ref{sec:limit}.
+%%% [fin C10]
+ El factor de crecimiento del portafolio $x_k$ bajo el escenario $s$ es
+\begin{equation}\label{eq:G}
+G_{ks}(x_k)=x_{0k}(1+r^f_k)+\sum_{j=1}^{d}x_{jk}\,(1+\hat r_{jks}),
+\end{equation}
+una función afín de $x_k$ que, al incorporar $x_{0k}$, ya descuenta los costos de transacción.
+
+\subsubsection{Kelly nominal con costos de transacción}
+
+El modelo nominal maximiza el crecimiento logarítmico promedio sobre los escenarios de la ventana:
+\begin{equation}\label{eq:nominal}
+\begin{aligned}
+\max_{x_k,b_k,s_k}\quad & \frac1N\sum_{s=1}^N\log G_{ks}(x_k)\\
+\text{s.a.}\quad & \eqref{eq:bal_j},\ \eqref{eq:bal_0},\\
+& 0\le x_{jk}\le \bar x,\quad \sum_{j=1}^d x_{jk}\le\gamma,\\
+& G_{ks}(x_k)\ge\delta,\quad s=1,\dots,N,\\
+& x_{0k}\ge0,\ b_{jk}\ge0,\ s_{jk}\ge0,
+\end{aligned}
+\end{equation}
+donde $\bar x$ limita la posición por acción, $\gamma$ limita la exposición riesgosa total y $\delta>0$ es una cota de supervivencia \citep{hsiehyu2024} que exige que, bajo cada escenario de la ventana, la riqueza no caiga por debajo de la fracción $\delta$ de la riqueza previa a operar (además de garantizar que el logaritmo esté bien definido). El problema es convexo: maximiza una función cóncava sobre un conjunto convexo \citep{kelly1956,breiman1961}. La decisión $x_k$ se mantiene únicamente durante el periodo $k\to k+1$ y el problema se resuelve de nuevo en la fecha siguiente (horizonte rodante).
+
+\subsection{Modelo Wasserstein--Kelly}\label{sec:wk}
+
+El modelo nominal trata la distribución empírica de la ventana como si fuera la verdadera. Para protegerse contra errores en esa estimación \citep{li2023,sunboyd2018,hsiehyu2024}, se sustituye el promedio empírico por el peor caso dentro de una bola de Wasserstein de radio $\rho_k$ centrada en la distribución empírica, 
+%%% [C11] Dir. p.5 (soporte restringido): se explica en una oración que es una bola discreta sobre el soporte empírico y se justifica por tratabilidad y alcance.
+%%% Texto anterior: con soporte restringido a los $N$ escenarios históricos.
+con soporte restringido a los $N$ escenarios históricos. Se trata, por tanto, de una bola de Wasserstein discreta restringida al soporte empírico: el adversario solo redistribuye probabilidad entre meses ya observados y no genera pérdidas fuera de ese soporte, de modo que las garantías de trabajos con soporte no restringido no se trasladan automáticamente a este caso. La restricción se adopta por tratabilidad (el dual \eqref{eq:dual} es finito y tiene $N^2$ restricciones) y por el alcance de la comparación, que contrasta geometrías sobre los mismos escenarios.
+%%% [fin C11]
+ Una distribución alternativa se describe por probabilidades $p=(p_1,\dots,p_N)$ en el símplex $\Delta_N$, y su distancia a la empírica $\hat p=(1/N)\mathbf 1$ es el costo mínimo de un plan de transporte \citep{mohajerin2018,kuhn2019}:
+\begin{equation}\label{eq:W}
+W_{C_k}(\hat p,p)=\min_{\Gamma\ge0}\Bigl\{\sum_{r,s}c_{k,rs}\Gamma_{rs}\;:\;\sum_{s}\Gamma_{rs}=\tfrac1N\ \forall r,\ \ \sum_{r}\Gamma_{rs}=p_s\ \forall s\Bigr\},
+\end{equation}
+donde $c_{k,rs}\ge0$ es el costo de trasladar probabilidad del escenario $r$ al escenario $s$ (definido en la Sección~\ref{sec:geom}). El conjunto de ambigüedad es $\mathcal P_{\rho_k}=\{p\in\Delta_N: W_{C_k}(\hat p,p)\le\rho_k\}$ y el problema de decisión es
+\begin{equation}\label{eq:minimax}
+\max_{x_k,b_k,s_k}\ \min_{p\in\mathcal P_{\rho_k}}\ \sum_{s=1}^N p_s\log G_{ks}(x_k)\qquad\text{sujeto a las mismas restricciones de \eqref{eq:nominal}}.
+\end{equation}
+El radio se normalizó con la escala de distancias de cada ventana,
+\begin{equation}\label{eq:rho}
+\rho_k=\eta\cdot\operatorname{mediana}\{c_{k,rs}: r<s,\ c_{k,rs}>0\},
+\end{equation}
+
+%%% [C12/C13a] Dir. p.6 (comparabilidad de η y dualización). REVISAR: la regla «sin distancias positivas => ρ_k=0» debe coincidir con lo que hace compute_rho.m.
+%%% Texto anterior: de modo que $\eta\ge0$ es una intensidad \emph{relativa} de robustez comparable entre ventanas y entre geometrías. Por dualidad lineal del problema de transporte \citep{mohajerin2018,kuhn2019}, el problema \eqref{eq:minimax} es equivalente a la reformulación convexa exacta
+de modo que $\eta\ge0$ es una intensidad \emph{relativa} que normaliza la escala de los costos en cada ventana. Esta normalización no implica que un mismo $\eta$ represente exactamente la misma severidad de ambigüedad bajo geometrías distintas, pues sus distribuciones de distancias y los conjuntos de probabilidades alcanzables pueden diferir; por eso la comparación entre geometrías se hace sobre una malla de $\eta$ y no se interpreta como equivalencia estricta de radios. Si en una ventana no existe ningún costo positivo fuera de la diagonal, se toma $\rho_k=0$ y el modelo se reduce al nominal. \textbf{[PENDIENTE (opcional): resumir (mediana y cuartiles) las distancias $c_{k,rs}$ de cada geometría y, si se dispone, comparar el valor del objetivo en el peor caso a un $\eta$ común.]} Con soporte finito, el problema interno de \eqref{eq:minimax} es un programa lineal en el plan de transporte, y su dualidad lineal \citep[como en][]{mohajerin2018,kuhn2019} conduce a la reformulación convexa exacta
+%%% [fin C12/C13a]
+
+\begin{equation}\label{eq:dual}
+\begin{aligned}
+\max_{x_k,b_k,s_k,\alpha,\lambda}\quad & \frac1N\sum_{r=1}^N\alpha_r-\rho_k\lambda\\
+\text{s.a.}\quad & \alpha_r\le\log G_{ks}(x_k)+\lambda\,c_{k,rs},\quad r,s=1,\dots,N,\\
+& \lambda\ge0,\ \alpha\in\mathbb R^N,\ \text{y las restricciones de \eqref{eq:nominal}},
+\end{aligned}
+\end{equation}
+
+%%% [C13b] Dir. p.6 (justificación de la dualidad): se agrega una derivación breve, el papel de λ y α y la hipótesis de positividad dada por δ.
+%%% Texto anterior: que es representable con el cono exponencial y tiene $N^2$ restricciones logarítmicas. Con $\rho_k=0$ y costos fuera de la diagonal estrictamente positivos se recupera exactamente el modelo nominal \eqref{eq:nominal}.
+que es representable con el cono exponencial y tiene $N^2$ restricciones logarítmicas. Con $\rho_k=0$ y costos fuera de la diagonal estrictamente positivos se recupera exactamente el modelo nominal \eqref{eq:nominal}.
+
+\emph{Justificación de la dualización.} Fijado $x_k$, sea $\ell_s=\log G_{ks}(x_k)$. Dualizando con $\lambda\ge0$ la restricción $\sum_{r,s}c_{k,rs}\Gamma_{rs}\le\rho_k$, el problema interno vale $\max_{\lambda\ge0}\bigl\{-\rho_k\lambda+\tfrac1N\sum_{r}\min_{s}(\ell_s+\lambda c_{k,rs})\bigr\}$; la variable $\alpha_r$ representa $\min_s(\ell_s+\lambda c_{k,rs})$ y se impone mediante las $N^2$ desigualdades de \eqref{eq:dual}. Así, $\lambda$ es el precio de la restricción de presupuesto de transporte y $\alpha_r$ el valor del peor destino disponible para la masa del escenario $r$. La ausencia de brecha de dualidad proviene de la dualidad lineal de este problema discreto, cuyo conjunto factible es no vacío porque contiene a $\hat p$; la positividad de $G_{ks}$, garantizada por $\delta>0$, asegura que $\ell_s$ esté bien definido, y la concavidad de $\log G_{ks}$ en $x_k$ hace convexas las restricciones. La exactitud de \eqref{eq:dual} se deriva, por tanto, de esta estructura discreta; \citet{mohajerin2018} y \citet{kuhn2019} se citan como antecedentes de la dualización de Wasserstein, no como fuente de esta fórmula para este soporte y esta función logarítmica.
+%%% [fin C13b]
+
+
+\subsection{Geometrías de transporte}\label{sec:geom}
+
+Los costos $c_{k,rs}$ se construyen en cada fecha usando únicamente la ventana $\mathcal D_k$. Cada variable se estandariza con la mediana y el rango intercuartílico de la ventana,
+\begin{equation}\label{eq:std}
+\tilde z_{ks}=\frac{z_{ks}-\operatorname{mediana}\{z_{k1},\dots,z_{kN}\}}{\max\{\operatorname{IQR}(z_{k1},\dots,z_{kN}),\,\varepsilon_{\mathrm{esc}}\}},
+\end{equation}
+
+%%% [C14] Dir. p.6 (piso ε_esc). REVISAR: la regla «excluir la variable constante» es la sugerida por el director y no está implementada; ajusta si el conteo es cero.
+%%% Texto anterior: para que ninguna variable domine la distancia por su escala numérica. Los valores originales de los retornos siguen apareciendo en \eqref{eq:G}; la estandarización solo define la noción de cercanía entre escenarios.
+para que ninguna variable domine la distancia por su escala numérica. Los valores originales de los retornos siguen apareciendo en \eqref{eq:G}; la estandarización solo define la noción de cercanía entre escenarios. El piso $\varepsilon_{\mathrm{esc}}$ evita divisiones por cero, pero puede amplificar variaciones mínimas si una serie tiene un IQR casi nulo en la ventana (en particular una covariable). Por ello se contó el número de ventanas con $\mathrm{IQR}<\varepsilon_{\mathrm{esc}}$ en cada serie: \textbf{[PENDIENTE: reportar el conteo; si es cero, indicarlo]}. Si llegara a ocurrir, la regla prevista es excluir de $c_{k,rs}$ la contribución de la variable constante en esa ventana y renormalizar los pesos restantes.
+%%% [fin C14]
+
+
+\paragraph{Geometría 1 (solo retornos).} El costo es la diferencia absoluta promedio por activo entre los retornos estandarizados:
+\begin{equation}\label{eq:g1}
+c^{R}_{k,rs}=\frac1d\,\bigl\|\tilde r_{kr}-\tilde r_{ks}\bigr\|_1 .
+\end{equation}
+
+\paragraph{Geometría 2 (retornos, mercado y VIX).} A cada escenario histórico se le asocia el retorno de mercado $m_{ks}$ y el nivel del VIX $v_{ks}$ del mes correspondiente, y el costo combina los tres bloques:
+\begin{equation}\label{eq:g2}
+c^{M}_{k,rs}=\omega_R\,c^{R}_{k,rs}+\omega_m\,|\tilde m_{kr}-\tilde m_{ks}|+\omega_v\,|\tilde v_{kr}-\tilde v_{ks}|,\qquad \omega_R+\omega_m+\omega_v=1,
+\end{equation}
+
+%%% [C15] Dir. p.7 (justificación de los pesos). REVISAR: confirma que esta es tu razón para 70/15/15; si es otra, reemplázala.
+%%% Texto anterior: con $(\omega_R,\omega_m,\omega_v)=(0.70,\,0.15,\,0.15)$. La tasa de corto plazo
+con $(\omega_R,\omega_m,\omega_v)=(0.70,\,0.15,\,0.15)$. Los pesos son una elección de diseño a priori, no calibrada con datos: se asignó $70\,\%$ a los retornos de los activos, que son la información directamente relevante para el portafolio, y $15\,\%$ a cada variable de estado, de modo que las covariables modifiquen la noción de cercanía sin dominarla. Como al cambiar los pesos varía también el aporte relativo de los retornos, las diferencias observadas entre geometrías no se atribuyen solo a «incorporar información», y las conclusiones están condicionadas a esta elección. \textbf{[PENDIENTE (opcional): comprobación con una distribución alternativa de pesos, sin optimizarla sobre el periodo de prueba.]} La tasa de corto plazo
+%%% [fin C15]
+ se usó únicamente como $r^f_k$ en \eqref{eq:G}, no como componente de la distancia. Dos meses con retornos accionarios parecidos pero con niveles de VIX muy distintos quedan así más lejos que bajo la geometría~1. 
+%%% [C16] Dir. p.7 (la geometría no condiciona la distribución al estado actual) y p.2 (motivación, no evidencia de mejora).
+%%% Texto anterior: Las variables de estado no aparecen en el factor de crecimiento ni se usan para predecir el régimen siguiente: solo impactan la ponderación a través de la distancia. La elección del VIX y del retorno de mercado como variables de estado se justificó en la Sección~\ref{sec:vacio} \citep{whaley2000,french1987}.
+Las variables de estado no aparecen en el factor de crecimiento ni se usan para predecir el régimen siguiente: solo intervienen en la distancia entre escenarios. El estado actual del mercado no condiciona explícitamente la distribución predictiva; solo la ventana histórica y su geometría determinan el conjunto de ambigüedad. La geometría usa los estados históricos para definir los costos \emph{entre} escenarios y no aproxima una distribución condicional al VIX o al retorno de mercado observados hoy, por lo que el modelo no reconoce ni anticipa regímenes. La elección del VIX y del retorno de mercado se motivó en la Sección~\ref{sec:vacio} \citep{whaley2000,french1987} como una hipótesis económicamente razonable que este estudio pone a prueba, no como un resultado supuesto.
+%%% [fin C16]
+
+
+\subsection{Protocolo experimental}\label{sec:protocolo}
+
+\subsubsection{Backtest de origen móvil}
+
+
+%%% [C17] Dir. p.7 (condición inicial por segmento). REVISAR: se redactó según extract_period_results.m (recorte de la trayectoria completa); confirma antes de enviar.
+%%% Texto anterior: Se partió con $W_0=1$ y todo el capital en el activo de bajo riesgo, $h_0=(1,0,\dots,0)^\top$, de modo que la primera asignación también pagó costos.
+Se partió con $W_0=1$ y todo el capital en el activo de bajo riesgo, $h_0=(1,0,\dots,0)^\top$, de modo que la primera asignación también pagó costos. Esta condición inicial se aplicó una sola vez por trayectoria, en la primera fecha de decisión (diciembre de 2014), para cada estrategia y para cada combinación de la malla. El tramo de prueba no reinició posiciones: sus resultados provienen de la misma trayectoria, por lo que parte del portafolio heredado $h_k$ acumulado al cierre de 2018, y la riqueza se re-basó a uno al inicio del tramo. La misma regla se aplicó a todas las estrategias comparadas. \textbf{[PENDIENTE: confirmar que así se ejecutó la evaluación de prueba, es decir, recortando la trayectoria completa y no corriendo un backtest nuevo desde efectivo en 2019.]}
+%%% [fin C17]
+ En cada fecha mensual $k$ se siguió el mismo procedimiento para los tres modelos:
+\begin{enumerate}[label=\arabic*.]
+    \item se tomó la información disponible hasta el cierre del mes $k$ y se construyó la ventana $\mathcal D_k$ con $N=60$ meses;
+    \item se estandarizó la ventana y se construyó $C_k$ (solo en los modelos Wasserstein--Kelly) y $\rho_k$ mediante \eqref{eq:rho};
+    \item se resolvió el problema correspondiente --\eqref{eq:nominal} o \eqref{eq:dual}-- y se obtuvo $x_k$;
+    \item se mantuvo $x_k$ durante el mes siguiente y se observó el retorno realizado $r_{k+1}$, con factor de crecimiento
+    \begin{equation}\label{eq:Greal}
+    G^{\mathrm{real}}_{k+1}=x_{0k}(1+r^f_k)+\sum_{j=1}^d x_{jk}(1+r_{j,k+1}),\qquad W_{k+1}=W_k\,G^{\mathrm{real}}_{k+1};
+    \end{equation}
+    \item se actualizó el portafolio heredado, $h_{0,k+1}=x_{0k}(1+r^f_k)/G^{\mathrm{real}}_{k+1}$ y $h_{j,k+1}=x_{jk}(1+r_{j,k+1})/G^{\mathrm{real}}_{k+1}$, se desplazó la ventana y se repitió.
+\end{enumerate}
+Ninguna observación posterior a $k$ interviene en $x_k$. Los costos no se descuentan de nuevo en \eqref{eq:Greal} porque ya están incorporados en $x_{0k}$. 
+%%% [C18] Dir. p.7 (fallo del solucionador != infactibilidad). REVISAR: confirma que los estados exactos de MOSEK se guardan por mes.
+%%% Texto anterior: Si en alguna fecha el solucionador no devolvía una solución óptima, el portafolio heredado se mantuvo sin rebalancear ese mes y el evento se registró como fecha no factible.
+En cada fecha se registró el estado devuelto por el solucionador. Que MOSEK/CVX no declare una solución óptima no implica que el modelo matemático sea infactible: puede deberse a un límite de tiempo, a inestabilidad numérica o a un estado \emph{inaccurate}. Por ello se distinguió entre infactibilidad certificada y fallo numérico o no resuelto, y se aplicó la misma regla de contingencia a todas las estrategias: se mantuvo el portafolio heredado ese mes y el evento se contó como \emph{mes sin optimización}, no automáticamente como problema infactible, porque esa decisión alternativa altera retornos y costos. \textbf{[PENDIENTE: indicar la precisión del solucionador y confirmar que el estado exacto de cada mes quedó guardado.]}
+%%% [fin C18]
+ La cota $G_{ks}(x_k)\ge\delta$ se impone sobre los escenarios de la ventana, por lo que no garantiza que el factor realizado sea mayor que $\delta$; cada incumplimiento fuera de muestra se registró.
+
+\subsubsection{Parámetros comunes y mallas}
+
+Los parámetros que se mantuvieron fijos entre los tres modelos para aislar el efecto de la geometría y del radio se resumen en la Tabla~\ref{tab:param}. Solo $\delta$ y $\eta$ se variaron, en las mallas de validación.
+
+\begin{table}[h]
+\centering
+\caption{Parámetros comunes y mallas de validación.}\label{tab:param}
+\begin{tabular}{|p{6.0cm}|p{9.0cm}|}
+\hline
+\textbf{Parámetro} & \textbf{Valor} \\ \hline
+Ventana de estimación $N$ & 60 meses \\ \hline
+Costo proporcional $\tau$ & $0.001$ (10 puntos básicos por unidad negociada) \\ \hline
+Límite por acción $\bar x$ / exposición riesgosa $\gamma$ & $0.25$ / $1$ \\ \hline
+Piso de estandarización $\varepsilon_{\mathrm{esc}}$ & $10^{-6}$ \\ \hline
+Pesos de la geometría 2 $(\omega_R,\omega_m,\omega_v)$ & $(0.70,\,0.15,\,0.15)$ \\ \hline
+Nivel de confianza de VaR y CVaR & $0.95$ \\ \hline
+Malla de $\delta$ (validación) & $\{0.50,\,0.60,\,0.70,\,0.75,\,0.80,\,0.90\}$ \\ \hline
+
+%%% [C26] Dir. p.8 (Cuadro 2 se salía del margen): la malla de η se parte en dos líneas.
+%%% Texto anterior: Malla de $\eta$ (validación) & $\{0,\,0.01,\,0.02,\,0.03,\,0.04,\,0.05,\,0.10,\,0.15,\,0.30,\,0.50,\,1.00\}$ \\ \hline
+Malla de $\eta$ (validación) & $\{0,\,0.01,\,0.02,\,0.03,\,0.04,\,0.05,$\newline $0.10,\,0.15,\,0.30,\,0.50,\,1.00\}$ \\ \hline
+%%% [fin C26]
+
+\end{tabular}
+\end{table}
+
+\subsubsection{Validación y prueba}
+
+\emph{Fase de validación.} Para cada geometría se corrió la malla completa $(\delta,\eta)$ de la Tabla~\ref{tab:param} sobre el periodo de validación, usando datos recortados al final de 2018, de modo que el código no tuvo acceso al periodo de prueba. 
+%%% [C19] Dir. p.8 (mapas de factibilidad, dffonsecav). Argumento verificado: x_0=1-τΣh_j>=0.999 y G=x_0(1+r_f)>0.90. REVISAR: si en tus mallas aparecen fracciones factibles <1, son fallos numéricos y deben reportarse como tales.
+%%% Texto anterior: Para cada combinación se registraron la fracción de fechas factibles y las métricas de la Sección~\ref{sec:metricas}; con ellas se construyeron mapas de factibilidad y de desempeño sobre la malla $(\delta,\eta)$, que sustentan el análisis de sensibilidad del objetivo~5.
+Para cada combinación se registraron la fracción de meses con solución óptima y las métricas de la Sección~\ref{sec:metricas}; con ellas se construyeron mapas de desempeño, de actividad de la cota $\delta$ y de fallos numéricos sobre la malla $(\delta,\eta)$, que sustentan el análisis de sensibilidad del objetivo~5. Con las restricciones del modelo y $\delta\le0.90$, el problema es siempre factible: vender todas las posiciones riesgosas ($x_{jk}=0$) deja $x_{0k}=1-\tau\sum_{j}h_{jk}\ge1-\tau=0.999$ y $G_{ks}=x_{0k}(1+r^f_k)\ge0.999\,(1+r^f_k)>0.90$ para las tasas mensuales observadas ($r^f_k\ge0$), de modo que la cota de supervivencia se cumple en todos los escenarios y el conjunto factible es no vacío para toda combinación $(\delta,\eta)$ de la malla. Por esta razón no se buscaron regiones infactibles en sentido teórico: los mapas describen (a) las regiones donde la cota $\delta$ está activa, (b) el desempeño y el riesgo de pérdidas y (c) la frecuencia de meses sin optimización por fallos numéricos, que se reportan separados de la factibilidad teórica.
+%%% [fin C19]
+ El caso $\eta=0$ de cada fila de $\delta$ equivale al modelo nominal con ese mismo $\delta$ y se usó como línea base.
+%%% [C20] Dir. p.8 (oración repetida): se elimina «De igual manera, se ejecutó el mismo protocolo ... geometría 2», que sugería una validación adicional.
+%%% Texto anterior:  De igual manera, se ejecutó el mismo protocolo de validación para la geometría 2.
+%%% [C20 | PENDIENTE interno] la malla de validación de la geometría 2 aún debe correrse para que el párrafo anterior sea cierto para ambas geometrías.
+%%% [fin C20]
+
+
+%%% [C21/C23] Dir. p.8 (regla de selección incompleta; criterio solo de riqueza). REVISAR: los pasos (2) y (3) —umbral φ_min y desempate— son propuestas mías; fíjalos antes de mirar la prueba.
+%%% Texto anterior: \emph{Selección.} La configuración $(\delta,\eta)$ de cada geometría se eligió únicamente con los resultados de validación, aplicando una regla fijada de antemano. La ejecución de la malla El criterio a priori de elección de dicha configuración fue el cociente entre riqueza final e inicial. A partir de la elección de parámetros en ambas geometrías, y se comparan tanto los mejores modelos resultantes de cada geometría, como sus mismas versiones en ambas geometrías. 
+\emph{Selección.} La configuración $(\delta,\eta)$ de cada geometría se eligió únicamente con los resultados de validación, mediante una regla fijada antes de observar el periodo de prueba y compuesta de tres pasos: (1) la métrica primaria es el cociente entre la riqueza final y la inicial en validación, que se maximiza; (2) una configuración es elegible si su fracción de meses con solución óptima es al menos $\phi_{\min}$ \textbf{[PENDIENTE: fijar $\phi_{\min}$ antes de usarlo]} y sus fallos se trataron con la misma regla de contingencia que las demás; y (3) los empates (diferencias relativas de riqueza inferiores a $10^{-6}$) se rompen eligiendo el menor $\eta$ (la configuración más cercana al modelo nominal) y, si persiste el empate, el mayor $\delta$. La riqueza es el criterio primario; crecimiento, pérdidas, concentración y costos son dimensiones secundarias que se reportan, pero no se usaron para elegir a posteriori, por lo que la configuración elegida no es la mejor en un sentido multicriterio. Con 48 meses de validación y 66 combinaciones $(\delta,\eta)$ por geometría existe riesgo de sobreajustar la validación, lo que se reconoce como limitación (Sección~\ref{sec:limit}).
+%%% [fin C21/C23]
+
+\emph{Fase de prueba.} 
+%%% [C22/C24] Dir. p.8 (contraste emparejado vs. seleccionado) y p.8 (la equivalencia «recortar = correr por separado» no es correcta con costos y portafolio heredado): se reemplaza por la redacción sugerida.
+%%% Texto anterior: Las configuraciones elegidas se evaluaron una sola vez sobre el periodo de prueba, con los parámetros congelados, junto con el modelo nominal y comparando cada alternativa contra las demás. Los resultados de cada tramo se obtienen recortando por fecha la misma trayectoria del backtest, y la riqueza se re-basa a uno al inicio del tramo; esto es equivalente a correr cada tramo por separado, porque cada decisión solo usa información pasada.
+Las configuraciones elegidas se evaluaron una sola vez sobre el periodo de prueba, con los parámetros congelados, junto con el modelo nominal. Los resultados por tramo se obtuvieron recortando la trayectoria ya simulada y reescalando su riqueza al inicio del tramo, sin reiniciar posiciones ni reoptimizar.
+
+\paragraph{Contrastes de la fase de prueba.}\label{sec:contrastes} Se hicieron dos contrastes separados. (a) \emph{Contraste controlado:} las geometrías 1 y 2 se evaluaron con parámetros $(\delta,\eta)$ idénticos --cada una de las dos configuraciones seleccionadas, aplicada a ambas geometrías--, de modo que solo cambia la geometría; este contraste aísla su efecto. (b) \emph{Contraste entre estrategias seleccionadas:} cada geometría con su propia configuración $(\delta_g^\star,\eta_g^\star)$; compara estrategias calibradas en las que cambian a la vez la geometría y los parámetros, por lo que no identifica el efecto de la geometría. Ambos contrastes se acompañaron del Kelly nominal. En el periodo de prueba no se usó ningún resultado para volver a elegir parámetros.
+%%% [fin C22/C24]
+ No se barrió de nuevo ninguna malla sobre el periodo de prueba.
+
+\subsection{Métricas y evaluación estadística}\label{sec:metricas}
+
+\subsubsection{Métricas de desempeño}
+
+Para cada estrategia y cada tramo se calcularon, a partir de los factores de crecimiento realizados:
+\begin{itemize}
+    \item \textbf{Crecimiento:} riqueza final, crecimiento logarítmico medio y tasa de crecimiento anual compuesta,
+    \begin{equation}\label{eq:metricas}
+    g=\frac1T\sum_{t=1}^{T}\log\frac{W_t}{W_{t-1}},\qquad \mathrm{CAGR}=\Bigl(\frac{W_T}{W_0}\Bigr)^{12/T}-1 .
+    \end{equation}
+    \item \textbf{Pérdidas:} máximo drawdown, $\mathrm{MDD}=\max_t\bigl(1-W_t/\max_{u\le t}W_u\bigr)$, peor retorno mensual, varianza de los retornos mensuales, 
+%%% [C25] Dir. p.8 (CVaR empírico). REVISAR: alinea compute_metrics.m con esta definición (hoy promedia las pérdidas >= VaR).
+%%% Texto anterior: VaR y CVaR empíricos al $95\,\%$ de la pérdida mensual (el CVaR como promedio de las pérdidas que alcanzan o superan el cuantil \citep{rockafellaruryasev2000}).
+VaR y CVaR empíricos al $95\,\%$ de la pérdida mensual $L_t=1-G^{\mathrm{real}}_t$ (el VaR es el cuantil de nivel $\alpha=0.95$ de $L_t$; el CVaR se calcula con la formulación empírica de \citet{rockafellaruryasev2000}, $\mathrm{CVaR}_\alpha=\min_{\zeta}\bigl\{\zeta+\tfrac{1}{(1-\alpha)T}\sum_{t}\max(L_t-\zeta,0)\bigr\}$, que maneja empates y colas de tamaño no entero). Con $T=84$ meses en prueba, la cola al $95\,\%$ contiene muy pocas observaciones, por lo que VaR y CVaR se presentan como medidas descriptivas de muestra con alta incertidumbre, no como estimaciones precisas de riesgo extremo.
+%%% [fin C25]
+
+    \item \textbf{Riesgo ajustado:} 
+%%% [C27] Dir. p.9 (fórmulas, tasa objetivo del Sortino y denominador nulo). REVISAR: ajusta a lo que realmente calcula compute_metrics.m.
+%%% Texto anterior: razones de Sharpe \citep{sharpe1994}, Sortino \citep{sortinoprice1994} (con desviación a la baja respecto a cero) y Calmar \citep{young1991} ($\mathrm{CAGR}/\mathrm{MDD}$), anualizadas.
+razones de Sharpe \citep{sharpe1994}, Sortino \citep{sortinoprice1994} y Calmar \citep{young1991}. Con $R_t=G^{\mathrm{real}}_t-1$ y $e_t=R_t-r^f_{t-1}$, el Sharpe se calculó con excesos mensuales frente a $r^f$, $\sqrt{12}\,\bar e/s_e$; el Sortino con tasa objetivo cero (no $r^f$), $\sqrt{12}\,\bar R/\mathrm{DD}_0$ con $\mathrm{DD}_0=\bigl(\tfrac1T\sum_t\min(R_t,0)^2\bigr)^{1/2}$; y el Calmar como $\mathrm{CAGR}/\mathrm{MDD}$. Si el denominador es nulo, la razón se reportó como no definida.
+%%% [fin C27]
+
+    \item \textbf{Costos:} 
+%%% [C28] Dir. p.9 (qué es «costo acumulado»): se distinguen el costo fraccional y el monetario.
+%%% Texto anterior: turnover acumulado $\sum_k\mathrm{TO}_k$, número de meses con transacción, y costo acumulado y por rebalanceo.
+turnover acumulado $\sum_k\mathrm{TO}_k$, número de meses con transacción, costo fraccional acumulado $\sum_k\tau\,\mathrm{TO}_k$ (intensidad de negociación; suma de fracciones de riquezas $W_k$ distintas) y costo monetario acumulado en unidades de riqueza inicial, $\sum_k W_k\,\tau\,\mathrm{TO}_k/W_0$, además del costo por rebalanceo.
+%%% [fin C28]
+
+    \item \textbf{Concentración:} 
+%%% [C29] Dir. p.9 (N_eff indefinido sin exposición riesgosa). REVISAR: confirma que plot/compute usan N_eff=0 en ese caso.
+%%% Texto anterior: peso máximo y número efectivo de activos riesgosos, $N_{\mathrm{eff},k}=1/\sum_{j}\pi_{jk}^2$ con $\pi_{jk}=x_{jk}/\sum_{\ell}x_{\ell k}$.
+peso máximo y número efectivo de activos riesgosos, $N_{\mathrm{eff},k}=1/\sum_{j}\pi_{jk}^2$ con $\pi_{jk}=x_{jk}/\sum_{\ell}x_{\ell k}$. Cuando $\sum_\ell x_{\ell k}=0$ (portafolio totalmente en bajo riesgo), $\pi_{jk}$ no está definido: se fijó $N_{\mathrm{eff},k}=0$ y la concentración riesgosa se reportó como no aplicable. Como $N_{\mathrm{eff}}$ mide la diversificación entre activos riesgosos dado que hay exposición, y no la concentración del patrimonio total, se reporta por separado la proporción invertida en riesgo, $\sum_j x_{jk}$.
+%%% [fin C29]
+
+    \item \textbf{Supervivencia y cómputo:} número de incumplimientos de $\delta$ fuera de muestra, mínimo factor de crecimiento realizado, fallos del solucionador y fracción de fechas factibles.
+\end{itemize}
+
+\subsubsection{Inferencia sobre las diferencias}
+
+La riqueza final es una única observación acumulada y no basta para afirmar que una estrategia es superior. Por eso la comparación estadística se basó en las diferencias mensuales pareadas del crecimiento logarítmico entre dos estrategias $A$ y $B$,
+\begin{equation}\label{eq:D}
+D^{A,B}_k=\log G^{A,\mathrm{real}}_{k+1}-\log G^{B,\mathrm{real}}_{k+1}.
+\end{equation}
+Se compararon (i) Wasserstein--Kelly con geometría~1 frente al Kelly nominal, (ii) geometría~2 frente a geometría~1 (el contraste central del estudio) y (iii) 
+%%% [C30/C34] Dir. p.9 y p.11 (procedimiento de inferencia concreto; elegir entre bootstrap móvil y estacionario). REVISAR: ℓ=6 y B=10 000 son reglas a priori propuestas; se usa Künsch (1989) y se retira Politis y Romano (1994).
+%%% Texto anterior: geometría~2 frente al Kelly nominal.% \textbf{[PENDIENTE: implementar el bootstrap móvil por bloques \citep{kunsch1989} --bloques de seis meses, remuestreando los pares de resultados mensuales y no cada estrategia por separado-- y reportar la media y la mediana de $D_k$, un intervalo del $95\,\%$ y la proporción de meses con $D_k>0$. Hoy solo se calculan las diferencias puntuales.]}
+geometría~2 frente al Kelly nominal, cada uno con parámetros emparejados y con las configuraciones seleccionadas (Sección~\ref{sec:contrastes}); solo el contraste emparejado aísla el efecto de la geometría.
+
+Para cuantificar la incertidumbre de la media de $D_k$ se usó un bootstrap móvil por bloques \citep{kunsch1989}: se remuestrearon bloques solapados de $\ell=6$ meses de la serie de pares $(D_k)$, preservando la alineación temporal (los resultados de las dos estrategias del mismo mes se mueven juntos), y se calcularon $B=10\,000$ réplicas de la media de $D_k$; el intervalo del $95\,\%$ es el percentil $2.5$--$97.5$ de esas medias. Se reportaron además la mediana de $D_k$ y la proporción de meses con $D_k>0$. La longitud de bloque es una regla a priori y la inferencia es sensible a ella. \textbf{[PENDIENTE: implementar el procedimiento (hoy solo se calculan las diferencias puntuales) y comprobar la sensibilidad con $\ell=3$ y $\ell=12$.]}
+%%% [fin C30/C34]
+
+ Un intervalo que contenga el cero se interpretó como ausencia de evidencia suficiente de una diferencia media en el periodo disponible, no como prueba de equivalencia. 
+%%% [C31] Dir. p.9 (a qué mes corresponde cada señal y umbral). REVISAR: yo definí la mediana sobre la ventana D_k; confirma o cambia.
+%%% Texto anterior: Además, se desarrolló un desglose por régimen, meses con VIX por encima y por debajo de la mediana y meses con retorno negativo de SPY.
+Como análisis descriptivo, se desglosaron las diferencias $D_{k}$ según el estado observable en la fecha de decisión $k$: meses $k+1$ cuyo VIX al cierre de $k$ estuvo por encima o por debajo de la mediana del VIX de la ventana $\mathcal D_k$ (calculada solo con datos hasta $k$, sin mirar el periodo de prueba) y meses $k+1$ precedidos por un retorno negativo de SPY en $k$. Al usar información disponible en $k$, el desglose no depende del resultado realizado del mes evaluado; aun así es descriptivo y no prueba capacidad de anticipación. \textbf{[PENDIENTE: confirmar que este desglose se calculó así.]}
+%%% [fin C31]
+
+ % \textbf{[PENDIENTE (opcional): desglose por régimen --meses con VIX por encima y por debajo de la mediana y meses con retorno negativo de SPY--, solo descriptivo.]}
+
+\subsection{Implementación y verificación}\label{sec:impl}
+
+Los datos se descargaron y se transformaron a frecuencia mensual con Python (\texttt{yfinance}); el modelo se implementó en MATLAB con CVX \citep{grantboyd} y el solucionador MOSEK \citep{mosek}, que admite de forma nativa las restricciones del cono exponencial presentes en \eqref{eq:nominal} y \eqref{eq:dual}. 
+%%% [C32] Dir. p.9 (equivalencia numérica con η=0: tolerancia explícita y soluciones múltiples). REVISAR: coloca las tolerancias de test_wdro_nominal_equivalence.m.
+%%% Texto anterior: Antes de interpretar resultados se verificó que (a) con $\rho_k=0$ el modelo Wasserstein--Kelly reproduce la solución del modelo nominal, tanto en una instancia pequeña como en el backtest completo;
+Antes de interpretar resultados se verificó que (a) con $\rho_k=0$ el modelo Wasserstein--Kelly reproduce la solución del modelo nominal, tanto en una instancia pequeña como en el backtest completo (como pueden existir soluciones óptimas múltiples, se compararon los valores objetivos y la factibilidad con una tolerancia explícita, \textbf{[PENDIENTE: valor de la tolerancia]}, y las ponderaciones solo cuando la solución es única o estable, con otra tolerancia \textbf{[PENDIENTE: valor]}; un desacuerdo menor entre variables con igual valor objetivo no se interpretó como error del modelo);
+%%% [fin C32]
+ (b) las posiciones cumplen el balance $x_{0k}+\sum_j x_{jk}=1-\tau\,\mathrm{TO}_k$, los límites por activo y la cota de supervivencia sobre la ventana; y (c) con $\eta=0$ las dos geometrías coinciden.
+%\textbf{[PENDIENTE: confirmar que cada una de estas verificaciones se corrió y quedó registrada; retirar la que no.]} \textbf{[PENDIENTE: indicar el repositorio con el código y los datos originales para reproducibilidad.]}
+
+\subsection{Limitaciones del diseño}\label{sec:limit}
+
+\begin{itemize}
+    \item El universo es una lista fija de empresas grandes que sobrevivieron hasta hoy, por lo que no elimina el sesgo de supervivencia. Los resultados son una comparación metodológica sobre ese universo, no una reconstrucción del conjunto de oportunidades de 2010.
+    \item El backtest es una única trayectoria histórica; la validación y la prueba separan la elección de parámetros de la evaluación, pero no sustituyen la evidencia de varios universos o periodos.
+    \item Los costos proporcionales de $0.001$ no reflejan comisiones ni diferenciales reales de cada activo.
+    \item El rendimiento de DGS3MO es un proxy del retorno de bajo riesgo.
+    \item El soporte de la bola es finito: el adversario solo redistribuye probabilidad entre meses ya observados y no puede crear escenarios nuevos.
+    \item Los pesos $\omega$ de la geometría~2 se fijaron y no se calibraron; el VIX entra solo por su nivel.
+    
+%%% [C10/C15/C23b] Dir. p.5, p.7 y p.8: se agregan a las limitaciones la equiprobabilidad, el riesgo de sobreajuste de la validación y la dependencia de las reglas a priori.
+\item La cota $\delta$ protege únicamente frente a los escenarios de la ventana.
+    \item La ventana móvil trata los $N$ meses como equiprobables; esto es la distribución empírica de referencia y no supone que los retornos sean independientes, estacionarios ni idénticamente distribuidos, por lo que un cambio de estado dentro de la ventana no se refleja en los pesos.
+    \item La selección se basa en la riqueza final sobre 48 meses de validación y 66 combinaciones $(\delta,\eta)$ por geometría, lo que puede sobreajustar la validación; la configuración elegida no es la mejor en sentido multicriterio.
+    \item Los pesos de la geometría~2 y la longitud de bloque del bootstrap son reglas a priori, y las conclusiones están condicionadas a ellas.
+\end{itemize}
+%%% [fin C10/C15/C23b]
+

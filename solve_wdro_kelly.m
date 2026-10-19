@@ -1,4 +1,4 @@
-function [xk, bk, sk, x0k, alpha, lambda, fval, status] = solve_wdro_kelly( ...
+function [xk, bk, sk, x0k, alpha, lambda, fval, status, info] = solve_wdro_kelly( ...
     hk, R, rf, tau, xbar, gamma, delta, C, rho, solver_name)
 % SOLVE_WDRO_KELLY  Modelo Wasserstein-Kelly con costos de transaccion,
 % reformulacion convexa dual exacta (ecuacion 53 de la propuesta).
@@ -37,6 +37,8 @@ function [xk, bk, sk, x0k, alpha, lambda, fval, status] = solve_wdro_kelly( ...
 %   lambda : escalar >= 0, variable dual del presupuesto de transporte.
 %   fval   : valor optimo del objetivo minimax (peor caso distribucional).
 %   status : cvx_status.
+%   info   : (opcional) struct de solver_info_from_log.m (ver
+%            solve_nominal_kelly.m).
 
     if nargin < 10 || isempty(solver_name)
         solver_name = 'mosek';
@@ -73,7 +75,9 @@ function [xk, bk, sk, x0k, alpha, lambda, fval, status] = solve_wdro_kelly( ...
 
     Rplus1 = 1 + R;   % (N x d), para escribir Gks de forma afin en xjk
 
-    cvx_begin quiet
+    % Sin "quiet": el log de cvx_end se captura con evalc (no se imprime)
+    % para leer el estado nativo de MOSEK.
+    cvx_begin
         cvx_solver(solver_name)
         variables xjk(d) bjk(d) sjk(d) x0k lambda
         variable alpha_k(N)
@@ -104,7 +108,7 @@ function [xk, bk, sk, x0k, alpha, lambda, fval, status] = solve_wdro_kelly( ...
             bjk >= 0;
             sjk >= 0;
             lambda >= 0;
-    cvx_end
+    log_txt = evalc('cvx_end');
 
     xk = xjk;
     bk = bjk;
@@ -112,6 +116,7 @@ function [xk, bk, sk, x0k, alpha, lambda, fval, status] = solve_wdro_kelly( ...
     alpha = alpha_k;
     fval = cvx_optval;
     status = cvx_status;
+    info = solver_info_from_log(log_txt, cvx_status, cvx_slvtol, cvx_slvitr, cvx_precision);
 
     if ~strcmp(status, 'Solved')
         warning('solve_wdro_kelly:notSolved', ...

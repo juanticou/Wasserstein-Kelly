@@ -30,7 +30,7 @@ VIX_TICKER = "^VIX"
 FRED_SERIES_RF = "DGS3MO"  # Tasa del Tesoro a 3 meses (FRED)
 
 START_DATE = "2009-12-01"   # precios diarios desde diciembre de 2009
-END_DATE = "2025-12-31"     # hasta diciembre de 2025
+END_DATE = "2026-01-01"     # hasta diciembre de 2025
 
 RAW_DIR = Path("data/raw")
 PROC_DIR = Path("data/processed")

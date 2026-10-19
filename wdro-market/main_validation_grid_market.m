@@ -28,7 +28,8 @@
 %
 % UBICACION: Wasserstein-Kelly/wdro-market/ (mismo patron que
 % main_geometria_mercado.m). Usa las funciones compartidas de la raiz y
-% truncate_data.m de wdro-return/.
+% truncate_data.m de esta carpeta (copia identica de la de wdro-return/,
+% para no depender de un experimento descartado).
 %
 % Requiere: CVX + MOSEK, Statistics and Machine Learning Toolbox
 % (boxplot, prctile dentro de compute_metrics.m).
@@ -40,9 +41,6 @@ PROJECT_DIR = fileparts(mfilename('fullpath'));   % .../Wasserstein-Kelly/wdro-m
 ROOT_DIR    = fileparts(PROJECT_DIR);              % .../Wasserstein-Kelly
 addpath(PROJECT_DIR);
 addpath(ROOT_DIR);
-% Solo para truncate_data.m. Con '-end', las funciones de la raiz (p. ej.
-% plot_heatmap.m) siguen teniendo prioridad sobre las de wdro-return/.
-addpath(fullfile(ROOT_DIR, 'wdro-return'), '-end');
 
 TICKERS = {'AAPL', 'MSFT', 'AMZN', 'JPM', 'JNJ', 'XOM', 'PG', 'CAT', 'KO', 'WMT'};
 CSV_PATH = fullfile(ROOT_DIR, 'data', 'processed', 'monthly_panel.csv');

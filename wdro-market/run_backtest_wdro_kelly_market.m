@@ -72,6 +72,9 @@ function results = run_backtest_wdro_kelly_market(data, params)
     rho_hist     = zeros(T_dec, 1);
     lambda_hist  = zeros(T_dec, 1);
     status_hist  = cell(T_dec, 1);
+    class_hist   = cell(T_dec, 1);
+    info_hist    = cell(T_dec, 1);
+    rf_hist      = zeros(T_dec, 1);
 
     for i = 1:T_dec
         k = decision_idx(i);
@@ -88,11 +91,16 @@ function results = run_backtest_wdro_kelly_market(data, params)
         rho_k = compute_rho(Ck, params.eta);
 
         % Resolver el modelo Wasserstein-Kelly con costos.
-        [xk, bk, sk, x0k, ~, lambda_k, ~, status] = solve_wdro_kelly( ...
+        [xk, bk, sk, x0k, ~, lambda_k, ~, status, info] = solve_wdro_kelly( ...
             h_current, Rk, rf_k, params.tau, params.xbar, params.gamma, ...
             params.delta, Ck, rho_k, params.solver);
 
         status_hist{i} = status;
+        class_hist{i}  = info.status_class;
+        info_hist{i}   = info;
+        rf_hist(i)     = rf_k;
+        % Solo un estado optimo rebalancea; inaccurate, infeasible certificado
+        % y fallo numerico cuentan como "mes sin optimizacion".
         if ~strcmp(status, 'Solved')
             warning('run_backtest_wdro_kelly_market:notSolved', ...
                 ['Fecha %d (indice %d): cvx_status = %s. Se mantiene el portafolio ', ...
@@ -128,7 +136,7 @@ function results = run_backtest_wdro_kelly_market(data, params)
 
             results = pack_results(dates_out(1:i), wealth(1:i+1), x_hist(1:i,:), ...
                 x0_hist(1:i), h_hist(1:i+1,:), turnover(1:i), cost(1:i), ...
-                growth_real(1:i), rho_hist(1:i), lambda_hist(1:i), status_hist(1:i), params);
+                growth_real(1:i), rho_hist(1:i), lambda_hist(1:i), status_hist(1:i), class_hist(1:i), info_hist(1:i), rf_hist(1:i), params);
             return
         end
 
@@ -152,7 +160,7 @@ function results = run_backtest_wdro_kelly_market(data, params)
     end
 
     results = pack_results(dates_out, wealth, x_hist, x0_hist, h_hist, ...
-        turnover, cost, growth_real, rho_hist, lambda_hist, status_hist, params);
+        turnover, cost, growth_real, rho_hist, lambda_hist, status_hist, class_hist, info_hist, rf_hist, params);
 end
 
 
@@ -164,7 +172,7 @@ end
 
 
 function results = pack_results(dates, wealth, x, x0, h, turnover, cost, ...
-    growth_real, rho, lambda, status, params)
+    growth_real, rho, lambda, status, status_class, solver_info, rf, params)
 
     results.dates       = dates;
     results.wealth      = wealth;
@@ -178,5 +186,8 @@ function results = pack_results(dates, wealth, x, x0, h, turnover, cost, ...
     results.lambda      = lambda;
     results.violations  = find(growth_real < params.delta);
     results.status      = status;
+    results.status_class = status_class;   % classify_solver_status.m
+    results.solver_info = solver_info;      % solver_info_from_log.m, un struct por mes
+    results.rf          = rf;               % r^f_k usada en cada fecha de decision
     results.params      = params;
 end

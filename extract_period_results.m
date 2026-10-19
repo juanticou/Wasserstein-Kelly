@@ -76,4 +76,13 @@ function sub = extract_period_results(results, period_start, period_end)
     if isfield(results, 'lambda')
         sub.lambda = results.lambda(idx);
     end
+    if isfield(results, 'rf')
+        sub.rf = results.rf(idx);
+    end
+    if isfield(results, 'status_class')
+        sub.status_class = results.status_class(idx);
+    end
+    if isfield(results, 'solver_info')
+        sub.solver_info = results.solver_info(idx);
+    end
 end

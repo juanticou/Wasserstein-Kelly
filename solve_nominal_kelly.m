@@ -1,4 +1,4 @@
-function [xk, bk, sk, x0k, fval, status] = solve_nominal_kelly(hk, R, rf, tau, xbar, gamma, delta, solver_name)
+function [xk, bk, sk, x0k, fval, status, info] = solve_nominal_kelly(hk, R, rf, tau, xbar, gamma, delta, solver_name)
 % SOLVE_NOMINAL_KELLY  Modelo de Kelly nominal con costos de transaccion
 % proporcionales, formulacion (37) de la propuesta.
 %
@@ -38,6 +38,9 @@ function [xk, bk, sk, x0k, fval, status] = solve_nominal_kelly(hk, R, rf, tau, x
 %            rebalanceo y del pago de costos.
 %   fval   : valor optimo del objetivo (crecimiento logaritmico promedio).
 %   status : cvx_status ('Solved', 'Infeasible', 'Failed', etc.)
+%   info   : (opcional) struct de solver_info_from_log.m: cvx_status, su
+%            clasificacion, estado nativo de MOSEK (problema y solucion),
+%            cvx_slvtol, cvx_slvitr y cvx_precision.
 %
 % Requiere CVX con un solucionador compatible con el cono exponencial
 % (MOSEK recomendado; alternativamente SCS o ECOS con soporte exp-cone).
@@ -66,7 +69,9 @@ function [xk, bk, sk, x0k, fval, status] = solve_nominal_kelly(hk, R, rf, tau, x
     % afin en xjk: Gks = x0k*(1+rf) + Rplus1 * xjk
     Rplus1 = 1 + R;   % (N x d)
 
-    cvx_begin quiet
+    % Sin "quiet": el log de cvx_end se captura con evalc (no se imprime)
+    % para leer el estado nativo de MOSEK.
+    cvx_begin
         cvx_solver(solver_name)
         variables xjk(d) bjk(d) sjk(d) x0k
         expression Gks(N)
@@ -87,13 +92,14 @@ function [xk, bk, sk, x0k, fval, status] = solve_nominal_kelly(hk, R, rf, tau, x
             x0k >= 0;
             bjk >= 0;
             sjk >= 0;
-    cvx_end
+    log_txt = evalc('cvx_end');
 
     xk = xjk;
     bk = bjk;
     sk = sjk;
     fval = cvx_optval;
     status = cvx_status;
+    info = solver_info_from_log(log_txt, cvx_status, cvx_slvtol, cvx_slvitr, cvx_precision);
 
     if ~strcmp(status, 'Solved')
         warning('solve_nominal_kelly:notSolved', ...

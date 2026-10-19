@@ -1,0 +1,63 @@
+AUDITORÍA DE DATOS - Wasserstein-Kelly
+Generado por data/audit/02_audit_data.py el 2026-10-19.
+Detalle completo: audit_report.md | Hallazgos uno a uno: audit_discrepancies.csv
+
+1. QUÉ SE AUDITÓ
+   - Precios diarios Yahoo Finance: AAPL, MSFT, AMZN, JPM, JNJ, XOM, PG, CAT, KO, WMT, SPY (mercado) y ^VIX.
+   - Tasa libre de riesgo: DGS3MO (FRED).
+   - Panel mensual data/processed/monthly_panel.csv (lo que usa MATLAB).
+   - Contraste externo: precios de cierre de Stooq.
+   La auditoría es de solo lectura: no se modificó ningún dato.
+
+2. FECHA DE DESCARGA Y PERIODO EFECTIVO
+   serie   fuente         descarga    primer dato  último dato   días  meses panel       stooq     
+   AAPL    Yahoo Finance  2026-08-12  2009-12-01   2025-12-30    4045  2010-01 a 2025-12 pendiente 
+   MSFT    Yahoo Finance  2026-08-12  2009-12-01   2025-12-30    4045  2010-01 a 2025-12 pendiente 
+   AMZN    Yahoo Finance  2026-08-12  2009-12-01   2025-12-30    4045  2010-01 a 2025-12 pendiente 
+   JPM     Yahoo Finance  2026-08-12  2009-12-01   2025-12-30    4045  2010-01 a 2025-12 pendiente 
+   JNJ     Yahoo Finance  2026-08-12  2009-12-01   2025-12-30    4045  2010-01 a 2025-12 pendiente 
+   XOM     Yahoo Finance  2026-08-12  2009-12-01   2025-12-30    4045  2010-01 a 2025-12 pendiente 
+   PG      Yahoo Finance  2026-08-12  2009-12-01   2025-12-30    4045  2010-01 a 2025-12 pendiente 
+   CAT     Yahoo Finance  2026-08-12  2009-12-01   2025-12-30    4045  2010-01 a 2025-12 pendiente 
+   KO      Yahoo Finance  2026-08-12  2009-12-01   2025-12-30    4045  2010-01 a 2025-12 pendiente 
+   WMT     Yahoo Finance  2026-08-12  2009-12-01   2025-12-30    4045  2010-01 a 2025-12 pendiente 
+   SPY     Yahoo Finance  2026-08-12  2009-12-01   2025-12-30    4045  2010-01 a 2025-12 pendiente 
+   VIX     Yahoo Finance  2026-08-12  2009-12-01   2025-12-30    4045  2010-01 a 2025-12 pendiente 
+   DGS3MO  FRED           no regist.  2009-12-01   2025-12-31    4023  2010-01 a 2025-12 pendiente 
+   Rango solicitado a Yahoo: 2009-12-01 a 2025-12-31 (fin exclusivo en yfinance).
+   Diciembre 2025 usa el cierre del 2025-12-30 (DGS3MO: 2025-12-31).
+   La descarga de DGS3MO no quedó registrada en download_log.csv; se guardó en el mismo
+   commit que los datos de Yahoo (2026-08-12).
+
+3. CRITERIO ANTE FALTANTES
+   - No se imputa nada. El valor de cada mes es el último dato disponible del mes
+     (nunca uno del mes siguiente, así que no hay look-ahead).
+   - Falta 1 día hábil en los crudos de Yahoo (2025-12-31, 12 pares archivo-día): no se
+     rellena; diciembre 2025 se cierra con el 30-dic-2025.
+   - Los NaN de DGS3MO son feriados de FRED: se ignoran y se usa el último valor válido.
+     Meses de r^f rellenados con el mes anterior (ffill): 0.
+   - Dic-2009 solo sirve de base para el retorno de ene-2010; su fila se descarta.
+   - Resultado: panel de 192 meses, 0 NaN, 0 meses faltantes.
+
+4. CRITERIO ANTE DISCREPANCIAS YAHOO vs STOOQ
+   - Discrepancia = error de precio a fin de mes > 0.5% o diferencia de retorno
+     mensual > 0.25 pp (contra Close o Adj Close de Yahoo, el que replique Stooq).
+   - Yahoo se mantiene como fuente oficial: no se corrige ni sustituye nada. Cada
+     discrepancia se marca y se clasifica por causa probable; las que no tienen
+     explicación quedan para revisión manual.
+   - Resultado: PENDIENTE. Stooq bloquea la descarga automática; hay que guardar a mano
+     los CSV en data/audit/stooq_cache/<TICKER>.csv y volver a ejecutar el script.
+
+5. HALLAZGOS PRINCIPALES
+   - Falta el 31-dic-2025 (yf.download con end='2025-12-31' es exclusivo).
+   - download_log.csv tiene 12 filas duplicadas (dos ejecuciones) y no registra DGS3MO.
+   - Retorno extremo CAT 2022-10-31: +32.8% (real: resultados 3T-2022).
+   - Recomputo del panel: 0 celdas distintas; sin look-ahead.
+   - Adj Close incorpora dividendos y los 5 splits del periodo correctamente.
+   - VIX y r^f alineados al último dato disponible de cada mes.
+
+6. RECOMENDACIONES (no aplicadas)
+
+   - Escribir download_log.csv sin append y registrar también DGS3MO.
+   - Regenerar monthly_panel.csv con el script actual para que sea reproducible.
+   - Guardar copia fechada de los crudos (Yahoo reescala Adj Close retroactivamente).
