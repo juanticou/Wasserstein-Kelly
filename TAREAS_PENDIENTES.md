@@ -1,61 +1,110 @@
-# Tareas pendientes (una por sesión de trabajo)
+# Tareas pendientes — fase de resultados
 
-Cómo usarlo: abre Claude Code en la carpeta del proyecto, activa el modo plan (Shift+Tab) y pega SOLO una tarea a la vez. Cada una termina con un criterio de "terminado" para que Claude sepa cuándo parar. Todas dependen de que `CLAUDE.md` y `metodologia_1.tex` estén en la carpeta.
-
-
-## T2. Alinear métricas con la metodología
-Lee `compute_metrics.m` y la sección "Métricas y evaluación estadística" de `metodologia_1.tex`. Compara definición por definición y reporta las diferencias antes de editar: CVaR con la formulación empírica de Rockafellar–Uryasev (hoy promedia pérdidas ≥ VaR), Sharpe con excesos sobre r_f y √12, Sortino con objetivo cero, convención ante denominador nulo, N_eff=0 sin exposición riesgosa y proporción invertida en riesgo, costo fraccional Σ τ·TO_k y costo monetario Σ W_k τ TO_k / W_0.
-Terminado cuando: `compute_metrics.m` coincida con el texto (o el texto con el código, si lo apruebo) y una prueba con η=0 reproduzca las métricas anteriores del nominal.
-
-## T3. Estado del solucionador y "meses sin optimización"
-Revisa cómo `run_backtest_*.m` y `solve_*.m` guardan el estado del solver. Debe quedar registrado por mes: estado exacto de MOSEK/CVX, y una clasificación en {óptimo, inaccurate, infeasible certificado, fallo numérico}. Los meses sin solución óptima mantienen el portafolio heredado y se cuentan como "mes sin optimización" para TODAS las estrategias. Con los resultados ya guardados, calcula por (δ, η) cuántos meses sin optimización hay y desde qué fecha; explícame, en especial, las trayectorias casi planas de η≥0.15 después de 2022.
-Terminado cuando: exista una tabla (δ, η, geometría, meses sin optimización, por clasificación) y yo pueda reescribir el párrafo de factibilidad de la metodología con datos.
-
-## T4. Malla de validación de la Geometría 2
-Replica `main_validation_grid.m` para la Geometría 2 (en `wdro-market/`), con datos truncados a dic-2018. Primero una combinación de prueba y el tiempo estimado; pídeme confirmación antes de correr la malla completa. Salidas en una carpeta nueva. Genera la misma tabla maestra y los mismos gráficos que la Geometría 1.
-Terminado cuando: haya tabla maestra comparable a la de la Geometría 1 y se haya verificado que con η=0 ambas geometrías coinciden.
-
-## T5. Verificaciones numéricas con tolerancia explícita
-Revisa `test_wdro_nominal_equivalence.m`. Debe comparar valores objetivo y factibilidad con una tolerancia explícita, y las ponderaciones solo si la solución es única o estable. Reporta las tolerancias usadas y los resultados para el texto de la subsección "Implementación y verificación" (incluye: η=0 ⇒ ambas geometrías coinciden; balance x0+Σxj = 1−τ·TO; cotas por activo; cota δ en la ventana).
-
-
-
-## T6. Bootstrap móvil por bloques (Künsch, 1989)
-Implementa en MATLAB `bootstrap_block_diff.m`: entrada, dos series de factores de crecimiento realizados alineadas por mes; calcula D_k = log G^A − log G^B; remuestrea bloques solapados de longitud ℓ=6 manteniendo la alineación de los pares; B=10 000 réplicas; intervalo percentil 2.5–97.5 de la media de D_k; reporta además la media, la mediana y la proporción de meses con D_k>0. Semilla fija. Sensibilidad con ℓ=3 y ℓ=12. Pruébalo primero con datos simulados de media conocida.
-Terminado cuando: haya una tabla con los contrastes (i) G1 vs nominal, (ii) G2 vs G1, (iii) G2 vs nominal, tanto con (δ,η) emparejados como con las configuraciones seleccionadas, SOLO usando resultados ya existentes del periodo de prueba (sin reelegir parámetros).
-
-## T7. Desglose por régimen (descriptivo)
-Clasifica cada mes k+1 con información disponible en k: VIX al cierre de k por encima/debajo de la mediana del VIX de la ventana D_k, y retorno de SPY en k negativo/no negativo. Reporta media de D_k y proporción de meses con D_k>0 por régimen. No elijas umbrales mirando el periodo de prueba.
-
-## T8. Confirmar la condición inicial de la prueba
-Lee `extract_period_results.m` y `main_test_evaluation.m` y dime, con la línea de código, si el tramo 2019–2025 se obtiene recortando la trayectoria completa (heredando posiciones de 2018) o si reinicia desde 100 % efectivo. Compara con lo que dice la subsección "Backtest de origen móvil" y propón la corrección al texto o al código.
-
-## T9
-Tarea T9: elegir (δ, η) por geometría usando SOLO validación (2015–2018, 48 meses). No abras ni uses resultados 2019–2025. No modifiques código existente ni sobrescribas resultados; escribe en results_seleccion/. Presenta el plan y espera aprobación.
-
-Paso 1 (diagnóstico, G1 y G2, tablas de results_validacion_metricas_v2/):
- a) Por (geometría, δ, η): meses con la cota δ activa (holgura ≤ 1e-6).
- b) Para cada η y geometría, compara las celdas con δ ∈ {0.50,0.60,0.70,0.75,0.80}. Si la cota nunca está activa deberían ser la misma estrategia: reporta la máxima diferencia relativa de riqueza final y max|Δx|. Quiero saber cuánto ruido numérico hay entre celdas equivalentes.
- c) Riqueza final vs η para cada δ y geometría, con la pérdida relativa respecto a η=0.
-
-Paso 2: implementa en select_parameters.m esta regla fijada a priori, una selección independiente por geometría:
- 1. Elegibles: solo η>0.
- 2. Fracción de meses con solución óptima ≥ φ_min = 0.95.
- 3. Maximizar la riqueza final de validación.
- 4. Empate si la diferencia relativa < TOL; propón TOL a partir del ruido medido en 1b (no menor que ese ruido). Desempate: menor η, luego mayor δ.
-
-Paso 3 (solo reportar, no cambia la elección): top 10 por geometría; qué se elegiría si se incluyera η=0; qué pasa con TOL×10 y TOL/10; mejor celda por Sharpe, CVaR y MDD; si la elegida está en el borde de la malla.
-
-Salidas: seleccion_G1.csv, seleccion_G2.csv, sensibilidad_seleccion.csv y un reporte corto. Posteriormente:
-
-Con las configuraciones aprobadas (δ1*,η1*) y (δ2*,η2*): 
-1. Corre G2 sobre los 132 meses SOLO para esas configuraciones (primero una prueba de tiempo). Verifica que los primeros 48 meses reproducen exactamente la trayectoria de validación ya guardada.
-2. Evalúa 2019–2025 recortando la trayectoria completa, con las métricas nuevas, para: nominal (η=0, mismo δ de cada configuración), G1 y G2 con (δ1*,η1*), y G1 y G2 con (δ2*,η2*). Esto da el contraste emparejado y el de configuraciones seleccionadas.
-3. No barras ninguna malla en prueba. Salida en results_prueba_v2/.
-
-## T10. 
-Cuando T1–T8 estén resueltas, genera RESUMEN_PARA_METODOLOGIA.md con: (1) un bloque por cada [PENDIENTE]/REVISAR de metodologia_1.tex, con el dato exacto que lo resuelve; (2) las diferencias entre texto y código encontradas y su estado final; (3) rutas y contenido de las tablas nuevas; (4) los parámetros y configuraciones fijados; (5) lo que no se hizo y por qué. No interpretes resultados ni edites el .tex.
-
+Cómo usarlo: abre Claude Code en la carpeta del proyecto, activa el modo plan (Shift+Tab) y pega SOLO una tarea a la vez. Cada una termina con un criterio de "terminado". Texto de referencia: `metodologia_7.tex` y `main_7.tex` (las versiones `_1` y `_2` están obsoletas). Después de cada tarea, pídele un reporte corto con rutas de archivos y cifras clave; me lo traes y actualizo el texto.
 
 ---
-Después de cada tarea: pídele que liste qué marcadores `[PENDIENTE]`/`REVISAR` de `metodologia_1.tex` quedaron resueltos y con qué dato; ese resumen me lo puedes traer aquí para actualizar el texto.
+
+## 0. Qué ya está hecho (no repetir)
+
+| Tarea | Resultado | Dónde |
+|---|---|---|
+| T1 Auditoría de datos | hecha | `data/audit/audit_report.md` |
+| T2 Métricas alineadas con el texto | hecha | `compute_metrics.m`, `results_validacion_metricas_v2/` |
+| T3 Estado del solucionador | hecha | `results_estado_solver/` |
+| T4 Malla de validación de G2 | hecha | `wdro-market/results_validacion_grid_market/` |
+| T5 Verificaciones con tolerancia | hechas | `results_verificaciones/` |
+| T6 Bootstrap móvil por bloques | hecho | `results_bootstrap/` |
+| T7 Desglose por régimen | hecho | `results_regimen/` |
+| T8 Condición inicial de la prueba | confirmada (sin cambios de código) | `RESUMEN_PARA_METODOLOGIA.md` |
+| T9 Selección de (δ, η) y prueba v2 | hecha | `results_seleccion/`, `results_prueba_v2/` |
+| T10 Resumen para la metodología | hecho | `RESUMEN_PARA_METODOLOGIA.md` |
+
+Configuraciones fijadas: G1 → (δ, η) = (0.90, 0.01); G2 → (0.80, 0.01). Pesos de G2 fijos en (0.70, 0.15, 0.15). Prueba: 84 meses realizados (ene-2019 a dic-2025).
+
+## 1. Decisiones tuyas antes de empezar
+
+- **D1. Cierre de diciembre de 2025: DECIDIDO, se corrige.** Hoy el último cierre usado es el del 30-dic (la descarga trató `end` como exclusivo). Se parametrizan los scripts (R0) y se regenera todo de punta a punta con el cierre del 31-dic (R1). Mi lectura, que R0 verifica: las decisiones llegan hasta nov-2025, así que dic-2025 solo entra en el último retorno *realizado*; por eso la validación y la selección de T9 no deberían cambiar.
+- **D2. Conteo de «meses con transacción».** El turnover incluye compras y ventas simultáneas pequeñas del punto interior (máx. 5e-4 en un mes; ≤ 0.09 % del turnover). Opciones: dejar TO como está, o contar con Σ|x−h| > 1e-8. Solo afecta ese conteo.
+
+## 2. Reglas de esta fase (añádelas a `CLAUDE.md`)
+
+- No se elige ni se ajusta ningún parámetro con resultados de prueba. No hay mallas nuevas ni se refina η por debajo de 0.01.
+- Ninguna cifra de tablas o figuras se escribe a mano: cada una sale de un script que lee los CSV/.mat existentes.
+- Todo va en `results_finales/` (nueva); no se sobrescribe ningún resultado anterior ni `data/raw/`.
+- Los resultados de prueba son descriptivos. Sin intervalo del bootstrap no se afirma superioridad.
+- Tablas en `.tex` insertables con `\input`, con `\hline` (el documento no carga `booktabs`); figuras en PDF y PNG.
+
+---
+
+## R0. Congelar el estado y parametrizar los scripts (sin descargar ni correr mallas)
+1. Commit de todo lo pendiente en una rama nueva y etiqueta `base-dic30` (línea base con el cierre del 30-dic).
+2. Inventario, con archivo y línea, de lo que depende de la fecha final: `END_DATE` de `01_import_data.py` (yfinance trata `end` como exclusivo), fechas escritas a mano (`2025-12-30`, `TEST_END`, `T`, número de meses, `decision_idx`) en Python, MATLAB y `data/audit/`, y rutas fijas a `data/raw/`, `monthly_panel.csv` y carpetas `results_*`. Verificar (no asumir) si el MATLAB necesita cambios de lógica o solo de rutas.
+3. Cambios mínimos y compatibles hacia atrás: fecha final, carpeta de datos crudos, ruta del panel y carpeta raíz de resultados pasan a ser parámetros con valores por defecto IGUALES a los actuales. Incluye los scripts nuevos de T2–T9. Explicar cada cambio antes de hacerlo; nada de `data/raw/` ni de resultados existentes se sobrescribe.
+4. Comprobación de que no cambió nada: con los parámetros por defecto, una corrida corta (G1, δ=0.90, η=0.01, primeros 12 meses) reproduce exactamente la trayectoria guardada.
+5. `results_finales/MANIFIESTO.md`: orden de ejecución de los scripts, versiones (MATLAB R2026a, CVX 2.2 build 1148, MOSEK 9.1.9, Python y paquetes), SHA-256 de `data/raw/` y de `monthly_panel.csv`, semillas y la ruta de cada resultado. Commit y etiqueta `scripts-parametrizados`.
+6. Estimar (sin ejecutar) el tiempo de repetir todo de punta a punta con los datos nuevos.
+Terminado cuando: existan las dos etiquetas, el manifiesto, la lista del inventario, la confirmación del paso 4 y la estimación de tiempo.
+
+## R1. Regenerar todo con el cierre del 31-dic-2025 (después de aprobar el tiempo de R0)
+1. Descarga con `end=2026-01-01` en una carpeta NUEVA (`data/raw_<fecha>/`) y reconstruye el panel en una ruta nueva.
+2. Compara los retornos mensuales de ene-2010 a nov-2025 con la descarga anterior. Si alguno difiere más de 1e-8, detente y repórtalo (puede ser reescalado de Adj Close).
+3. Vuelve a correr, con la raíz de resultados nueva (`results_v2/`): mallas de G1 y G2, G2 en 132 meses para las configuraciones elegidas, prueba, bootstrap y régimen. Antes de lanzar cada corrida larga, una prueba corta y su tiempo estimado.
+4. Compara con los resultados anteriores: hasta nov-2025 los factores realizados deben coincidir (tolerancia 1e-6) y la selección de T9 no debe cambiar. Si algo de eso falla, detente y repórtalo.
+5. No reemplaces nada sin mi aprobación.
+Terminado cuando: haya una tabla antes/después de la riqueza final de las estrategias de prueba, la confirmación de que solo cambió el último mes, y la lista de frases de la metodología a actualizar (sección de Datos y limitaciones).
+
+## R2. Tablas de desempeño
+Genera `results_finales/tablas/*.tex` desde `results_prueba_v2/metricas_por_tramo.csv` y las tablas maestras de validación:
+- (a) Prueba, estrategias evaluadas: riqueza final, crecimiento logarítmico medio, CAGR, MDD, peor mes, VaR y CVaR al 95 %, Sharpe, Sortino, Calmar.
+- (b) Prueba: turnover acumulado, meses con transacción, costo fraccional y monetario, peso máximo, N_eff y proporción en riesgo.
+- (c) Prueba: incumplimientos de δ, mínimo factor de crecimiento, meses con la cota δ activa, meses sin optimización.
+- (d) Validación: las dos configuraciones elegidas y el nominal, con las mismas métricas.
+Terminado cuando: las tablas compilen en `main_7.tex` sin tocar los números a mano y cada columna coincida con el CSV.
+
+## R3. Figuras
+Genera en `results_finales/figuras/`, con colores fijos por estrategia y etiquetas en español:
+- Riqueza de la prueba (re-basada a 1) y drawdown de todas las estrategias evaluadas.
+- Proporción en riesgo y N_eff en el tiempo (G1, G2 y nominal).
+- Turnover y costo acumulados.
+- Mapas de calor de validación para G1 y G2: riqueza, CVaR, Sharpe, costo monetario, proporción en riesgo, meses con la cota δ activa y fracción de meses con solución óptima (renombra «Factibilidad WDRO» a «fracción de meses con solución óptima»).
+- Riqueza de validación frente a η, por δ y geometría.
+- Exposición riesgosa frente al tiempo con η ∈ {0, 0.10, 0.15, 0.30} (diagnóstico de las trayectorias planas).
+- Serie de D_k del contraste central.
+Terminado cuando: cada figura tenga el script que la genera y se lea en blanco y negro.
+
+## R4. Inferencia y régimen en LaTeX
+Con `results_bootstrap/tabla_bootstrap_contrastes.csv` y `results_regimen/desglose_regimen.csv`:
+- Tabla de los siete contrastes × ℓ ∈ {3, 6, 12}: media, IC 95 %, mediana, % de D_k > 0 y empates numéricos, y un gráfico de intervalos.
+- Tablas del desglose por régimen: siete contrastes × cinco grupos, y el cruce 2×2 del contraste central.
+Terminado cuando: coincidan con los CSV y con el tamaño de grupos (48/36, 28/56; 23/25/5/31).
+
+## R5. Verificación cruzada de cifras
+Script que comprueba: la riqueza final de cada tabla coincide con `metricas_por_tramo.csv`; para cada contraste Σ D_k = log(W_A/W_B); los primeros 48 meses de G2 coinciden con la validación guardada; los conteos de meses suman 48 y 84; `select_parameters.m` no lee nada de 2019–2025.
+Terminado cuando: el script corra sin fallos y deje `results_finales/verificacion_cruzada.csv`.
+
+## R6. Índice de resultados
+Escribe `results_finales/RESULTADOS.md`: lista de tablas y figuras con su archivo, su script y qué muestra cada una en una frase neutra; y una lista de lo que los resultados SÍ y NO permiten afirmar (sin interpretar). Esto me sirve para escribir la sección de Resultados sin inventar nada.
+Terminado cuando: cada cifra citada en el índice tenga su archivo fuente.
+
+## R7. Mantenimiento de código (baja prioridad)
+- Corrige los comentarios de `extract_period_results.m:13-17` y `main_validation_grid.m:5-8` (recortar NO equivale a correr por separado con portafolio heredado y costos).
+- Añade la columna «fracción de meses con solución óptima» y conserva `fraccion_factible` por trazabilidad.
+- Aplica D2 si decidiste cambiar el conteo.
+- Actualiza `CLAUDE.md`: referencias a `metodologia_7.tex`, la regla de selección de T9, y reemplaza «la prueba se usó una sola vez» por lo que dice la limitación del texto.
+Terminado cuando: no queden comentarios que contradigan la metodología.
+
+---
+
+## 3. Decidido que NO se hace
+Sensibilidad o calibración de los pesos ω; backtest de prueba desde efectivo en 2019; comparación del objetivo en el peor caso con un η común; refinar η entre 0 y 0.01; mallas nuevas de cualquier tipo.
+
+## 4. Pendientes que solo puede resolver el autor
+- Dirección del repositorio con código y datos.
+- Fecha de consulta de CVX y MOSEK en las referencias.
+- Revisión manual de las 4 discrepancias de precios sin explicar (AAPL sep y oct de 2015; VIX ago y sep de 2014); Stooq está bloqueado en el entorno de Claude Code, pero tu código de Jupyter sí puede contrastarlas.
+- Quitar o reemplazar el `[PENDIENTE (opcional)]` de los pesos alternativos (C15).
+
+R2 a R6 leen los resultados de `results_v2/` una vez aprobada R1.
+
+## Orden sugerido
+R0 → R1 → R2, R3 y R4 → R5 → R6 → R7.
