@@ -25,7 +25,9 @@
 
 clear; clc; close all;
 
-GRID_DIR = 'results_eta_delta_grid_wdro';
+cfg = config_rutas();   % rutas de datos y resultados (WK_PANEL, WK_RESULTS_ROOT)
+RES = cfg.results_root;
+GRID_DIR = fullfile(RES, 'results_eta_delta_grid_wdro');
 mat_path = fullfile(GRID_DIR, 'grid_delta_eta.mat');
 
 if ~isfile(mat_path)
@@ -38,10 +40,8 @@ load(mat_path, 'grid');
 DELTA_GRID = grid.delta_grid;
 ETA_GRID   = grid.eta_grid;
 
-OUT_DIR = 'results_validacion_grid';
-if ~exist(OUT_DIR, 'dir')
-    mkdir(OUT_DIR);
-end
+OUT_DIR = fullfile(RES, 'results_validacion_grid');
+preparar_salida(cfg, OUT_DIR);
 
 %% 1. Determinar el rango de fechas disponible y definir el periodo de validacion
 % Se usa cualquier celda con resultados para conocer el rango real de

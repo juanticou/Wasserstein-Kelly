@@ -15,20 +15,20 @@
 
 TICKERS = {'AAPL', 'MSFT', 'AMZN', 'JPM', 'JNJ', 'XOM', 'PG', 'CAT', 'KO', 'WMT'};
 PROJECT_DIR = fileparts(mfilename('fullpath'));
-CSV_PATH = fullfile(PROJECT_DIR, 'data', 'processed', 'monthly_panel.csv');
-OUT_DIR  = fullfile(PROJECT_DIR, 'results_validacion_metricas_v2');
-if ~exist(OUT_DIR, 'dir')
-    mkdir(OUT_DIR);
-end
+cfg = config_rutas();   % rutas de datos y resultados (WK_PANEL, WK_RESULTS_ROOT)
+RES = cfg.results_root;
+CSV_PATH = cfg.panel;
+OUT_DIR  = fullfile(RES, 'results_validacion_metricas_v2');
+preparar_salida(cfg, OUT_DIR);
 TOL_PATH = 1e-8;
 VALIDATION_START = datetime(2015,1,1);
 VALIDATION_END   = datetime(2018,12,31);
 
 data = load_monthly_data(CSV_PATH, TICKERS);
 
-S = load(fullfile(PROJECT_DIR, 'results_eta_delta_grid_wdro', 'grid_delta_eta.mat'), 'grid');
+S = load(fullfile(RES, 'results_eta_delta_grid_wdro', 'grid_delta_eta.mat'), 'grid');
 g1 = add_rf_to_grid(S.grid, data);
-S = load(fullfile(PROJECT_DIR, 'wdro-market', 'results_validacion_grid_market', ...
+S = load(fullfile(RES, 'wdro-market', 'results_validacion_grid_market', ...
     'grid_delta_eta_market_validacion.mat'), 'grid');
 g2 = add_rf_to_grid(S.grid, data);
 

@@ -30,12 +30,11 @@ VIX_TICKER = "^VIX"
 FRED_SERIES_RF = "DGS3MO"  # Tasa del Tesoro a 3 meses (FRED)
 
 START_DATE = "2009-12-01"   # precios diarios desde diciembre de 2009
-END_DATE = "2026-01-01"     # hasta diciembre de 2025
+END_DATE = "2026-01-01"     # yfinance trata `end` como exclusivo: incluye el 31-dic-2025
 
+# Rutas por defecto; se cambian con --raw-dir y --proc-dir (ver parse_args).
 RAW_DIR = Path("data/raw")
 PROC_DIR = Path("data/processed")
-RAW_DIR.mkdir(parents=True, exist_ok=True)
-PROC_DIR.mkdir(parents=True, exist_ok=True)
 
 
 # ---------------------------------------------------------------------------
@@ -190,12 +189,32 @@ def audit_report(monthly_ret: pd.DataFrame, mkt_ret: pd.Series, vix: pd.Series,
 # 6. Ejecución principal
 # ---------------------------------------------------------------------------
 
-def main():
+def parse_args():
+    import argparse
+    ap = argparse.ArgumentParser(description="Descarga los datos y construye el panel mensual.")
+    ap.add_argument("--end", default=END_DATE,
+                    help="fecha final para yfinance/FRED, exclusiva en yfinance (default %(default)s)")
+    ap.add_argument("--raw-dir", default=str(RAW_DIR), help="carpeta de datos crudos (default %(default)s)")
+    ap.add_argument("--proc-dir", default=str(PROC_DIR), help="carpeta del panel (default %(default)s)")
+    return ap.parse_args()
+
+
+def require_empty_dir(path: Path):
+    """No se sobrescriben datos existentes: la carpeta debe no existir o estar vacia."""
+    if path.exists() and any(path.iterdir()):
+        raise SystemExit(f"{path} ya tiene archivos; usa una carpeta nueva (--raw-dir / --proc-dir).")
+    path.mkdir(parents=True, exist_ok=True)
+
+
+def main(end_date=END_DATE):
+    require_empty_dir(RAW_DIR)
+    require_empty_dir(PROC_DIR)
+
     print("=== Descarga de precios diarios (Yahoo Finance) ===")
-    prices = download_all_yahoo(TICKERS, MARKET_TICKER, VIX_TICKER, START_DATE, END_DATE)
+    prices = download_all_yahoo(TICKERS, MARKET_TICKER, VIX_TICKER, START_DATE, end_date)
 
     print("=== Descarga de tasa de bajo riesgo (FRED: DGS3MO) ===")
-    rf_daily = download_fred_series(FRED_SERIES_RF, START_DATE, END_DATE)
+    rf_daily = download_fred_series(FRED_SERIES_RF, START_DATE, end_date)
 
     print("=== Construcción de retornos mensuales ===")
     stock_ret_monthly, stock_px_monthly = build_stock_monthly_returns(prices, TICKERS)
@@ -208,7 +227,9 @@ def main():
     panel["mkt_return"] = mkt_ret_monthly
     panel["vix"] = vix_monthly
     panel["rf_return"] = rf_monthly
-    panel = panel.dropna(how="all")
+    # dic-2009 solo sirve de base para el retorno de ene-2010: su fila tiene
+    # VIX y r^f pero ningun retorno de acciones, asi que se descarta.
+    panel = panel.dropna(subset=TICKERS, how="all")
 
     panel.to_csv(PROC_DIR / "monthly_panel.csv")
     stock_px_monthly.to_csv(PROC_DIR / "monthly_adj_close.csv")
@@ -225,4 +246,7 @@ def main():
 
 
 if __name__ == "__main__":
-    monthly_panel = main()
+    args = parse_args()
+    RAW_DIR = Path(args.raw_dir)
+    PROC_DIR = Path(args.proc_dir)
+    monthly_panel = main(args.end)

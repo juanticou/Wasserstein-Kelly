@@ -12,10 +12,10 @@
 % Salida: results_bootstrap/test_simulado.csv
 
 PROJECT_DIR = fileparts(mfilename('fullpath'));
-OUT_DIR = fullfile(PROJECT_DIR, 'results_bootstrap');
-if ~exist(OUT_DIR, 'dir')
-    mkdir(OUT_DIR);
-end
+cfg = config_rutas();   % rutas de datos y resultados (WK_PANEL, WK_RESULTS_ROOT)
+RES = cfg.results_root;
+OUT_DIR = fullfile(RES, 'results_bootstrap');
+preparar_salida(cfg, OUT_DIR);
 
 %% 1. Casos deterministas
 T = 84;

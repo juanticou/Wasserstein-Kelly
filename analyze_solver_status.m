@@ -26,40 +26,46 @@
 
 TICKERS = {'AAPL', 'MSFT', 'AMZN', 'JPM', 'JNJ', 'XOM', 'PG', 'CAT', 'KO', 'WMT'};
 PROJECT_DIR = fileparts(mfilename('fullpath'));
-CSV_PATH = fullfile(PROJECT_DIR, 'data', 'processed', 'monthly_panel.csv');
-OUT_DIR  = fullfile(PROJECT_DIR, 'results_estado_solver');
-if ~exist(OUT_DIR, 'dir')
-    mkdir(OUT_DIR);
-end
+cfg = config_rutas();   % rutas de datos y resultados (WK_PANEL, WK_RESULTS_ROOT)
+RES = cfg.results_root;
+CSV_PATH = cfg.panel;
+OUT_DIR  = fullfile(RES, 'results_estado_solver');
+preparar_salida(cfg, OUT_DIR);
 data = load_monthly_data(CSV_PATH, TICKERS);
 
 %% 1. Tabla de meses sin optimizacion
 rows = {};
 
-S = load(fullfile(PROJECT_DIR, 'results_eta_delta_grid_wdro', 'grid_delta_eta.mat'), 'grid');
+S = load(fullfile(RES, 'results_eta_delta_grid_wdro', 'grid_delta_eta.mat'), 'grid');
 rows = add_grid_rows(rows, S.grid, "malla_completa", "G1");
 grid_g1 = S.grid;
 
-S = load(fullfile(PROJECT_DIR, 'wdro-market', 'results_validacion_grid_market', ...
+S = load(fullfile(RES, 'wdro-market', 'results_validacion_grid_market', ...
     'grid_delta_eta_market_validacion.mat'), 'grid');
 rows = add_grid_rows(rows, S.grid, "malla_validacion", "G2");
 
-S = load(fullfile(PROJECT_DIR, 'wdro-market', 'results_geometria_mercado', ...
-    'geometria_mercado_vs_retornos.mat'));
-for e = 1:numel(S.ETA_GRID)
-    rows{end + 1} = status_row("main_geometria_mercado", "G1", S.results_geo1{e}); %#ok<SAGROW>
-    rows{end + 1} = status_row("main_geometria_mercado", "G2", S.results_geo2{e}); %#ok<SAGROW>
-end
-
-S = load(fullfile(PROJECT_DIR, 'wdro-market', 'results_comparacion_modelos', 'comparacion_modelos.mat'));
-for m = 1:numel(S.results)
-    if strcmp(S.MODEL_NAMES(m), "SP500")
-        continue   % comprar y mantener, no resuelve ningun problema
+% Corridas heredadas: solo existen en la raiz historica; se omiten si faltan.
+geo_path = fullfile(RES, 'wdro-market', 'results_geometria_mercado', 'geometria_mercado_vs_retornos.mat');
+if isfile(geo_path)
+    S = load(geo_path);
+    for e = 1:numel(S.ETA_GRID)
+        rows{end + 1} = status_row("main_geometria_mercado", "G1", S.results_geo1{e}); %#ok<SAGROW>
+        rows{end + 1} = status_row("main_geometria_mercado", "G2", S.results_geo2{e}); %#ok<SAGROW>
     end
-    rows{end + 1} = status_row("main_comparacion_modelos", string(S.MODEL_NAMES(m)), S.results{m}); %#ok<SAGROW>
 end
 
-nom_path = fullfile(PROJECT_DIR, 'results_verificaciones', 'nominal_backtests.mat');
+cmp_path = fullfile(RES, 'wdro-market', 'results_comparacion_modelos', 'comparacion_modelos.mat');
+if isfile(cmp_path)
+    S = load(cmp_path);
+    for m = 1:numel(S.results)
+        if strcmp(S.MODEL_NAMES(m), "SP500")
+            continue   % comprar y mantener, no resuelve ningun problema
+        end
+        rows{end + 1} = status_row("main_comparacion_modelos", string(S.MODEL_NAMES(m)), S.results{m}); %#ok<SAGROW>
+    end
+end
+
+nom_path = fullfile(RES, 'results_verificaciones', 'nominal_backtests.mat');
 if isfile(nom_path)
     S = load(nom_path, 'nominal_results');
     for m = 1:numel(S.nominal_results)

@@ -21,7 +21,9 @@ clear; clc; close all;
 %% 1. Configuracion
 TICKERS = {'AAPL', 'MSFT', 'AMZN', 'JPM', 'JNJ', 'XOM', 'PG', 'CAT', 'KO', 'WMT'};
 PROJECT_DIR = fileparts(mfilename('fullpath'));
-CSV_PATH = fullfile(PROJECT_DIR, 'data', 'processed', 'monthly_panel.csv');
+cfg = config_rutas();   % rutas de datos y resultados (WK_PANEL, WK_RESULTS_ROOT)
+RES = cfg.results_root;
+CSV_PATH = cfg.panel;
 
 if ~isfile(CSV_PATH)
     error('main_grid_delta_eta:csvNotFound', 'No se encontro el archivo:\n  %s', CSV_PATH);
@@ -46,10 +48,8 @@ ALPHA = 0.95;   % nivel de confianza para VaR/CVaR (Seccion 4.2 de la propuesta)
 DELTA_GRID = [0.50, 0.60, 0.70, 0.75, 0.80, 0.90];
 ETA_GRID   = [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.10, 0.15, 0.30, 0.50, 1.00];
 
-OUT_DIR = 'results_eta_delta_grid_wdro';   % misma carpeta de la malla anterior
-if ~exist(OUT_DIR, 'dir')
-    mkdir(OUT_DIR);
-end
+OUT_DIR = fullfile(RES, 'results_eta_delta_grid_wdro');   % misma carpeta de la malla anterior
+preparar_salida(cfg, OUT_DIR);
 
 n_total = numel(DELTA_GRID) * numel(ETA_GRID);
 fprintf('Malla: %d valores de delta x %d valores de eta = %d backtests WDRO (sin nominal por separado).\n', ...

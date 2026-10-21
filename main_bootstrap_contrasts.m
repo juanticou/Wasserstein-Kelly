@@ -18,10 +18,10 @@
 % Salidas: results_bootstrap/tabla_bootstrap_contrastes.csv
 
 PROJECT_DIR = fileparts(mfilename('fullpath'));
-OUT_DIR = fullfile(PROJECT_DIR, 'results_bootstrap');
-if ~exist(OUT_DIR, 'dir')
-    mkdir(OUT_DIR);
-end
+cfg = config_rutas();   % rutas de datos y resultados (WK_PANEL, WK_RESULTS_ROOT)
+RES = cfg.results_root;
+OUT_DIR = fullfile(RES, 'results_bootstrap');
+preparar_salida(cfg, OUT_DIR);
 TEST_START = datetime(2019,1,1);
 TEST_END   = datetime(2025,12,31);
 ELLS = [6, 3, 12];
@@ -29,9 +29,9 @@ B    = 10000;
 SEED = 20261019;
 
 %% Series de prueba
-S = load(fullfile(PROJECT_DIR, 'results_prueba_v2', 'g2_trayectorias_completas.mat'), 'res');
-G = load(fullfile(PROJECT_DIR, 'results_eta_delta_grid_wdro', 'grid_delta_eta.mat'), 'grid');
-N = load(fullfile(PROJECT_DIR, 'results_verificaciones', 'nominal_backtests.mat'), ...
+S = load(fullfile(RES, 'results_prueba_v2', 'g2_trayectorias_completas.mat'), 'res');
+G = load(fullfile(RES, 'results_eta_delta_grid_wdro', 'grid_delta_eta.mat'), 'grid');
+N = load(fullfile(RES, 'results_verificaciones', 'nominal_backtests.mat'), ...
     'nominal_results', 'DELTAS_TO_RUN');
 g1 = G.grid;
 cell_g1 = @(delta, eta) g1.results_wdro{abs(g1.delta_grid - delta) < 1e-12, abs(g1.eta_grid - eta) < 1e-12};
