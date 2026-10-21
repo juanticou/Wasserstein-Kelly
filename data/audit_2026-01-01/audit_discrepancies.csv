@@ -1,0 +1,8 @@
+check,asset,date,value,reference,rel_error,detail,causa_probable,resolucion
+download_log_missing,DGS3MO,,,,,la descarga FRED no queda registrada en download_log.csv,,informativo; fecha de descarga de DGS3MO no registrada
+extreme_monthly_return,CAT,2022-10-31,0.3280619268817639,,,|r| > 30% en el panel mensual,,se conserva: movimiento de mercado real (no es error de ajuste)
+panel_row_dropped,panel,2009-12-31,,,,fila producida por el código actual pero ausente del CSV (primer mes sin retornos),,se acepta: la fila no tiene retornos y MATLAB espera ene-2010 como primera fila
+ref_price_discrepancy,AAPL,2015-09-30,27.575000762939453,27.4875,0.0031832928763784185,Tiingo; dif. retorno total 0.3104%,sin_explicar,se mantiene Yahoo (fuente oficial); solo se marca
+ref_price_discrepancy,AAPL,2015-10-31,29.875,29.875,0.0,Tiingo; dif. retorno total -0.3449%,sin_explicar,se mantiene Yahoo (fuente oficial); solo se marca
+ref_price_discrepancy,VIX,2014-08-31,12.09000015258789,11.98,0.00918198268680226,CBOE; dif. retorno total 0.6490%,sin_explicar,se mantiene Yahoo (fuente oficial); solo se marca
+ref_price_discrepancy,VIX,2014-09-30,16.309999465942383,16.31,-3.2744182476562855e-08,CBOE; dif. retorno total -1.2387%,sin_explicar,se mantiene Yahoo (fuente oficial); solo se marca
