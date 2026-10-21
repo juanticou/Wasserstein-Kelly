@@ -1,6 +1,6 @@
 # Tareas pendientes — fase de resultados
 
-Cómo usarlo: abre Claude Code en la carpeta del proyecto, activa el modo plan (Shift+Tab) y pega SOLO una tarea a la vez. Cada una termina con un criterio de "terminado". Texto de referencia: `metodologia_7.tex` y `main_7.tex` (las versiones `_1` y `_2` están obsoletas). Después de cada tarea, pídele un reporte corto con rutas de archivos y cifras clave; me lo traes y actualizo el texto.
+Cómo usarlo: abre Claude Code en la carpeta del proyecto, activa el modo plan (Shift+Tab) y pega SOLO una tarea a la vez. Cada una termina con un criterio de "terminado". Texto de referencia: `metodologia_6.tex` y `main_6.tex` (las versiones `_1` y `_2` están obsoletas; no hay `_7`). Después de cada tarea, pídele un reporte corto con rutas de archivos y cifras clave; me lo traes y actualizo el texto.
 
 ---
 
@@ -59,7 +59,7 @@ Genera `results_finales/tablas/*.tex` desde `results_prueba_v2/metricas_por_tram
 - (b) Prueba: turnover acumulado, meses con transacción, costo fraccional y monetario, peso máximo, N_eff y proporción en riesgo.
 - (c) Prueba: incumplimientos de δ, mínimo factor de crecimiento, meses con la cota δ activa, meses sin optimización.
 - (d) Validación: las dos configuraciones elegidas y el nominal, con las mismas métricas.
-Terminado cuando: las tablas compilen en `main_7.tex` sin tocar los números a mano y cada columna coincida con el CSV.
+Terminado cuando: las tablas compilen en `main_6.tex` sin tocar los números a mano y cada columna coincida con el CSV.
 
 ## R3. Figuras
 Genera en `results_finales/figuras/`, con colores fijos por estrategia y etiquetas en español:
@@ -90,7 +90,7 @@ Terminado cuando: cada cifra citada en el índice tenga su archivo fuente.
 - Corrige los comentarios de `extract_period_results.m:13-17` y `main_validation_grid.m:5-8` (recortar NO equivale a correr por separado con portafolio heredado y costos).
 - Añade la columna «fracción de meses con solución óptima» y conserva `fraccion_factible` por trazabilidad.
 - Aplica D2 si decidiste cambiar el conteo.
-- Actualiza `CLAUDE.md`: referencias a `metodologia_7.tex`, la regla de selección de T9, y reemplaza «la prueba se usó una sola vez» por lo que dice la limitación del texto.
+- Actualiza `CLAUDE.md`: referencias a `metodologia_6.tex`, la regla de selección de T9, y reemplaza «la prueba se usó una sola vez» por lo que dice la limitación del texto.
 Terminado cuando: no queden comentarios que contradigan la metodología.
 
 ---

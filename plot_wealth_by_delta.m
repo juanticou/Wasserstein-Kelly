@@ -82,7 +82,8 @@ function plot_wealth_by_delta(grid, delta_value, outDir, results_row, title_suff
     title(ttl);
     xlabel('Fecha'); ylabel('W_t / W_0');
     legend('Location', 'best', 'NumColumns', 2);
-    grid on;
+    % `grid on` no sirve aqui: `grid` es el argumento de entrada.
+    set(gca, 'XGrid', 'on', 'YGrid', 'on');
 
     if ~exist(outDir, 'dir')
         mkdir(outDir);

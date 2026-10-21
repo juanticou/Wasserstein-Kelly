@@ -79,3 +79,27 @@ Semillas: 20261019 (`bootstrap_block_diff.m:35`, `main_bootstrap_contrasts.m:29`
 
 ## Comprobación de no-cambio
 `results_finales/check_r0_no_cambio.m`, con salida en `check_r0_no_cambio.csv`, se corrió antes y después de parametrizar. En los 12 primeros meses de decisión la diferencia fue 0 exacto para G1 (0.90, 0.01), para G1 (0.90, 0) contra la malla y contra el nominal, y para G2 (0.80, 0.01) contra la validación.
+
+## R1: datos con el cierre del 31-dic-2025 (pendiente de aprobación para reemplazar la línea base)
+Descarga de Yahoo del 2026-10-21 con `end=2026-01-01`, 4046 días hábiles. Panel usado: **híbrido** (`data/build_hybrid_panel.py`), con ene-2010 a nov-2025 de la línea base y dic-2025 de la descarga nueva. Ver `results_finales/REPORTE_R1.md`.
+
+| Archivo | SHA-256 |
+|---|---|
+| `data/raw_2026-01-01/AAPL_daily.csv` | `b5c0da093cd2849c360748ecaa871c9424b49f1acc88a9e059a3677a572e83d0` |
+| `data/raw_2026-01-01/AMZN_daily.csv` | `1f0b6a7701fbb83819cbc07d8a1010bf46df6ebe5756a594b9a0f3ae4ca35574` |
+| `data/raw_2026-01-01/CAT_daily.csv` | `6a824c429a58a3569ec7fb65f34f9011262f5cb3e4659883a16ab4732c5daf6b` |
+| `data/raw_2026-01-01/DGS3MO_daily.csv` | `5982bacefd1a970d16ab2dccac50cc537b899e05e4a158c4e0d7d0b560063f3d` |
+| `data/raw_2026-01-01/JNJ_daily.csv` | `4d858760622d15e8b4db0e36f3182b906864b43c96d9e4e58276d14e89f27977` |
+| `data/raw_2026-01-01/JPM_daily.csv` | `ebecc27cd40da18b7317b701d91eba0de92e410d182397555a126658af13f081` |
+| `data/raw_2026-01-01/KO_daily.csv` | `35e666097dd60588b077fa5162c9fbe51e6556cc9d83b1a77cfec5b94485bd26` |
+| `data/raw_2026-01-01/MSFT_daily.csv` | `09ce0a9b160cd2845191ea3cdc2509d5d79b2092604eee274c4b8422f50fda1d` |
+| `data/raw_2026-01-01/PG_daily.csv` | `8f15a9510e43929b1f796e3368951d163f0a723df278bc45d1c3c9dd591ff06c` |
+| `data/raw_2026-01-01/SPY_daily.csv` | `7e17fcd4f378cf06ee52ed0ccb0ee8bcd4e12ab0b74e3ed6b76bf3bc21b4470a` |
+| `data/raw_2026-01-01/VIX_daily.csv` | `827450aa3401d596d454c6c2683619d4ba31edf21e79dc1b06378f605d0a2b5d` |
+| `data/raw_2026-01-01/WMT_daily.csv` | `79491c6cdda908f439580ea1aa7d5c9ebdd0d9233b66bba09bf75e7d36f164c5` |
+| `data/raw_2026-01-01/XOM_daily.csv` | `cda2801a60c7be182d8724a57d4f0967aa1bfe665685ddc1eba43d294c21718b` |
+| `data/raw_2026-01-01/download_log.csv` | `cdc4aaf37996b9c9bce61028289eff12cd66f74d737a627afb01ecb7acc0fd6d` |
+| `data/processed_2026-01-01/monthly_panel.csv` (descargado completo, no usado) | `fbb335642547abdcac1f4c8b369f62d93ee8422f870bd538ff9cbb8705f995c2` |
+| `data/processed_2026-01-01/monthly_panel_hibrido.csv` (**usado**) | `688fb9db870d36a247d8fc000fa92761d92efdba4fcca78f04c4339b7697bb3b` |
+
+Ejecución: `r1_ejecutar({...})` en `results_finales/`, que fija `WK_PANEL` al panel híbrido y `WK_RESULTS_ROOT` a `results_v2/`, con los pasos 3–16 de la tabla anterior. Comparación: `r1_comparar('mallas')` y `r1_comparar('prueba')`.
