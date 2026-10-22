@@ -1,0 +1,211 @@
+chequeo,estrategia,columna,esperado,obtenido,ok
+cota_activa_validacion,"G1 (0.80, 0.01)",meses_cota_activa,0,0,1
+cota_activa_validacion,"G1 (0.80, 0.01)",holgura_minima,0.0971071893102079,0.0971071893102079,1
+cota_activa_validacion,"G1 (0.90, 0.01)",meses_cota_activa,6,6,1
+cota_activa_validacion,"G1 (0.90, 0.01)",holgura_minima,3.63424401683687e-10,3.63424401683687e-10,1
+cota_activa_validacion,"G2 (0.80, 0.01)",meses_cota_activa,0,0,1
+cota_activa_validacion,"G2 (0.80, 0.01)",holgura_minima,0.0983660712736938,0.0983660712736938,1
+cota_activa_validacion,"G2 (0.90, 0.01)",meses_cota_activa,4,4,1
+cota_activa_validacion,"G2 (0.90, 0.01)",holgura_minima,2.77312173224686e-10,2.77312173224686e-10,1
+tabla_a_prueba_desempeno,"Nominal (0.80)",riqueza_final,3.625,3.625,1
+tabla_a_prueba_desempeno,"Nominal (0.90)",riqueza_final,3.741,3.741,1
+tabla_a_prueba_desempeno,"G1 (0.80, 0.01)",riqueza_final,3.686,3.686,1
+tabla_a_prueba_desempeno,"G1 (0.90, 0.01)",riqueza_final,3.999,3.999,1
+tabla_a_prueba_desempeno,"G2 (0.80, 0.01)",riqueza_final,3.873,3.873,1
+tabla_a_prueba_desempeno,"G2 (0.90, 0.01)",riqueza_final,3.873,3.873,1
+tabla_a_prueba_desempeno,"Nominal (0.80)",log_crecimiento_medio,1.53,1.53,1
+tabla_a_prueba_desempeno,"Nominal (0.90)",log_crecimiento_medio,1.57,1.57,1
+tabla_a_prueba_desempeno,"G1 (0.80, 0.01)",log_crecimiento_medio,1.55,1.55,1
+tabla_a_prueba_desempeno,"G1 (0.90, 0.01)",log_crecimiento_medio,1.65,1.65,1
+tabla_a_prueba_desempeno,"G2 (0.80, 0.01)",log_crecimiento_medio,1.61,1.61,1
+tabla_a_prueba_desempeno,"G2 (0.90, 0.01)",log_crecimiento_medio,1.61,1.61,1
+tabla_a_prueba_desempeno,"Nominal (0.80)",CAGR,20.2,20.2,1
+tabla_a_prueba_desempeno,"Nominal (0.90)",CAGR,20.74,20.74,1
+tabla_a_prueba_desempeno,"G1 (0.80, 0.01)",CAGR,20.48,20.48,1
+tabla_a_prueba_desempeno,"G1 (0.90, 0.01)",CAGR,21.9,21.9,1
+tabla_a_prueba_desempeno,"G2 (0.80, 0.01)",CAGR,21.34,21.34,1
+tabla_a_prueba_desempeno,"G2 (0.90, 0.01)",CAGR,21.34,21.34,1
+tabla_a_prueba_desempeno,"Nominal (0.80)",max_drawdown,26.39,26.39,1
+tabla_a_prueba_desempeno,"Nominal (0.90)",max_drawdown,26.79,26.79,1
+tabla_a_prueba_desempeno,"G1 (0.80, 0.01)",max_drawdown,27.04,27.04,1
+tabla_a_prueba_desempeno,"G1 (0.90, 0.01)",max_drawdown,25.54,25.54,1
+tabla_a_prueba_desempeno,"G2 (0.80, 0.01)",max_drawdown,26.38,26.38,1
+tabla_a_prueba_desempeno,"G2 (0.90, 0.01)",max_drawdown,26.42,26.42,1
+tabla_a_prueba_desempeno,"Nominal (0.80)",peor_mes,-12.13,-12.13,1
+tabla_a_prueba_desempeno,"Nominal (0.90)",peor_mes,-11.41,-11.41,1
+tabla_a_prueba_desempeno,"G1 (0.80, 0.01)",peor_mes,-11.11,-11.11,1
+tabla_a_prueba_desempeno,"G1 (0.90, 0.01)",peor_mes,-11.14,-11.14,1
+tabla_a_prueba_desempeno,"G2 (0.80, 0.01)",peor_mes,-11.95,-11.95,1
+tabla_a_prueba_desempeno,"G2 (0.90, 0.01)",peor_mes,-11.35,-11.35,1
+tabla_a_prueba_desempeno,"Nominal (0.80)",VaR_perdida,8.48,8.48,1
+tabla_a_prueba_desempeno,"Nominal (0.90)",VaR_perdida,8.35,8.35,1
+tabla_a_prueba_desempeno,"G1 (0.80, 0.01)",VaR_perdida,8.48,8.48,1
+tabla_a_prueba_desempeno,"G1 (0.90, 0.01)",VaR_perdida,8.35,8.35,1
+tabla_a_prueba_desempeno,"G2 (0.80, 0.01)",VaR_perdida,8.48,8.48,1
+tabla_a_prueba_desempeno,"G2 (0.90, 0.01)",VaR_perdida,8.26,8.26,1
+tabla_a_prueba_desempeno,"Nominal (0.80)",CVaR_perdida,10.55,10.55,1
+tabla_a_prueba_desempeno,"Nominal (0.90)",CVaR_perdida,10.04,10.04,1
+tabla_a_prueba_desempeno,"G1 (0.80, 0.01)",CVaR_perdida,10.05,10.05,1
+tabla_a_prueba_desempeno,"G1 (0.90, 0.01)",CVaR_perdida,9.77,9.77,1
+tabla_a_prueba_desempeno,"G2 (0.80, 0.01)",CVaR_perdida,10.32,10.32,1
+tabla_a_prueba_desempeno,"G2 (0.90, 0.01)",CVaR_perdida,9.8,9.8,1
+tabla_a_prueba_desempeno,"Nominal (0.80)",sharpe,0.891,0.891,1
+tabla_a_prueba_desempeno,"Nominal (0.90)",sharpe,0.947,0.947,1
+tabla_a_prueba_desempeno,"G1 (0.80, 0.01)",sharpe,0.917,0.917,1
+tabla_a_prueba_desempeno,"G1 (0.90, 0.01)",sharpe,1.002,1.002,1
+tabla_a_prueba_desempeno,"G2 (0.80, 0.01)",sharpe,0.952,0.952,1
+tabla_a_prueba_desempeno,"G2 (0.90, 0.01)",sharpe,0.981,0.981,1
+tabla_a_prueba_desempeno,"Nominal (0.80)",sortino,1.779,1.779,1
+tabla_a_prueba_desempeno,"Nominal (0.90)",sortino,1.924,1.924,1
+tabla_a_prueba_desempeno,"G1 (0.80, 0.01)",sortino,1.841,1.841,1
+tabla_a_prueba_desempeno,"G1 (0.90, 0.01)",sortino,2.049,2.049,1
+tabla_a_prueba_desempeno,"G2 (0.80, 0.01)",sortino,1.904,1.904,1
+tabla_a_prueba_desempeno,"G2 (0.90, 0.01)",sortino,2.005,2.005,1
+tabla_a_prueba_desempeno,"Nominal (0.80)",calmar,0.765,0.765,1
+tabla_a_prueba_desempeno,"Nominal (0.90)",calmar,0.774,0.774,1
+tabla_a_prueba_desempeno,"G1 (0.80, 0.01)",calmar,0.758,0.758,1
+tabla_a_prueba_desempeno,"G1 (0.90, 0.01)",calmar,0.857,0.857,1
+tabla_a_prueba_desempeno,"G2 (0.80, 0.01)",calmar,0.809,0.809,1
+tabla_a_prueba_desempeno,"G2 (0.90, 0.01)",calmar,0.808,0.808,1
+tabla_b_prueba_operacion,"Nominal (0.80)",turnover_total,8.73,8.73,1
+tabla_b_prueba_operacion,"Nominal (0.90)",turnover_total,7.6,7.6,1
+tabla_b_prueba_operacion,"G1 (0.80, 0.01)",turnover_total,7.92,7.92,1
+tabla_b_prueba_operacion,"G1 (0.90, 0.01)",turnover_total,6.59,6.59,1
+tabla_b_prueba_operacion,"G2 (0.80, 0.01)",turnover_total,7.05,7.05,1
+tabla_b_prueba_operacion,"G2 (0.90, 0.01)",turnover_total,6.77,6.77,1
+tabla_b_prueba_operacion,"Nominal (0.80)",n_transacciones,84,84,1
+tabla_b_prueba_operacion,"Nominal (0.90)",n_transacciones,84,84,1
+tabla_b_prueba_operacion,"G1 (0.80, 0.01)",n_transacciones,84,84,1
+tabla_b_prueba_operacion,"G1 (0.90, 0.01)",n_transacciones,84,84,1
+tabla_b_prueba_operacion,"G2 (0.80, 0.01)",n_transacciones,84,84,1
+tabla_b_prueba_operacion,"G2 (0.90, 0.01)",n_transacciones,84,84,1
+tabla_b_prueba_operacion,"Nominal (0.80)",costo_fraccional,0.87,0.87,1
+tabla_b_prueba_operacion,"Nominal (0.90)",costo_fraccional,0.76,0.76,1
+tabla_b_prueba_operacion,"G1 (0.80, 0.01)",costo_fraccional,0.79,0.79,1
+tabla_b_prueba_operacion,"G1 (0.90, 0.01)",costo_fraccional,0.66,0.66,1
+tabla_b_prueba_operacion,"G2 (0.80, 0.01)",costo_fraccional,0.7,0.7,1
+tabla_b_prueba_operacion,"G2 (0.90, 0.01)",costo_fraccional,0.68,0.68,1
+tabla_b_prueba_operacion,"Nominal (0.80)",costo_monetario,0.0216,0.0216,1
+tabla_b_prueba_operacion,"Nominal (0.90)",costo_monetario,0.018,0.018,1
+tabla_b_prueba_operacion,"G1 (0.80, 0.01)",costo_monetario,0.0192,0.0192,1
+tabla_b_prueba_operacion,"G1 (0.90, 0.01)",costo_monetario,0.0159,0.0159,1
+tabla_b_prueba_operacion,"G2 (0.80, 0.01)",costo_monetario,0.0181,0.0181,1
+tabla_b_prueba_operacion,"G2 (0.90, 0.01)",costo_monetario,0.0167,0.0167,1
+tabla_b_prueba_operacion,"Nominal (0.80)",peso_max_promedio,25,25,1
+tabla_b_prueba_operacion,"Nominal (0.90)",peso_max_promedio,24.99,24.99,1
+tabla_b_prueba_operacion,"G1 (0.80, 0.01)",peso_max_promedio,25,25,1
+tabla_b_prueba_operacion,"G1 (0.90, 0.01)",peso_max_promedio,24.96,24.96,1
+tabla_b_prueba_operacion,"G2 (0.80, 0.01)",peso_max_promedio,25,25,1
+tabla_b_prueba_operacion,"G2 (0.90, 0.01)",peso_max_promedio,24.99,24.99,1
+tabla_b_prueba_operacion,"Nominal (0.80)",Neff_promedio,4.25,4.25,1
+tabla_b_prueba_operacion,"Nominal (0.90)",Neff_promedio,4.63,4.63,1
+tabla_b_prueba_operacion,"G1 (0.80, 0.01)",Neff_promedio,4.39,4.39,1
+tabla_b_prueba_operacion,"G1 (0.90, 0.01)",Neff_promedio,4.69,4.69,1
+tabla_b_prueba_operacion,"G2 (0.80, 0.01)",Neff_promedio,4.43,4.43,1
+tabla_b_prueba_operacion,"G2 (0.90, 0.01)",Neff_promedio,4.71,4.71,1
+tabla_b_prueba_operacion,"Nominal (0.80)",proporcion_riesgo_media,99.99,99.99,1
+tabla_b_prueba_operacion,"Nominal (0.90)",proporcion_riesgo_media,99.99,99.99,1
+tabla_b_prueba_operacion,"G1 (0.80, 0.01)",proporcion_riesgo_media,99.99,99.99,1
+tabla_b_prueba_operacion,"G1 (0.90, 0.01)",proporcion_riesgo_media,99.99,99.99,1
+tabla_b_prueba_operacion,"G2 (0.80, 0.01)",proporcion_riesgo_media,99.99,99.99,1
+tabla_b_prueba_operacion,"G2 (0.90, 0.01)",proporcion_riesgo_media,99.94,99.94,1
+tabla_c_prueba_restricciones,"Nominal (0.80)",violaciones_delta,0,0,1
+tabla_c_prueba_restricciones,"Nominal (0.90)",violaciones_delta,2,2,1
+tabla_c_prueba_restricciones,"G1 (0.80, 0.01)",violaciones_delta,0,0,1
+tabla_c_prueba_restricciones,"G1 (0.90, 0.01)",violaciones_delta,2,2,1
+tabla_c_prueba_restricciones,"G2 (0.80, 0.01)",violaciones_delta,0,0,1
+tabla_c_prueba_restricciones,"G2 (0.90, 0.01)",violaciones_delta,2,2,1
+tabla_c_prueba_restricciones,"Nominal (0.80)",min_factor_crecimiento,0.8787,0.8787,1
+tabla_c_prueba_restricciones,"Nominal (0.90)",min_factor_crecimiento,0.8859,0.8859,1
+tabla_c_prueba_restricciones,"G1 (0.80, 0.01)",min_factor_crecimiento,0.8889,0.8889,1
+tabla_c_prueba_restricciones,"G1 (0.90, 0.01)",min_factor_crecimiento,0.8886,0.8886,1
+tabla_c_prueba_restricciones,"G2 (0.80, 0.01)",min_factor_crecimiento,0.8805,0.8805,1
+tabla_c_prueba_restricciones,"G2 (0.90, 0.01)",min_factor_crecimiento,0.8865,0.8865,1
+tabla_c_prueba_restricciones,"Nominal (0.80)",meses_cota_activa,0,0,1
+tabla_c_prueba_restricciones,"Nominal (0.90)",meses_cota_activa,65,65,1
+tabla_c_prueba_restricciones,"G1 (0.80, 0.01)",meses_cota_activa,0,0,1
+tabla_c_prueba_restricciones,"G1 (0.90, 0.01)",meses_cota_activa,60,60,1
+tabla_c_prueba_restricciones,"G2 (0.80, 0.01)",meses_cota_activa,0,0,1
+tabla_c_prueba_restricciones,"G2 (0.90, 0.01)",meses_cota_activa,66,66,1
+tabla_c_prueba_restricciones,"Nominal (0.80)",meses_sin_optimizacion,0,0,1
+tabla_c_prueba_restricciones,"Nominal (0.90)",meses_sin_optimizacion,0,0,1
+tabla_c_prueba_restricciones,"G1 (0.80, 0.01)",meses_sin_optimizacion,0,0,1
+tabla_c_prueba_restricciones,"G1 (0.90, 0.01)",meses_sin_optimizacion,0,0,1
+tabla_c_prueba_restricciones,"G2 (0.80, 0.01)",meses_sin_optimizacion,0,0,1
+tabla_c_prueba_restricciones,"G2 (0.90, 0.01)",meses_sin_optimizacion,0,0,1
+tabla_c_prueba_restricciones,"Nominal (0.80)",n_meses,84,84,1
+tabla_c_prueba_restricciones,"Nominal (0.90)",n_meses,84,84,1
+tabla_c_prueba_restricciones,"G1 (0.80, 0.01)",n_meses,84,84,1
+tabla_c_prueba_restricciones,"G1 (0.90, 0.01)",n_meses,84,84,1
+tabla_c_prueba_restricciones,"G2 (0.80, 0.01)",n_meses,84,84,1
+tabla_c_prueba_restricciones,"G2 (0.90, 0.01)",n_meses,84,84,1
+tabla_d_validacion,"Nominal (0.80)",riqueza_final,2.367,2.367,1
+tabla_d_validacion,"Nominal (0.90)",riqueza_final,2.367,2.367,1
+tabla_d_validacion,"G1 (0.90, 0.01)",riqueza_final,2.331,2.331,1
+tabla_d_validacion,"G2 (0.80, 0.01)",riqueza_final,2.342,2.342,1
+tabla_d_validacion,"Nominal (0.80)",log_crecimiento_medio,1.79,1.79,1
+tabla_d_validacion,"Nominal (0.90)",log_crecimiento_medio,1.79,1.79,1
+tabla_d_validacion,"G1 (0.90, 0.01)",log_crecimiento_medio,1.76,1.76,1
+tabla_d_validacion,"G2 (0.80, 0.01)",log_crecimiento_medio,1.77,1.77,1
+tabla_d_validacion,"Nominal (0.80)",CAGR,24.03,24.03,1
+tabla_d_validacion,"Nominal (0.90)",CAGR,24.03,24.03,1
+tabla_d_validacion,"G1 (0.90, 0.01)",CAGR,23.56,23.56,1
+tabla_d_validacion,"G2 (0.80, 0.01)",CAGR,23.7,23.7,1
+tabla_d_validacion,"Nominal (0.80)",max_drawdown,19.59,19.59,1
+tabla_d_validacion,"Nominal (0.90)",max_drawdown,19.59,19.59,1
+tabla_d_validacion,"G1 (0.90, 0.01)",max_drawdown,19.59,19.59,1
+tabla_d_validacion,"G2 (0.80, 0.01)",max_drawdown,19.74,19.74,1
+tabla_d_validacion,"Nominal (0.80)",peor_mes,-10.86,-10.86,1
+tabla_d_validacion,"Nominal (0.90)",peor_mes,-10.86,-10.86,1
+tabla_d_validacion,"G1 (0.90, 0.01)",peor_mes,-10.86,-10.86,1
+tabla_d_validacion,"G2 (0.80, 0.01)",peor_mes,-10.86,-10.86,1
+tabla_d_validacion,"Nominal (0.80)",VaR_perdida,6.53,6.53,1
+tabla_d_validacion,"Nominal (0.90)",VaR_perdida,6.53,6.53,1
+tabla_d_validacion,"G1 (0.90, 0.01)",VaR_perdida,5.98,5.98,1
+tabla_d_validacion,"G2 (0.80, 0.01)",VaR_perdida,6.25,6.25,1
+tabla_d_validacion,"Nominal (0.80)",CVaR_perdida,9.01,9.01,1
+tabla_d_validacion,"Nominal (0.90)",CVaR_perdida,9.01,9.01,1
+tabla_d_validacion,"G1 (0.90, 0.01)",CVaR_perdida,8.92,8.92,1
+tabla_d_validacion,"G2 (0.80, 0.01)",CVaR_perdida,9.12,9.12,1
+tabla_d_validacion,"Nominal (0.80)",sharpe,1.311,1.311,1
+tabla_d_validacion,"Nominal (0.90)",sharpe,1.311,1.311,1
+tabla_d_validacion,"G1 (0.90, 0.01)",sharpe,1.306,1.306,1
+tabla_d_validacion,"G2 (0.80, 0.01)",sharpe,1.313,1.313,1
+tabla_d_validacion,"Nominal (0.80)",sortino,2.608,2.608,1
+tabla_d_validacion,"Nominal (0.90)",sortino,2.608,2.608,1
+tabla_d_validacion,"G1 (0.90, 0.01)",sortino,2.612,2.612,1
+tabla_d_validacion,"G2 (0.80, 0.01)",sortino,2.584,2.584,1
+tabla_d_validacion,"Nominal (0.80)",calmar,1.227,1.227,1
+tabla_d_validacion,"Nominal (0.90)",calmar,1.227,1.227,1
+tabla_d_validacion,"G1 (0.90, 0.01)",calmar,1.203,1.203,1
+tabla_d_validacion,"G2 (0.80, 0.01)",calmar,1.201,1.201,1
+tabla_d_validacion,"Nominal (0.80)",turnover_total,4.73,4.73,1
+tabla_d_validacion,"Nominal (0.90)",turnover_total,4.7,4.7,1
+tabla_d_validacion,"G1 (0.90, 0.01)",turnover_total,4.13,4.13,1
+tabla_d_validacion,"G2 (0.80, 0.01)",turnover_total,4.04,4.04,1
+tabla_d_validacion,"Nominal (0.80)",n_transacciones,48,48,1
+tabla_d_validacion,"Nominal (0.90)",n_transacciones,48,48,1
+tabla_d_validacion,"G1 (0.90, 0.01)",n_transacciones,48,48,1
+tabla_d_validacion,"G2 (0.80, 0.01)",n_transacciones,48,48,1
+tabla_d_validacion,"Nominal (0.80)",costo_fraccional,0.47,0.47,1
+tabla_d_validacion,"Nominal (0.90)",costo_fraccional,0.47,0.47,1
+tabla_d_validacion,"G1 (0.90, 0.01)",costo_fraccional,0.41,0.41,1
+tabla_d_validacion,"G2 (0.80, 0.01)",costo_fraccional,0.4,0.4,1
+tabla_d_validacion,"Nominal (0.80)",costo_monetario,0.0068,0.0068,1
+tabla_d_validacion,"Nominal (0.90)",costo_monetario,0.0067,0.0067,1
+tabla_d_validacion,"G1 (0.90, 0.01)",costo_monetario,0.006,0.006,1
+tabla_d_validacion,"G2 (0.80, 0.01)",costo_monetario,0.0057,0.0057,1
+tabla_d_validacion,"Nominal (0.80)",peso_max_promedio,25,25,1
+tabla_d_validacion,"Nominal (0.90)",peso_max_promedio,25,25,1
+tabla_d_validacion,"G1 (0.90, 0.01)",peso_max_promedio,25,25,1
+tabla_d_validacion,"G2 (0.80, 0.01)",peso_max_promedio,25,25,1
+tabla_d_validacion,"Nominal (0.80)",Neff_promedio,4.22,4.22,1
+tabla_d_validacion,"Nominal (0.90)",Neff_promedio,4.23,4.23,1
+tabla_d_validacion,"G1 (0.90, 0.01)",Neff_promedio,4.34,4.34,1
+tabla_d_validacion,"G2 (0.80, 0.01)",Neff_promedio,4.33,4.33,1
+tabla_d_validacion,"Nominal (0.80)",proporcion_riesgo_media,99.99,99.99,1
+tabla_d_validacion,"Nominal (0.90)",proporcion_riesgo_media,99.99,99.99,1
+tabla_d_validacion,"G1 (0.90, 0.01)",proporcion_riesgo_media,99.99,99.99,1
+tabla_d_validacion,"G2 (0.80, 0.01)",proporcion_riesgo_media,99.99,99.99,1
+n_meses,"validacion",n_meses,48,48,1
+n_meses,"prueba",n_meses,84,84,1

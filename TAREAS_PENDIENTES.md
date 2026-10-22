@@ -70,7 +70,8 @@ Genera en `results_finales/figuras/`, con colores fijos por estrategia y etiquet
 - Riqueza de validación frente a η, por δ y geometría.
 - Exposición riesgosa frente al tiempo con η ∈ {0, 0.10, 0.15, 0.30} (diagnóstico de las trayectorias planas).
 - Serie de D_k del contraste central.
-Terminado cuando: cada figura tenga el script que la genera y se lea en blanco y negro.
+
+Terminado cuando: cada figura tenga el script que la genera y se lea en blanco y negro. Haz los titulos lo mas conciso que se pueda.
 
 ## R4. Inferencia y régimen en LaTeX
 Con `results_bootstrap/tabla_bootstrap_contrastes.csv` y `results_regimen/desglose_regimen.csv`:
