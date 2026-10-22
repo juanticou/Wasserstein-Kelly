@@ -1,0 +1,12 @@
+evento,fuente,fecha_intento,resultado,detalle
+VIX 2014-08-29,FRED VIXCLS (fredgraph.csv),2026-10-21,pendiente,"servidor en mantenimiento (pagina 'We'll be back soon'); reintentar"
+VIX 2014-08-29,ALFRED VIXCLS,2026-10-21,pendiente,sin respuesta
+VIX 2014-08-29,Stooq (^vix / vi.f),2026-10-21,pendiente,desafio JavaScript anti-bot; no descargable por script
+VIX 2014-08-29,busqueda web (prensa),2026-10-21,sin dato,ningun resultado da el cierre diario de ese dia
+AAPL 2015-09-30,api.nasdaq.com historico,2026-10-21,sin dato,0 registros (solo cubre ~10 anios)
+AAPL 2015-09-30,Stooq (aapl.us),2026-10-21,pendiente,desafio JavaScript anti-bot
+AAPL 2015-09-30,Tiingo OHLC (re-descarga),2026-10-21,pendiente,TIINGO_API_KEY no definida en esta sesion
+AAPL 2015-09-30,Alpha Vantage / Polygon,2026-10-21,pendiente,requiere clave (no definida)
+AAPL 2015-09-30,busqueda web (prensa),2026-10-21,sin dato,"ningun resultado da el cierre diario verificable; la pagina optionsanalysissuite.com respondio 410"
+AAPL 2015-09-30,Alpha Vantage TIME_SERIES_DAILY full,2026-10-21,no disponible,outputsize=full es premium (8 llamadas rechazadas; ver alphavantage_cache/download_log.csv)
+AAPL 2015-09-30,Alpha Vantage TIME_SERIES_MONTHLY,2026-10-21,AV=Tiingo,"AV 109.95 = Tiingo 109.95; Yahoo 110.30. AV coincide con Tiingo en los 2123 fines de mes (11 series); controles ago/oct-2015 coinciden en las tres fuentes"
