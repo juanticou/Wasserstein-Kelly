@@ -1,0 +1,20 @@
+simbolo,fecha_descarga,url,estado,respuesta
+AAPL,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=AAPL&outputsize=full&datatype=csv,error,"{     ""Information"": ""Thank you for using Alpha Vantage! The outputsize=full parameter value is a premium feature for the TIME_SERIES_DAILY endpoint. You may subscribe to any of the premium plans at h"
+JPM,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=JPM&outputsize=full&datatype=csv,error,"{     ""Information"": ""Thank you for using Alpha Vantage! The outputsize=full parameter value is a premium feature for the TIME_SERIES_DAILY endpoint. You may subscribe to any of the premium plans at h"
+JNJ,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=JNJ&outputsize=full&datatype=csv,error,"{     ""Information"": ""Thank you for using Alpha Vantage! The outputsize=full parameter value is a premium feature for the TIME_SERIES_DAILY endpoint. You may subscribe to any of the premium plans at h"
+XOM,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=XOM&outputsize=full&datatype=csv,error,"{     ""Information"": ""Thank you for using Alpha Vantage! The outputsize=full parameter value is a premium feature for the TIME_SERIES_DAILY endpoint. You may subscribe to any of the premium plans at h"
+PG,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=PG&outputsize=full&datatype=csv,error,"{     ""Information"": ""Thank you for using Alpha Vantage! The outputsize=full parameter value is a premium feature for the TIME_SERIES_DAILY endpoint. You may subscribe to any of the premium plans at h"
+CAT,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=CAT&outputsize=full&datatype=csv,error,"{     ""Information"": ""Thank you for using Alpha Vantage! The outputsize=full parameter value is a premium feature for the TIME_SERIES_DAILY endpoint. You may subscribe to any of the premium plans at h"
+MSFT,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&outputsize=full&datatype=csv,error,"{     ""Information"": ""Thank you for using Alpha Vantage! The outputsize=full parameter value is a premium feature for the TIME_SERIES_DAILY endpoint. You may subscribe to any of the premium plans at h"
+SPY,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=SPY&outputsize=full&datatype=csv,error,"{     ""Information"": ""Thank you for using Alpha Vantage! The outputsize=full parameter value is a premium feature for the TIME_SERIES_DAILY endpoint. You may subscribe to any of the premium plans at h"
+AAPL,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=AAPL&datatype=csv,ok,
+MSFT,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=MSFT&datatype=csv,ok,
+AMZN,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=AMZN&datatype=csv,ok,
+JPM,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=JPM&datatype=csv,ok,
+JNJ,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=JNJ&datatype=csv,ok,
+XOM,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=XOM&datatype=csv,ok,
+PG,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=PG&datatype=csv,ok,
+CAT,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=CAT&datatype=csv,ok,
+KO,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=KO&datatype=csv,ok,
+WMT,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=WMT&datatype=csv,ok,
+SPY,2026-10-21,https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=SPY&datatype=csv,ok,

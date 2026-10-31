@@ -1,0 +1,6 @@
+metrica,columna_fuente,Nominal (0.80),Nominal (0.90),"G1 (0.80, 0.01)","G1 (0.90, 0.01) †","G2 (0.80, 0.01) †","G2 (0.90, 0.01)"
+Meses con factor realizado < delta,violaciones_delta,0,2,0,2,0,2
+Minimo factor de crecimiento realizado,min_factor_crecimiento,0.878679329947632,0.885850028972363,0.888927076640697,0.888590197047045,0.880451362933962,0.886464191419035
+Meses con la cota delta activa en la ventana,meses_cota_activa,0,65,0,60,0,66
+Meses sin optimizacion,meses_sin_optimizacion,0,0,0,0,0,0
+Meses evaluados,n_meses,84,84,84,84,84,84

@@ -1,0 +1,87 @@
+AUDITORÍA DE DATOS - Wasserstein-Kelly
+Generado por data/audit/02_audit_data.py el 2026-10-21.
+Detalle completo: audit_report.md | Hallazgos uno a uno: audit_discrepancies.csv
+
+1. QUÉ SE AUDITÓ
+   - Precios diarios Yahoo Finance: AAPL, MSFT, AMZN, JPM, JNJ, XOM, PG, CAT, KO, WMT, SPY (mercado) y ^VIX.
+   - Tasa libre de riesgo: DGS3MO (FRED).
+   - Panel mensual data/processed/monthly_panel.csv (lo que usa MATLAB).
+   - Contraste externo: Tiingo (acciones y SPY) y CBOE (VIX). Stooq, la fuente prevista,
+     está bloqueado a nivel de red.
+   - IQR de cada serie en las ventanas de 60 meses del backtest.
+   La auditoría es de solo lectura: no se modificó ningún dato.
+
+2. FECHA DE DESCARGA Y PERIODO EFECTIVO
+   serie   fuente         descarga    primer dato  último dato   días  meses panel       referencia       
+   AAPL    Yahoo Finance  2026-10-21  2009-12-01   2025-12-31    4046  2010-01 a 2025-12 Tiingo 2026-10-19
+   MSFT    Yahoo Finance  2026-10-21  2009-12-01   2025-12-31    4046  2010-01 a 2025-12 Tiingo 2026-10-19
+   AMZN    Yahoo Finance  2026-10-21  2009-12-01   2025-12-31    4046  2010-01 a 2025-12 Tiingo 2026-10-19
+   JPM     Yahoo Finance  2026-10-21  2009-12-01   2025-12-31    4046  2010-01 a 2025-12 Tiingo 2026-10-19
+   JNJ     Yahoo Finance  2026-10-21  2009-12-01   2025-12-31    4046  2010-01 a 2025-12 Tiingo 2026-10-19
+   XOM     Yahoo Finance  2026-10-21  2009-12-01   2025-12-31    4046  2010-01 a 2025-12 Tiingo 2026-10-19
+   PG      Yahoo Finance  2026-10-21  2009-12-01   2025-12-31    4046  2010-01 a 2025-12 Tiingo 2026-10-19
+   CAT     Yahoo Finance  2026-10-21  2009-12-01   2025-12-31    4046  2010-01 a 2025-12 Tiingo 2026-10-19
+   KO      Yahoo Finance  2026-10-21  2009-12-01   2025-12-31    4046  2010-01 a 2025-12 Tiingo 2026-10-19
+   WMT     Yahoo Finance  2026-10-21  2009-12-01   2025-12-31    4046  2010-01 a 2025-12 Tiingo 2026-10-19
+   SPY     Yahoo Finance  2026-10-21  2009-12-01   2025-12-31    4046  2010-01 a 2025-12 Tiingo 2026-10-19
+   VIX     Yahoo Finance  2026-10-21  2009-12-01   2025-12-31    4046  2010-01 a 2025-12 CBOE 2026-10-19  
+   DGS3MO  FRED           no regist.  2009-12-01   2025-12-31    4023  2010-01 a 2025-12 no aplica        
+   Rango solicitado a Yahoo: 2009-12-01 a 2026-01-01 (fin exclusivo en yfinance).
+   Diciembre 2025 usa el cierre del 2025-12-31 (DGS3MO: 2025-12-31).
+   La descarga de DGS3MO no quedó registrada en download_log.csv; se guardó en el mismo
+   commit que los datos de Yahoo (2026-08-12).
+
+3. CRITERIO ANTE FALTANTES
+   - No se imputa nada. El valor de cada mes es el último dato disponible del mes
+     (nunca uno del mes siguiente, así que no hay look-ahead).
+   - Falta 1 día hábil en los crudos de Yahoo (2025-12-31, 0 pares archivo-día): no se
+     rellena; diciembre 2025 se cierra con el 30-dic-2025.
+   - Los NaN de DGS3MO son feriados de FRED: se ignoran y se usa el último valor válido.
+     Meses de r^f rellenados con el mes anterior (ffill): 1.
+   - Dic-2009 solo sirve de base para el retorno de ene-2010; su fila se descarta.
+   - Resultado: panel de 192 meses, 0 NaN, 0 meses faltantes.
+
+4. CRITERIO ANTE DISCREPANCIAS YAHOO vs REFERENCIA (PROPUESTA)
+   - Discrepancia = error de precio a fin de mes > 0.5% (Close de Yahoo vs cierre
+     de referencia ajustado por splits) o diferencia de retorno total mensual > 0.25 pp
+     (Adj Close de Yahoo vs Adj Close de referencia).
+   - Yahoo se mantiene como fuente oficial: no se corrige ni sustituye nada. Cada
+     discrepancia se marca y se clasifica por causa probable; las que no tienen
+     explicación quedan para revisión manual.
+   - Resultado: 4 activo-mes fuera de tolerancia en 12 series:
+       fecha_fin_mes_distinta      0
+       mes_con_split               0
+       ajuste_dividendos           0
+       escala_ajuste               0
+       sin_explicar                4
+
+5. IQR EN VENTANAS DE 60 MESES (piso eps_esc = 1e-06)
+   132 ventanas (fin 2014-12-31 a 2025-11-30).
+   AAPL        ventanas con IQR < piso:   0   IQR mínimo 0.08678 (2015-05-31)
+   MSFT        ventanas con IQR < piso:   0   IQR mínimo 0.05641 (2018-11-30)
+   AMZN        ventanas con IQR < piso:   0   IQR mínimo 0.0925 (2021-11-30)
+   JPM         ventanas con IQR < piso:   0   IQR mínimo 0.06346 (2018-08-31)
+   JNJ         ventanas con IQR < piso:   0   IQR mínimo 0.03784 (2016-07-31)
+   XOM         ventanas con IQR < piso:   0   IQR mínimo 0.05062 (2017-12-31)
+   PG          ventanas con IQR < piso:   0   IQR mínimo 0.04956 (2017-09-30)
+   CAT         ventanas con IQR < piso:   0   IQR mínimo 0.07555 (2017-06-30)
+   KO          ventanas con IQR < piso:   0   IQR mínimo 0.03176 (2018-05-31)
+   WMT         ventanas con IQR < piso:   0   IQR mínimo 0.05709 (2019-11-30)
+   mkt_return  ventanas con IQR < piso:   0   IQR mínimo 0.02562 (2018-11-30)
+   vix         ventanas con IQR < piso:   0   IQR mínimo 3.42 (2017-08-31)
+   rf_return   ventanas con IQR < piso:   0   IQR mínimo 4.997e-05 (2015-08-31)
+
+6. HALLAZGOS PRINCIPALES
+   - Falta el 31-dic-2025 (yf.download con end='2025-12-31' es exclusivo).
+   - download_log.csv tiene 0 filas duplicadas (dos ejecuciones) y no registra DGS3MO.
+   - Retorno extremo CAT 2022-10-31: +32.8% (real: resultados 3T-2022).
+   - Recomputo del panel: 0 celdas distintas; sin look-ahead.
+   - Adj Close incorpora dividendos y los 5 splits del periodo correctamente.
+   - SPY, VIX y r^f alineados al último dato disponible de cada mes.
+
+7. RECOMENDACIONES (no aplicadas)
+   - Usar end='2026-01-01' en yf.download y regenerar dic-2025 (el script ya tiene el cambio,
+     sin confirmar; data/raw NO se ha regenerado).
+   - Escribir download_log.csv sin append y registrar también DGS3MO.
+   - Regenerar monthly_panel.csv con el script actual para que sea reproducible.
+   - Guardar copia fechada de los crudos (Yahoo reescala Adj Close retroactivamente).

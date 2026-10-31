@@ -27,12 +27,12 @@ clear; clc;
 %% 1. Configuracion (misma que main_nominal_kelly.m)
 TICKERS = {'AAPL', 'MSFT', 'AMZN', 'JPM', 'JNJ', 'XOM', 'PG', 'CAT', 'KO', 'WMT'};
 PROJECT_DIR = fileparts(mfilename('fullpath'));
+cfg = config_rutas();   % rutas de datos y resultados (WK_PANEL, WK_RESULTS_ROOT)
+RES = cfg.results_root;
 addpath(fullfile(PROJECT_DIR, 'wdro-market'));   % build_transport_cost_market.m
-CSV_PATH = fullfile(PROJECT_DIR, 'data', 'processed', 'monthly_panel.csv');
-OUT_DIR  = fullfile(PROJECT_DIR, 'results_verificaciones');
-if ~exist(OUT_DIR, 'dir')
-    mkdir(OUT_DIR);
-end
+CSV_PATH = cfg.panel;
+OUT_DIR  = fullfile(RES, 'results_verificaciones');
+preparar_salida(cfg, OUT_DIR);
 
 params.N     = 60;
 params.tau   = 0.001;

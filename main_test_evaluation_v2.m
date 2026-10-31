@@ -25,12 +25,12 @@
 
 TICKERS = {'AAPL', 'MSFT', 'AMZN', 'JPM', 'JNJ', 'XOM', 'PG', 'CAT', 'KO', 'WMT'};
 PROJECT_DIR = fileparts(mfilename('fullpath'));
+cfg = config_rutas();   % rutas de datos y resultados (WK_PANEL, WK_RESULTS_ROOT)
+RES = cfg.results_root;
 addpath(fullfile(PROJECT_DIR, 'wdro-market'));
-CSV_PATH = fullfile(PROJECT_DIR, 'data', 'processed', 'monthly_panel.csv');
-OUT_DIR  = fullfile(PROJECT_DIR, 'results_prueba_v2');
-if ~exist(OUT_DIR, 'dir')
-    mkdir(OUT_DIR);
-end
+CSV_PATH = cfg.panel;
+OUT_DIR  = fullfile(RES, 'results_prueba_v2');
+preparar_salida(cfg, OUT_DIR);
 
 CONFIGS = [0.90, 0.01; 0.80, 0.01];   % fila 1: elegida G1; fila 2: elegida G2
 WEIGHTS = struct('wR', 0.70, 'wm', 0.15, 'wv', 0.15, 'wf', 0);
@@ -41,12 +41,12 @@ TOL_REPRO = 0;   % reproduccion exacta exigida (mismo codigo, mismos datos)
 
 data = load_monthly_data(CSV_PATH, TICKERS);
 
-S = load(fullfile(PROJECT_DIR, 'results_eta_delta_grid_wdro', 'grid_delta_eta.mat'), 'grid');
+S = load(fullfile(RES, 'results_eta_delta_grid_wdro', 'grid_delta_eta.mat'), 'grid');
 g1 = S.grid;
-S = load(fullfile(PROJECT_DIR, 'wdro-market', 'results_validacion_grid_market', ...
+S = load(fullfile(RES, 'wdro-market', 'results_validacion_grid_market', ...
     'grid_delta_eta_market_validacion.mat'), 'grid');
 g2val = S.grid;
-S = load(fullfile(PROJECT_DIR, 'results_verificaciones', 'nominal_backtests.mat'), ...
+S = load(fullfile(RES, 'results_verificaciones', 'nominal_backtests.mat'), ...
     'nominal_results', 'DELTAS_TO_RUN');
 nominal_all = S.nominal_results;
 nominal_deltas = S.DELTAS_TO_RUN;

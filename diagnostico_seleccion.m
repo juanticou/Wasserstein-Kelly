@@ -21,12 +21,12 @@
 
 TICKERS = {'AAPL', 'MSFT', 'AMZN', 'JPM', 'JNJ', 'XOM', 'PG', 'CAT', 'KO', 'WMT'};
 PROJECT_DIR = fileparts(mfilename('fullpath'));
+cfg = config_rutas();   % rutas de datos y resultados (WK_PANEL, WK_RESULTS_ROOT)
+RES = cfg.results_root;
 addpath(fullfile(PROJECT_DIR, 'wdro-market'));   % truncate_data.m
-CSV_PATH = fullfile(PROJECT_DIR, 'data', 'processed', 'monthly_panel.csv');
-OUT_DIR  = fullfile(PROJECT_DIR, 'results_seleccion');
-if ~exist(OUT_DIR, 'dir')
-    mkdir(OUT_DIR);
-end
+CSV_PATH = cfg.panel;
+OUT_DIR  = fullfile(RES, 'results_seleccion');
+preparar_salida(cfg, OUT_DIR);
 
 VALIDATION_START = datetime(2015,1,1);
 VALIDATION_END   = datetime(2018,12,31);
@@ -38,8 +38,8 @@ DELTA_EQUIV      = [0.50, 0.60, 0.70, 0.75, 0.80];
 data = truncate_data(load_monthly_data(CSV_PATH, TICKERS), VALIDATION_END);
 
 sources = { ...
-    'G1', fullfile(PROJECT_DIR, 'results_eta_delta_grid_wdro', 'grid_delta_eta.mat'); ...
-    'G2', fullfile(PROJECT_DIR, 'wdro-market', 'results_validacion_grid_market', ...
+    'G1', fullfile(RES, 'results_eta_delta_grid_wdro', 'grid_delta_eta.mat'); ...
+    'G2', fullfile(RES, 'wdro-market', 'results_validacion_grid_market', ...
                    'grid_delta_eta_market_validacion.mat')};
 
 rows_a = {}; rows_b = {}; rows_c = {};
@@ -141,7 +141,7 @@ writetable(TC, fullfile(OUT_DIR, 'riqueza_vs_eta.csv'));
 
 % Comprobacion cruzada con las tablas maestras v2 (solo validacion)
 for geo = ["G1", "G2"]
-    Tv = readtable(fullfile(PROJECT_DIR, 'results_validacion_metricas_v2', ...
+    Tv = readtable(fullfile(RES, 'results_validacion_metricas_v2', ...
         sprintf('tabla_maestra_validacion_%s.csv', geo)));
     Tc = sortrows(TC(TC.geometria == geo, :), {'delta', 'eta'});
     fprintf('%s: max|riqueza 1c - tabla v2| = %.2e\n', geo, max(abs(Tc.riqueza_final - Tv.riqueza_final)));

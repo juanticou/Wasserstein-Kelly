@@ -1,0 +1,14 @@
+2026-10-21 02:08:58,main_grid_delta_eta,1111.8
+2026-10-21 02:09:28,main_validation_grid,29.0
+2026-10-21 02:16:34,main_validation_grid_market,426.0
+2026-10-21 02:17:53,verify_eta0_backtest,78.1
+2026-10-21 02:17:55,test_wdro_nominal_equivalence,1.3
+2026-10-21 02:18:00,verify_backtest_constraints,5.5
+2026-10-21 02:18:19,rebuild_validation_tables,19.2
+2026-10-21 02:18:27,analyze_solver_status,7.6
+2026-10-21 02:18:36,diagnostico_seleccion,8.8
+2026-10-21 02:18:36,main_seleccion_parametros,0.3
+2026-10-21 02:20:43,main_test_evaluation_v2,51.6
+2026-10-21 02:21:21,test_bootstrap_block_diff,37.8
+2026-10-21 02:21:29,main_bootstrap_contrasts,8.3
+2026-10-21 02:21:35,main_regime_breakdown,5.2

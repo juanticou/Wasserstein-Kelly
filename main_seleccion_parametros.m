@@ -14,8 +14,14 @@
 % sensibilidad_seleccion.csv, top10_G1.csv, top10_G2.csv
 
 PROJECT_DIR = fileparts(mfilename('fullpath'));
-V_DIR   = fullfile(PROJECT_DIR, 'results_validacion_metricas_v2');
-OUT_DIR = fullfile(PROJECT_DIR, 'results_seleccion');
+cfg = config_rutas();   % rutas de datos y resultados (WK_PANEL, WK_RESULTS_ROOT)
+RES = cfg.results_root;
+V_DIR   = fullfile(RES, 'results_validacion_metricas_v2');
+OUT_DIR = fullfile(RES, 'results_seleccion');   % la crea diagnostico_seleccion.m
+if cfg.is_default && isfile(fullfile(OUT_DIR, 'seleccion_G1.csv')) && ~strcmp(getenv('WK_PERMITIR_SOBRESCRIBIR'), '1')
+    error('main_seleccion_parametros:wouldOverwrite', ...
+        '%s ya tiene una seleccion guardada (ver preparar_salida.m).', OUT_DIR);
+end
 
 PHI_MIN = 0.95;
 DELTA_GRID = [0.50, 0.60, 0.70, 0.75, 0.80, 0.90];

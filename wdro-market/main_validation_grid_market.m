@@ -43,7 +43,9 @@ addpath(PROJECT_DIR);
 addpath(ROOT_DIR);
 
 TICKERS = {'AAPL', 'MSFT', 'AMZN', 'JPM', 'JNJ', 'XOM', 'PG', 'CAT', 'KO', 'WMT'};
-CSV_PATH = fullfile(ROOT_DIR, 'data', 'processed', 'monthly_panel.csv');
+cfg = config_rutas();   % rutas de datos y resultados (WK_PANEL, WK_RESULTS_ROOT)
+RES = cfg.results_root;
+CSV_PATH = cfg.panel;
 
 if ~isfile(CSV_PATH)
     error('main_validation_grid_market:csvNotFound', ...
@@ -68,13 +70,11 @@ ALPHA = 0.95;
 DELTA_GRID = [0.50, 0.60, 0.70, 0.75, 0.80, 0.90];
 ETA_GRID   = [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.10, 0.15, 0.30, 0.50, 1.00];
 
-OUT_DIR = fullfile(PROJECT_DIR, 'results_validacion_grid_market');
-if ~exist(OUT_DIR, 'dir')
-    mkdir(OUT_DIR);
-end
+OUT_DIR = fullfile(RES, 'wdro-market', 'results_validacion_grid_market');
+preparar_salida(cfg, OUT_DIR);
 
 % Resultados de validacion de la Geometria 1 (main_validation_grid.m), para comparar.
-G1_PM_PATH = fullfile(ROOT_DIR, 'results_validacion_grid', 'pm_validacion.mat');
+G1_PM_PATH = fullfile(RES, 'results_validacion_grid', 'pm_validacion.mat');
 
 n_total = numel(DELTA_GRID) * numel(ETA_GRID);
 fprintf('Malla Geometria 2: %d valores de delta x %d valores de eta = %d backtests.\n', ...

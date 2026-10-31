@@ -1,0 +1,13 @@
+symbol,source,start_requested,end_requested,download_date,file,n_rows
+AAPL,Yahoo Finance,2009-12-01,2026-01-01,2026-10-21,data\raw_2026-01-01\AAPL_daily.csv,4046
+MSFT,Yahoo Finance,2009-12-01,2026-01-01,2026-10-21,data\raw_2026-01-01\MSFT_daily.csv,4046
+AMZN,Yahoo Finance,2009-12-01,2026-01-01,2026-10-21,data\raw_2026-01-01\AMZN_daily.csv,4046
+JPM,Yahoo Finance,2009-12-01,2026-01-01,2026-10-21,data\raw_2026-01-01\JPM_daily.csv,4046
+JNJ,Yahoo Finance,2009-12-01,2026-01-01,2026-10-21,data\raw_2026-01-01\JNJ_daily.csv,4046
+XOM,Yahoo Finance,2009-12-01,2026-01-01,2026-10-21,data\raw_2026-01-01\XOM_daily.csv,4046
+PG,Yahoo Finance,2009-12-01,2026-01-01,2026-10-21,data\raw_2026-01-01\PG_daily.csv,4046
+CAT,Yahoo Finance,2009-12-01,2026-01-01,2026-10-21,data\raw_2026-01-01\CAT_daily.csv,4046
+KO,Yahoo Finance,2009-12-01,2026-01-01,2026-10-21,data\raw_2026-01-01\KO_daily.csv,4046
+WMT,Yahoo Finance,2009-12-01,2026-01-01,2026-10-21,data\raw_2026-01-01\WMT_daily.csv,4046
+SPY,Yahoo Finance,2009-12-01,2026-01-01,2026-10-21,data\raw_2026-01-01\SPY_daily.csv,4046
+^VIX,Yahoo Finance,2009-12-01,2026-01-01,2026-10-21,data\raw_2026-01-01\VIX_daily.csv,4046

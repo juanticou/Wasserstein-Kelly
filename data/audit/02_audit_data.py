@@ -34,8 +34,7 @@ ROOT = Path(__file__).resolve().parents[2]
 RAW_DIR = ROOT / "data" / "raw"
 PROC_DIR = ROOT / "data" / "processed"
 OUT_DIR = ROOT / "data" / "audit"
-REF_DIR = OUT_DIR / "ref_cache"
-OUT_DIR.mkdir(exist_ok=True)
+REF_DIR = ROOT / "data" / "audit" / "ref_cache"   # cache de 03_download_reference.py; no depende de --out-dir
 
 TICKERS = ["AAPL", "MSFT", "AMZN", "JPM", "JNJ", "XOM", "PG", "CAT", "KO", "WMT"]
 YAHOO_FILES = TICKERS + ["SPY", "VIX"]
@@ -1127,4 +1126,14 @@ def main():
 
 
 if __name__ == "__main__":
+    import argparse
+    ap = argparse.ArgumentParser(description="Auditoria de datos crudos y del panel mensual (solo lectura).")
+    ap.add_argument("--raw-dir", default=str(RAW_DIR), help="default %(default)s")
+    ap.add_argument("--proc-dir", default=str(PROC_DIR), help="default %(default)s")
+    ap.add_argument("--out-dir", default=str(OUT_DIR), help="default %(default)s")
+    args = ap.parse_args()
+    RAW_DIR, PROC_DIR, OUT_DIR = Path(args.raw_dir), Path(args.proc_dir), Path(args.out_dir)
+    if (OUT_DIR / "audit_report.md").exists():
+        raise SystemExit(f"{OUT_DIR} ya tiene un audit_report.md; usa --out-dir con una carpeta nueva.")
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
     main()

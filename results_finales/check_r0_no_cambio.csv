@@ -1,0 +1,5 @@
+caso,n_meses,mismas_fechas,max_dx,max_dG,max_dW,identico,segundos,segundos_por_mes
+"G1 (0.90, 0.01) vs malla G1",12,1,0,0,0,1,3.8001082,0.316675683333333
+"G1 (0.90, 0) vs malla G1",12,1,0,0,0,1,1.3386917,0.111557641666667
+"G1 (0.90, 0) vs nominal",12,1,0,0,0,1,1.2903371,0.107528091666667
+"G2 (0.80, 0.01) vs validacion",12,1,0,0,0,1,1.4901335,0.124177791666667

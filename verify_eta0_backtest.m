@@ -21,16 +21,16 @@ end
 
 TICKERS = {'AAPL', 'MSFT', 'AMZN', 'JPM', 'JNJ', 'XOM', 'PG', 'CAT', 'KO', 'WMT'};
 PROJECT_DIR = fileparts(mfilename('fullpath'));
-CSV_PATH = fullfile(PROJECT_DIR, 'data', 'processed', 'monthly_panel.csv');
-OUT_DIR  = fullfile(PROJECT_DIR, 'results_verificaciones');
-if ~exist(OUT_DIR, 'dir')
-    mkdir(OUT_DIR);
-end
+cfg = config_rutas();   % rutas de datos y resultados (WK_PANEL, WK_RESULTS_ROOT)
+RES = cfg.results_root;
+CSV_PATH = cfg.panel;
+OUT_DIR  = fullfile(RES, 'results_verificaciones');
+preparar_salida(cfg, OUT_DIR);
 
 TOL_G = 1e-6;   % |G^real_nominal - G^real_WDRO(eta=0)| por mes
 TOL_X = 1e-5;   % max |x_nominal - x_WDRO(eta=0)| por mes
 
-S = load(fullfile(PROJECT_DIR, 'results_eta_delta_grid_wdro', 'grid_delta_eta.mat'), 'grid');
+S = load(fullfile(RES, 'results_eta_delta_grid_wdro', 'grid_delta_eta.mat'), 'grid');
 grid_g1 = S.grid;
 j0 = grid_g1.baseline_col;
 data = load_monthly_data(CSV_PATH, TICKERS);

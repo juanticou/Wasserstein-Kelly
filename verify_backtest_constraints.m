@@ -14,18 +14,18 @@
 
 TICKERS = {'AAPL', 'MSFT', 'AMZN', 'JPM', 'JNJ', 'XOM', 'PG', 'CAT', 'KO', 'WMT'};
 PROJECT_DIR = fileparts(mfilename('fullpath'));
-CSV_PATH = fullfile(PROJECT_DIR, 'data', 'processed', 'monthly_panel.csv');
-OUT_DIR  = fullfile(PROJECT_DIR, 'results_verificaciones');
-if ~exist(OUT_DIR, 'dir')
-    mkdir(OUT_DIR);
-end
+cfg = config_rutas();   % rutas de datos y resultados (WK_PANEL, WK_RESULTS_ROOT)
+RES = cfg.results_root;
+CSV_PATH = cfg.panel;
+OUT_DIR  = fullfile(RES, 'results_verificaciones');
+preparar_salida(cfg, OUT_DIR);
 TOL_FEAS = 1e-7;
 
 data = load_monthly_data(CSV_PATH, TICKERS);
 
 sources = { ...
-    'G1', fullfile(PROJECT_DIR, 'results_eta_delta_grid_wdro', 'grid_delta_eta.mat'); ...
-    'G2', fullfile(PROJECT_DIR, 'wdro-market', 'results_validacion_grid_market', ...
+    'G1', fullfile(RES, 'results_eta_delta_grid_wdro', 'grid_delta_eta.mat'); ...
+    'G2', fullfile(RES, 'wdro-market', 'results_validacion_grid_market', ...
                    'grid_delta_eta_market_validacion.mat')};
 
 rows = {};
