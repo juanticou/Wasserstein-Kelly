@@ -183,7 +183,7 @@ function r4_inferencia()
         cells = [num(100 * a6.media_D, 3), num(100 * a6.mediana_D, 3), num(100 * a6.prop_D_pos, 1), ...
                  string(a6.empates_1e6)];
         tex(end + 1) = sprintf('%d & %s & %s & %s \\\\ \\hline', c, CON{c, 6}, ...
-            strjoin(cells, ' & '), strjoin(ic, ' & ')); %#ok<AGROW>
+            tex_minus(strjoin(cells, ' & ')), tex_minus(strjoin(ic, ' & '))); %#ok<AGROW>
         if c == 2, tex(end) = tex(end) + " \hline"; end
         mdA(end + 1) = sprintf("| %d | %s | %s | %s | %s |", c, CON{c, 2}, CON{c, 3}, strjoin(cells, ' | '), strjoin(ic, ' | ')); %#ok<AGROW>
     end
@@ -207,7 +207,7 @@ function r4_inferencia()
             r = RB(RB.n_contraste == c & RB.regimen == GROUPS(g), :);
             cells(g) = num(100 * r.media_D, 3) + " (" + num(100 * r.prop_D_pos, 1) + ")";
         end
-        tex(end + 1) = sprintf('%d & %s & %s \\\\ \\hline', c, CON{c, 6}, strjoin(strrep(cells, '%', '\%'), ' & ')); %#ok<AGROW>
+        tex(end + 1) = sprintf('%d & %s & %s \\\\ \\hline', c, CON{c, 6}, tex_minus(strjoin(cells, ' & '))); %#ok<AGROW>
         if c == 2, tex(end) = tex(end) + " \hline"; end
         mdB(end + 1) = sprintf("| %d | %s | %s | %s |", c, CON{c, 2}, CON{c, 3}, strjoin(cells, ' | ')); %#ok<AGROW>
     end
@@ -229,9 +229,9 @@ function r4_inferencia()
                 cells(j) = num(100 * r.media_D, 3) + " (" + num(100 * r.prop_D_pos, 1) + ") [" + r.n_meses + "]";
             end
             if i == 1                              % sin \multirow: main_6.tex no carga ese paquete
-                tex(end + 1) = sprintf('%d & %s & %s & %s \\\\ \\cline{3-5}', c, CON{c, 6}, VIXLAB(i), strjoin(cells, ' & ')); %#ok<AGROW>
+                tex(end + 1) = sprintf('%d & %s & %s & %s \\\\ \\cline{3-5}', c, CON{c, 6}, VIXLAB(i), tex_minus(strjoin(cells, ' & '))); %#ok<AGROW>
             else
-                tex(end + 1) = sprintf(' & & %s & %s \\\\ \\hline', VIXLAB(i), strjoin(cells, ' & ')); %#ok<AGROW>
+                tex(end + 1) = sprintf(' & & %s & %s \\\\ \\hline', VIXLAB(i), tex_minus(strjoin(cells, ' & '))); %#ok<AGROW>
             end
             mdC(end + 1) = sprintf("| %d | %s − %s | %s | %s |", c, CON{c, 2}, CON{c, 3}, VIXLAB(i), strjoin(cells, ' | ')); %#ok<AGROW>
         end
@@ -340,4 +340,10 @@ function T = check_row(chequeo, contraste, esperado, obtenido, tol)
     ok = isequal(esperado, obtenido) || abs(esperado - obtenido) <= tol * max(1, abs(esperado));
     T = table(string(chequeo), contraste, esperado, obtenido, abs(esperado - obtenido), ok, ...
         'VariableNames', {'chequeo', 'contraste', 'esperado', 'obtenido', 'dif_abs', 'ok'});
+end
+
+
+function s = tex_minus(s)
+% Signo menos matematico en las cifras negativas de una fila .tex
+    s = regexprep(s, '(?<![\w)$])-(?=\d)', '$-$');
 end

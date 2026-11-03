@@ -4,7 +4,7 @@ Fuente: `results_v2/results_prueba_v2/metricas_por_tramo.csv`; la fila de cota d
 
 ## (a) Prueba 2019-2025: desempeno
 
-CSV: `tabla_a_prueba_desempeno.csv`
+CSV: `tabla_a_prueba_desempeno.csv`; .tex: `tabla_a_prueba_desempeno.tex`
 
 | Metrica | Nominal (0.80) | Nominal (0.90) | G1 (0.80, 0.01) | G1 (0.90, 0.01) † | G2 (0.80, 0.01) † | G2 (0.90, 0.01) |
 |---|---:|---:|---:|---:|---:|---:|
@@ -21,7 +21,7 @@ CSV: `tabla_a_prueba_desempeno.csv`
 
 ## (b) Prueba 2019-2025: operacion y concentracion
 
-CSV: `tabla_b_prueba_operacion.csv`
+CSV: `tabla_b_prueba_operacion.csv`; .tex: `tabla_b_prueba_operacion.tex`
 
 | Metrica | Nominal (0.80) | Nominal (0.90) | G1 (0.80, 0.01) | G1 (0.90, 0.01) † | G2 (0.80, 0.01) † | G2 (0.90, 0.01) |
 |---|---:|---:|---:|---:|---:|---:|
@@ -35,7 +35,7 @@ CSV: `tabla_b_prueba_operacion.csv`
 
 ## (c) Prueba 2019-2025: restricciones y solucionador
 
-CSV: `tabla_c_prueba_restricciones.csv`
+CSV: `tabla_c_prueba_restricciones.csv`; .tex: `tabla_c_prueba_restricciones.tex`
 
 | Metrica | Nominal (0.80) | Nominal (0.90) | G1 (0.80, 0.01) | G1 (0.90, 0.01) † | G2 (0.80, 0.01) † | G2 (0.90, 0.01) |
 |---|---:|---:|---:|---:|---:|---:|
@@ -47,7 +47,7 @@ CSV: `tabla_c_prueba_restricciones.csv`
 
 ## (d) Validacion 2015-2018: configuraciones elegidas y nominal
 
-CSV: `tabla_d_validacion.csv`
+CSV: `tabla_d_validacion.csv`; .tex: `tabla_d_validacion.tex`
 
 | Metrica | Nominal (0.80) | Nominal (0.90) | G1 (0.90, 0.01) † | G2 (0.80, 0.01) † |
 |---|---:|---:|---:|---:|

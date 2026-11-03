@@ -8,11 +8,11 @@ Antes de escribir este índice se comprobó que R2–R5 no tienen fallos (958 co
 
 | Archivo | Script | Qué muestra |
 |---|---|---|
-| `results_finales/tablas/tabla_a_prueba_desempeno.csv` | `r2_tablas.m` | Prueba: riqueza final, crecimiento logarítmico medio, CAGR, MDD, peor mes, VaR y CVaR al 95 %, Sharpe, Sortino y Calmar de las seis estrategias. |
-| `results_finales/tablas/tabla_b_prueba_operacion.csv` | `r2_tablas.m` | Prueba: turnover, meses con transacción, costo fraccional y monetario, peso máximo, N_eff y proporción en riesgo. |
-| `results_finales/tablas/tabla_c_prueba_restricciones.csv` | `r2_tablas.m` | Prueba: incumplimientos de δ, mínimo factor de crecimiento, meses con la cota δ activa y meses sin optimización. |
-| `results_finales/tablas/tabla_d_validacion.csv` | `r2_tablas.m` | Validación: las dos configuraciones elegidas y el nominal de cada δ, con las métricas de (a) y (b). |
-| `results_finales/tablas/TABLAS_R2.md` | `r2_tablas.m` | Las tablas (a)–(d) en Markdown (sin .tex todavía). |
+| `results_finales/tablas/tabla_a_prueba_desempeno.csv/.tex` | `r2_tablas.m` | Prueba: riqueza final, crecimiento logarítmico medio, CAGR, MDD, peor mes, VaR y CVaR al 95 %, Sharpe, Sortino y Calmar de las seis estrategias. |
+| `results_finales/tablas/tabla_b_prueba_operacion.csv/.tex` | `r2_tablas.m` | Prueba: turnover, meses con transacción, costo fraccional y monetario, peso máximo, N_eff y proporción en riesgo. |
+| `results_finales/tablas/tabla_c_prueba_restricciones.csv/.tex` | `r2_tablas.m` | Prueba: incumplimientos de δ, mínimo factor de crecimiento, meses con la cota δ activa y meses sin optimización. |
+| `results_finales/tablas/tabla_d_validacion.csv/.tex` | `r2_tablas.m` | Validación: las dos configuraciones elegidas y el nominal de cada δ, con las métricas de (a) y (b). |
+| `results_finales/tablas/TABLAS_R2.md` | `r2_tablas.m` | Las tablas (a)–(d) en Markdown. |
 | `results_finales/figuras/riqueza_prueba.pdf/.png` | `r3_figuras.m` | Riqueza re-basada a 1 al inicio de la prueba de las seis estrategias evaluadas. |
 | `results_finales/figuras/drawdown_prueba.pdf/.png` | `r3_figuras.m` | Caída porcentual desde el máximo previo de la riqueza (eje invertido), seis estrategias. |
 | `results_finales/figuras/riesgo_neff_prueba.pdf/.png` | `r3_figuras.m` | Proporción invertida en activos riesgosos y número efectivo de activos riesgosos por mes (N_eff = 0 sin exposición). |
@@ -60,5 +60,5 @@ Antes de escribir este índice se comprobó que R2–R5 no tienen fallos (958 co
 
 ## 4. Pendientes que no salen de estos resultados
 
-- Las tablas de R2 aún no tienen versión .tex; las de R4 sí, pero no se han compilado en este equipo (no hay LaTeX instalado).
+- Los .tex de R2 y R4 no se han compilado en este equipo (no hay LaTeX instalado); insertarlos con \input requiere solo los paquetes que ya carga main_6.tex.
 - Al correr r5_verificacion_cruzada.m, CVX avisó que los modelos con log se resuelven con su método de aproximación sucesiva; falta confirmar si MOSEK trata el cono exponencial de forma nativa, porque la metodología dice «CVX + MOSEK».

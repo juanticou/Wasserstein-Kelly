@@ -1,6 +1,6 @@
 function r2_tablas()
-% R2_TABLAS  R2: tablas de desempeno de prueba y validacion en CSV y Markdown
-% (sin .tex, por decision del autor). Solo lee resultados de results_v2/;
+% R2_TABLAS  R2: tablas de desempeno de prueba y validacion en CSV, Markdown
+% y .tex (\hline, sin booktabs). Solo lee resultados de results_v2/;
 % no optimiza nada. Ninguna cifra se escribe a mano.
 %
 %   (a) prueba, desempeno       (b) prueba, operacion
@@ -11,7 +11,7 @@ function r2_tablas()
 % (min_s G_ks - delta <= 1e-6 en la ventana de 60 meses). Control: sobre
 % validacion debe reproducir results_seleccion/diagnostico_cota_delta.csv.
 %
-% Salidas en results_finales/tablas/: tabla_[a-d]_*.csv, r2_cota_delta.csv,
+% Salidas en results_finales/tablas/: tabla_[a-d]_*.csv/.tex, r2_cota_delta.csv,
 % r2_verificacion.csv y TABLAS_R2.md
 
     root = fileparts(fileparts(mfilename('fullpath')));
@@ -98,6 +98,28 @@ function r2_tablas()
           'n_meses', 'Meses evaluados', 'int'};
     VAL_ORDER = ["Nominal (0.80)", "Nominal (0.90)", "G1 (0.90, 0.01)", "G2 (0.80, 0.01)"];
 
+    % Version .tex: notacion de tab:contrastes (c1 = (0.90, 0.01), c2 = (0.80, 0.01))
+    TEX_STRAT = containers.Map( ...
+        {'Nominal (0.80)', 'Nominal (0.90)', 'G1 (0.80, 0.01)', 'G1 (0.90, 0.01)', 'G2 (0.80, 0.01)', 'G2 (0.90, 0.01)'}, ...
+        {'$\mathrm{Nom}(\delta_2^\star)$', '$\mathrm{Nom}(\delta_1^\star)$', '$G_1(c_2)$', '$G_1(c_1)$', '$G_2(c_2)$', '$G_2(c_1)$'});
+    TEX_ROW = containers.Map( ...
+        {'riqueza_final', 'log_crecimiento_medio', 'CAGR', 'max_drawdown', 'peor_mes', 'VaR_perdida', 'CVaR_perdida', ...
+         'sharpe', 'sortino', 'calmar', 'turnover_total', 'n_transacciones', 'costo_fraccional', 'costo_monetario', ...
+         'peso_max_promedio', 'Neff_promedio', 'proporcion_riesgo_media', 'violaciones_delta', 'min_factor_crecimiento', ...
+         'meses_cota_activa', 'meses_sin_optimizacion', 'n_meses'}, ...
+        {'Riqueza final ($W_0=1$)', 'Crecimiento logarítmico medio mensual', 'CAGR', 'Máxima caída (MDD)', 'Peor mes', ...
+         'VaR 95\,\% (pérdida mensual)', 'CVaR 95\,\% (pérdida mensual)', 'Sharpe', 'Sortino', 'Calmar', ...
+         'Turnover acumulado', 'Meses con transacción', 'Costo fraccional acumulado', 'Costo monetario acumulado ($W_0=1$)', ...
+         'Peso máximo medio', '$N_{\mathrm{eff}}$ medio', 'Proporción en riesgo media', ...
+         'Meses con $G^{\mathrm{real}}<\delta$', 'Mínimo factor de crecimiento realizado', ...
+         'Meses con la cota $\delta$ activa en la ventana', 'Meses sin optimización', 'Meses evaluados'});
+    TEX_CAPTION = struct( ...
+        'tabla_a_prueba_desempeno', 'Prueba 2019--2025: desempeño de las seis estrategias evaluadas.', ...
+        'tabla_b_prueba_operacion', 'Prueba 2019--2025: operación y concentración.', ...
+        'tabla_c_prueba_restricciones', 'Prueba 2019--2025: restricciones y solucionador.', ...
+        'tabla_d_validacion', 'Validación 2015--2018: configuraciones elegidas y Kelly nominal con el mismo $\delta$.');
+    TEX_NOTE = "$c_1=(0.90,\,0.01)$, $c_2=(0.80,\,0.01)$, $\delta_1^\star=0.90$, $\delta_2^\star=0.80$; $^{\dagger}$~configuración elegida en validación.";
+
     % metricas_por_tramo + cota activa en una sola tabla de consulta
     M = outerjoin(M, C(:, {'estrategia', 'tramo', 'meses_cota_activa'}), ...
         'Keys', {'estrategia', 'tramo'}, 'MergeKeys', true);
@@ -127,9 +149,16 @@ function r2_tablas()
         writecell(cellout, fullfile(OUT, [name '.csv']));
 
         % Markdown y verificacion del texto impreso
-        md = [md, "## " + title, "", "CSV: `" + name + ".csv`", "", ...
+        md = [md, "## " + title, "", "CSV: `" + name + ".csv`; .tex: `" + name + ".tex`", "", ...
               "| Metrica | " + strjoin(hdr, " | ") + " |", ...
               "|---|" + strjoin(repmat("---:", 1, numel(strat)), "|") + "|"]; %#ok<AGROW>
+        thdr = arrayfun(@(s) "\textbf{" + regexprep(string(TEX_STRAT(char(s))), '\$$', ...
+            ifelse(ismember(s, CHOSEN), '^{\\dagger}\$', '\$')) + "}", strat);
+        tex = ["% Generado por results_finales/r2_tablas.m; no editar a mano.", ...
+               "\begin{table}[h]", "\centering", "\footnotesize", "\setlength{\tabcolsep}{4pt}", ...
+               "\caption{" + TEX_CAPTION.(name) + " " + TEX_NOTE + "}\label{tab:r2_" + name(7) + "}", ...
+               "\begin{tabular}{|l|" + strjoin(repmat("r", 1, numel(strat)), "|") + "|}", "\hline", ...
+               "\textbf{Métrica} & " + strjoin(thdr, " & ") + " \\ \hline"];
         for i = 1:size(spec, 1)
             txt = strings(1, numel(strat));
             for j = 1:numel(strat)
@@ -138,8 +167,10 @@ function r2_tablas()
                     round(vals(i, j) * scale, digits(spec{i, 3})), shown); %#ok<AGROW>
             end
             md(end + 1) = "| " + spec{i, 2} + " | " + strjoin(txt, " | ") + " |"; %#ok<AGROW>
+            tex(end + 1) = string(TEX_ROW(spec{i, 1})) + " & " + strjoin(tex_cell(txt), " & ") + " \\ \hline"; %#ok<AGROW>
         end
         md = [md, ""]; %#ok<AGROW>
+        writelines([tex, "\end{tabular}", "\end{table}"], fullfile(OUT, [name '.tex']), 'Encoding', 'UTF-8');
     end
 
     % Conteos de meses por tramo
@@ -180,6 +211,18 @@ function [txt, shown, scale] = fmt(v, f)
     shown = str2double(num);
     txt = string(num);
     if strcmp(f, 'pct'), txt = txt + " %"; end
+end
+
+
+function s = tex_cell(txt)
+% Celda del Markdown -> LaTeX: signo menos matematico y "\,\%"
+    s = regexprep(txt, '^-(?=\d)', '$-$');
+    s = replace(s, " %", "\,\%");
+end
+
+
+function v = ifelse(c, a, b)
+    if c, v = a; else, v = b; end
 end
 
 

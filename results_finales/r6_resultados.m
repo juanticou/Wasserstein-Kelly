@@ -53,11 +53,11 @@ function r6_resultados()
           "c2 = (0.80, 0.01), elegida para G2 (T9). Prueba: 84 meses realizados (ene-2019 a dic-2025); validación: 48 (ene-2015 a dic-2018).", "", ...
           sprintf("Antes de escribir este índice se comprobó que R2–R5 no tienen fallos (%d comprobaciones en total).", nchk), "", ...
           "## 1. Tablas y figuras", "", "| Archivo | Script | Qué muestra |", "|---|---|---|"];
-    IDX = ["tablas/tabla_a_prueba_desempeno.csv", "r2_tablas.m", "Prueba: riqueza final, crecimiento logarítmico medio, CAGR, MDD, peor mes, VaR y CVaR al 95 %, Sharpe, Sortino y Calmar de las seis estrategias."
-           "tablas/tabla_b_prueba_operacion.csv", "r2_tablas.m", "Prueba: turnover, meses con transacción, costo fraccional y monetario, peso máximo, N_eff y proporción en riesgo."
-           "tablas/tabla_c_prueba_restricciones.csv", "r2_tablas.m", "Prueba: incumplimientos de δ, mínimo factor de crecimiento, meses con la cota δ activa y meses sin optimización."
-           "tablas/tabla_d_validacion.csv", "r2_tablas.m", "Validación: las dos configuraciones elegidas y el nominal de cada δ, con las métricas de (a) y (b)."
-           "tablas/TABLAS_R2.md", "r2_tablas.m", "Las tablas (a)–(d) en Markdown (sin .tex todavía)."];
+    IDX = ["tablas/tabla_a_prueba_desempeno.csv/.tex", "r2_tablas.m", "Prueba: riqueza final, crecimiento logarítmico medio, CAGR, MDD, peor mes, VaR y CVaR al 95 %, Sharpe, Sortino y Calmar de las seis estrategias."
+           "tablas/tabla_b_prueba_operacion.csv/.tex", "r2_tablas.m", "Prueba: turnover, meses con transacción, costo fraccional y monetario, peso máximo, N_eff y proporción en riesgo."
+           "tablas/tabla_c_prueba_restricciones.csv/.tex", "r2_tablas.m", "Prueba: incumplimientos de δ, mínimo factor de crecimiento, meses con la cota δ activa y meses sin optimización."
+           "tablas/tabla_d_validacion.csv/.tex", "r2_tablas.m", "Validación: las dos configuraciones elegidas y el nominal de cada δ, con las métricas de (a) y (b)."
+           "tablas/TABLAS_R2.md", "r2_tablas.m", "Las tablas (a)–(d) en Markdown."];
     for i = 1:size(IDX, 1)
         md(end + 1) = "| `results_finales/" + IDX(i, 1) + "` | `" + IDX(i, 2) + "` | " + IDX(i, 3) + " |"; %#ok<AGROW>
     end
@@ -192,7 +192,7 @@ function r6_resultados()
 
     %% 4. Pendientes
     md = [md, "", "## 4. Pendientes que no salen de estos resultados", "", ...
-          "- Las tablas de R2 aún no tienen versión .tex; las de R4 sí, pero no se han compilado en este equipo (no hay LaTeX instalado).", ...
+          "- Los .tex de R2 y R4 no se han compilado en este equipo (no hay LaTeX instalado); insertarlos con \input requiere solo los paquetes que ya carga main_6.tex.", ...
           "- Al correr r5_verificacion_cruzada.m, CVX avisó que los modelos con log se resuelven con su método de aproximación sucesiva; falta confirmar si MOSEK trata el cono exponencial de forma nativa, porque la metodología dice «CVX + MOSEK»."];
 
     writelines(md, fullfile(here, 'RESULTADOS.md'), 'Encoding', 'UTF-8');
