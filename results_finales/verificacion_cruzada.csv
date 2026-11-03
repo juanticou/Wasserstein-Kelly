@@ -1,0 +1,159 @@
+bloque,chequeo,objeto,esperado,obtenido,dif_abs,ok
+A,riqueza_trayectoria_vs_metricas_validacion,"Nominal (0.80)",2.36677822793992,2.36677822793992,2.22044604925031e-15,1
+A,riqueza_trayectoria_vs_metricas_validacion,"Nominal (0.90)",2.36663672282496,2.36663672282496,3.10862446895044e-15,1
+A,riqueza_trayectoria_vs_metricas_validacion,"G1 (0.80, 0.01)",2.32585904857965,2.32585904857965,8.88178419700125e-16,1
+A,riqueza_trayectoria_vs_metricas_validacion,"G1 (0.90, 0.01)",2.330695995534,2.330695995534,1.33226762955019e-15,1
+A,riqueza_trayectoria_vs_metricas_validacion,"G2 (0.80, 0.01)",2.34165920831819,2.34165920831819,2.66453525910038e-15,1
+A,riqueza_trayectoria_vs_metricas_validacion,"G2 (0.90, 0.01)",2.34047061490715,2.34047061490715,2.66453525910038e-15,1
+A,riqueza_trayectoria_vs_metricas_prueba,"Nominal (0.80)",3.62480949708143,3.62480949708143,1.77635683940025e-15,1
+A,riqueza_trayectoria_vs_metricas_prueba,"Nominal (0.90)",3.74129516843451,3.74129516843451,3.10862446895044e-15,1
+A,riqueza_trayectoria_vs_metricas_prueba,"G1 (0.80, 0.01)",3.68564511504018,3.68564511504018,8.88178419700125e-16,1
+A,riqueza_trayectoria_vs_metricas_prueba,"G1 (0.90, 0.01)",3.99948221573723,3.99948221573723,3.99680288865056e-15,1
+A,riqueza_trayectoria_vs_metricas_prueba,"G2 (0.80, 0.01)",3.87301160545156,3.87301160545156,4.44089209850063e-15,1
+A,riqueza_trayectoria_vs_metricas_prueba,"G2 (0.90, 0.01)",3.8733500175501,3.8733500175501,3.99680288865056e-15,1
+A,riqueza_tabla_a_prueba_desempeno_vs_metricas,"Nominal (0.80)",3.62480949708143,3.62480949708143,0,1
+A,riqueza_tabla_a_prueba_desempeno_vs_metricas,"Nominal (0.90)",3.74129516843451,3.74129516843451,0,1
+A,riqueza_tabla_a_prueba_desempeno_vs_metricas,"G1 (0.80, 0.01)",3.68564511504018,3.68564511504018,0,1
+A,riqueza_tabla_a_prueba_desempeno_vs_metricas,"G1 (0.90, 0.01)",3.99948221573723,3.99948221573723,0,1
+A,riqueza_tabla_a_prueba_desempeno_vs_metricas,"G2 (0.80, 0.01)",3.87301160545156,3.87301160545156,0,1
+A,riqueza_tabla_a_prueba_desempeno_vs_metricas,"G2 (0.90, 0.01)",3.8733500175501,3.8733500175501,0,1
+A,riqueza_tabla_d_validacion_vs_metricas,"Nominal (0.80)",2.36677822793992,2.36677822793992,0,1
+A,riqueza_tabla_d_validacion_vs_metricas,"Nominal (0.90)",2.36663672282496,2.36663672282496,0,1
+A,riqueza_tabla_d_validacion_vs_metricas,"G1 (0.90, 0.01)",2.330695995534,2.330695995534,0,1
+A,riqueza_tabla_d_validacion_vs_metricas,"G2 (0.80, 0.01)",2.34165920831819,2.34165920831819,0,1
+A,verificacion_previa_sin_fallos,"R2",210,210,0,1
+A,verificacion_previa_sin_fallos,"R3",61,61,0,1
+A,verificacion_previa_sin_fallos,"R4",529,529,0,1
+A,verificacion_previa_sin_fallos,"T9",2,2,0,1
+B,suma_D_vs_log_WA_WB,"emparejado (0.90, 0.01): G2 (0.90, 0.01) - G1 (0.90, 0.01)",-0.0320451364719581,-0.0320451364719585,4.02455846426619e-16,1
+B,riqueza_A_sobre_B_menos_1_vs_exp_suma_D,"emparejado (0.90, 0.01): G2 (0.90, 0.01) - G1 (0.90, 0.01)",-0.0315371319044311,-0.0315371319044307,3.81639164714898e-16,1
+B,suma_D_vs_log_WA_WB,"emparejado (0.80, 0.01): G2 (0.80, 0.01) - G1 (0.80, 0.01)",0.0495868215709572,0.049586821570955,2.2065682614425e-15,1
+B,riqueza_A_sobre_B_menos_1_vs_exp_suma_D,"emparejado (0.80, 0.01): G2 (0.80, 0.01) - G1 (0.80, 0.01)",0.0508368235581815,0.0508368235581829,1.36696209906972e-15,1
+B,suma_D_vs_log_WA_WB,"seleccionado: G2 (0.80, 0.01) - G1 (0.90, 0.01)",-0.0321325096453846,-0.0321325096453853,7.14706072102445e-16,1
+B,riqueza_A_sobre_B_menos_1_vs_exp_suma_D,"seleccionado: G2 (0.80, 0.01) - G1 (0.90, 0.01)",-0.0316217458820129,-0.0316217458820124,5.41233724504764e-16,1
+B,suma_D_vs_log_WA_WB,"vs nominal: G1 (0.90, 0.01) - Nominal (0.90)",0.0667330534770362,0.0667330534770356,6.10622663543836e-16,1
+B,riqueza_A_sobre_B_menos_1_vs_exp_suma_D,"vs nominal: G1 (0.90, 0.01) - Nominal (0.90)",0.0690100715605264,0.0690100715605269,4.85722573273506e-16,1
+B,suma_D_vs_log_WA_WB,"vs nominal: G2 (0.90, 0.01) - Nominal (0.90)",0.0346879170050781,0.0346879170050771,1.02001740387436e-15,1
+B,riqueza_A_sobre_B_menos_1_vs_exp_suma_D,"vs nominal: G2 (0.90, 0.01) - Nominal (0.90)",0.0352965599265567,0.0352965599265576,9.29811783123569e-16,1
+B,suma_D_vs_log_WA_WB,"vs nominal: G1 (0.80, 0.01) - Nominal (0.80)",0.0166438410625462,0.0166438410625455,6.90419943438769e-16,1
+B,riqueza_A_sobre_B_menos_1_vs_exp_suma_D,"vs nominal: G1 (0.80, 0.01) - Nominal (0.80)",0.0167831214323759,0.0167831214323759,2.42861286636753e-17,1
+B,suma_D_vs_log_WA_WB,"vs nominal: G2 (0.80, 0.01) - Nominal (0.80)",0.0662306626335036,0.0662306626335005,3.10862446895044e-15,1
+B,riqueza_A_sobre_B_menos_1_vs_exp_suma_D,"vs nominal: G2 (0.80, 0.01) - Nominal (0.80)",0.0684731455735705,0.0684731455735721,1.56819002228303e-15,1
+B,R4_suma_D_vs_log_WA_WB,"contraste 1",-0.0320451364719581,-0.0320451364719585,4.02455846426619e-16,1
+B,R4_suma_D_vs_log_WA_WB,"contraste 2",0.0495868215709572,0.049586821570955,2.2065682614425e-15,1
+B,R4_suma_D_vs_log_WA_WB,"contraste 3",-0.0321325096453846,-0.0321325096453853,7.14706072102445e-16,1
+B,R4_suma_D_vs_log_WA_WB,"contraste 4",0.0667330534770362,0.0667330534770356,6.10622663543836e-16,1
+B,R4_suma_D_vs_log_WA_WB,"contraste 5",0.0346879170050781,0.0346879170050771,1.02001740387436e-15,1
+B,R4_suma_D_vs_log_WA_WB,"contraste 6",0.0166438410625462,0.0166438410625455,6.90419943438769e-16,1
+B,R4_suma_D_vs_log_WA_WB,"contraste 7",0.0662306626335036,0.0662306626335005,3.10862446895044e-15,1
+C,G2_n_meses_validacion,"G2 (0.90, 0.01)",48,48,0,1
+C,G2_mismas_fechas,"G2 (0.90, 0.01)",1,1,0,1
+C,G2_max_abs_dx,"G2 (0.90, 0.01)",0,0,0,1
+C,G2_max_abs_dG,"G2 (0.90, 0.01)",0,0,0,1
+C,G2_riqueza_mes_48,"G2 (0.90, 0.01)",2.34047061490715,2.34047061490715,0,1
+C,G2_n_meses_validacion,"G2 (0.80, 0.01)",48,48,0,1
+C,G2_mismas_fechas,"G2 (0.80, 0.01)",1,1,0,1
+C,G2_max_abs_dx,"G2 (0.80, 0.01)",0,0,0,1
+C,G2_max_abs_dG,"G2 (0.80, 0.01)",0,0,0,1
+C,G2_riqueza_mes_48,"G2 (0.80, 0.01)",2.34165920831819,2.34165920831819,0,1
+D,decisiones_totales,"Nominal (0.80)",132,132,0,1
+D,meses_validacion,"Nominal (0.80)",48,48,0,1
+D,meses_prueba,"Nominal (0.80)",84,84,0,1
+D,validacion_mas_prueba_igual_total,"Nominal (0.80)",132,132,0,1
+D,decisiones_totales,"Nominal (0.90)",132,132,0,1
+D,meses_validacion,"Nominal (0.90)",48,48,0,1
+D,meses_prueba,"Nominal (0.90)",84,84,0,1
+D,validacion_mas_prueba_igual_total,"Nominal (0.90)",132,132,0,1
+D,decisiones_totales,"G1 (0.80, 0.01)",132,132,0,1
+D,meses_validacion,"G1 (0.80, 0.01)",48,48,0,1
+D,meses_prueba,"G1 (0.80, 0.01)",84,84,0,1
+D,validacion_mas_prueba_igual_total,"G1 (0.80, 0.01)",132,132,0,1
+D,decisiones_totales,"G1 (0.90, 0.01)",132,132,0,1
+D,meses_validacion,"G1 (0.90, 0.01)",48,48,0,1
+D,meses_prueba,"G1 (0.90, 0.01)",84,84,0,1
+D,validacion_mas_prueba_igual_total,"G1 (0.90, 0.01)",132,132,0,1
+D,decisiones_totales,"G2 (0.80, 0.01)",132,132,0,1
+D,meses_validacion,"G2 (0.80, 0.01)",48,48,0,1
+D,meses_prueba,"G2 (0.80, 0.01)",84,84,0,1
+D,validacion_mas_prueba_igual_total,"G2 (0.80, 0.01)",132,132,0,1
+D,decisiones_totales,"G2 (0.90, 0.01)",132,132,0,1
+D,meses_validacion,"G2 (0.90, 0.01)",48,48,0,1
+D,meses_prueba,"G2 (0.90, 0.01)",84,84,0,1
+D,validacion_mas_prueba_igual_total,"G2 (0.90, 0.01)",132,132,0,1
+D,n_meses_metricas_por_tramo,"validacion",48,48,0,1
+D,n_meses_metricas_por_tramo,"prueba",84,84,0,1
+D,n_meses_bootstrap,"todas las filas",84,84,0,1
+D,meses_clasificados,"regimen",84,84,0,1
+D,VIX_alto_mas_bajo,"48 + 36",84,84,0,1
+D,SPY_neg_mas_noneg,"28 + 56",84,84,0,1
+D,cruce_suma,"23 + 25 + 5 + 31",84,84,0,1
+E,select_parameters_sin_lecturas,"select_parameters.m",0,0,0,1
+E,main_seleccion_solo_lee_validacion,"main_seleccion_parametros.m: 2 lecturas",0,0,0,1
+E,main_seleccion_sin_rutas_de_prueba,"main_seleccion_parametros.m",0,0,0,1
+E,tabla_validacion_recalculada_riqueza_final,"G1",0,4.44089209850063e-15,4.44089209850063e-15,1
+E,tabla_validacion_recalculada_fraccion_factible,"G1",0,0,0,1
+E,tabla_validacion_recalculada_n_meses,"G1",0,0,0,1
+E,tabla_validacion_48_meses,"G1",3168,3168,0,1
+E,tabla_R3_igual_tabla_seleccion_riqueza,"G1",0,0,0,1
+E,tabla_validacion_recalculada_riqueza_final,"G2",0,4.88498130835069e-15,4.88498130835069e-15,1
+E,tabla_validacion_recalculada_fraccion_factible,"G2",0,0,0,1
+E,tabla_validacion_recalculada_n_meses,"G2",0,0,0,1
+E,tabla_validacion_48_meses,"G2",3168,3168,0,1
+E,tabla_R3_igual_tabla_seleccion_riqueza,"G2",0,0,0,1
+E,malla_G2_ultimo_mes_realizado_yyyymm,"G2",201812,201812,0,1
+E,ruido_riqueza_min_desde_validacion,"G1 eta=0.00",2.36648994406212,2.36648994406212,0,1
+E,ruido_riqueza_max_desde_validacion,"G1 eta=0.00",2.36677822793992,2.36677822793992,0,1
+E,ruido_riqueza_min_desde_validacion,"G1 eta=0.01",2.32581134597238,2.32581134597238,0,1
+E,ruido_riqueza_max_desde_validacion,"G1 eta=0.01",2.32592198903342,2.32592198903342,0,1
+E,ruido_riqueza_min_desde_validacion,"G1 eta=0.02",2.22158011898821,2.22158011898821,0,1
+E,ruido_riqueza_max_desde_validacion,"G1 eta=0.02",2.22187948864576,2.22187948864576,0,1
+E,ruido_riqueza_min_desde_validacion,"G1 eta=0.03",2.18218345568134,2.18218345568134,0,1
+E,ruido_riqueza_max_desde_validacion,"G1 eta=0.03",2.18244092303684,2.18244092303684,0,1
+E,ruido_riqueza_min_desde_validacion,"G1 eta=0.04",2.06690659552674,2.06690659552674,0,1
+E,ruido_riqueza_max_desde_validacion,"G1 eta=0.04",2.06707422813878,2.06707422813878,0,1
+E,ruido_riqueza_min_desde_validacion,"G1 eta=0.05",2.09429047641879,2.09429047641879,0,1
+E,ruido_riqueza_max_desde_validacion,"G1 eta=0.05",2.09478216435546,2.09478216435546,0,1
+E,ruido_riqueza_min_desde_validacion,"G1 eta=0.10",1.69349278755018,1.69349278755018,0,1
+E,ruido_riqueza_max_desde_validacion,"G1 eta=0.10",1.69422393925181,1.69422393925181,0,1
+E,ruido_riqueza_min_desde_validacion,"G1 eta=0.15",1.56992656388214,1.56992656388214,0,1
+E,ruido_riqueza_max_desde_validacion,"G1 eta=0.15",1.57040515095588,1.57040515095588,0,1
+E,ruido_riqueza_min_desde_validacion,"G1 eta=0.30",1.0318908663876,1.0318908663876,0,1
+E,ruido_riqueza_max_desde_validacion,"G1 eta=0.30",1.03195900865012,1.03195900865012,0,1
+E,ruido_riqueza_min_desde_validacion,"G1 eta=0.50",1.03183131260936,1.03183131260936,0,1
+E,ruido_riqueza_max_desde_validacion,"G1 eta=0.50",1.03184115614574,1.03184115614574,0,1
+E,ruido_riqueza_min_desde_validacion,"G1 eta=1.00",1.031815473001,1.031815473001,0,1
+E,ruido_riqueza_max_desde_validacion,"G1 eta=1.00",1.03181968505185,1.03181968505185,0,1
+E,ruido_riqueza_min_desde_validacion,"G2 eta=0.00",2.36648994406212,2.36648994406212,0,1
+E,ruido_riqueza_max_desde_validacion,"G2 eta=0.00",2.36677822793992,2.36677822793992,0,1
+E,ruido_riqueza_min_desde_validacion,"G2 eta=0.01",2.34135638838851,2.34135638838851,0,1
+E,ruido_riqueza_max_desde_validacion,"G2 eta=0.01",2.3419163736331,2.3419163736331,0,1
+E,ruido_riqueza_min_desde_validacion,"G2 eta=0.02",2.23873945707942,2.23873945707942,0,1
+E,ruido_riqueza_max_desde_validacion,"G2 eta=0.02",2.23919560093127,2.23919560093127,0,1
+E,ruido_riqueza_min_desde_validacion,"G2 eta=0.03",2.1842575610368,2.1842575610368,0,1
+E,ruido_riqueza_max_desde_validacion,"G2 eta=0.03",2.18444921035831,2.18444921035831,0,1
+E,ruido_riqueza_min_desde_validacion,"G2 eta=0.04",2.15231796183637,2.15231796183637,0,1
+E,ruido_riqueza_max_desde_validacion,"G2 eta=0.04",2.15244917674547,2.15244917674547,0,1
+E,ruido_riqueza_min_desde_validacion,"G2 eta=0.05",2.11658322655297,2.11658322655297,0,1
+E,ruido_riqueza_max_desde_validacion,"G2 eta=0.05",2.11670879183312,2.11670879183312,0,1
+E,ruido_riqueza_min_desde_validacion,"G2 eta=0.10",1.79287605951904,1.79287605951904,0,1
+E,ruido_riqueza_max_desde_validacion,"G2 eta=0.10",1.79315305105283,1.79315305105283,0,1
+E,ruido_riqueza_min_desde_validacion,"G2 eta=0.15",1.61886496236194,1.61886496236194,0,1
+E,ruido_riqueza_max_desde_validacion,"G2 eta=0.15",1.61961263139144,1.61961263139144,0,1
+E,ruido_riqueza_min_desde_validacion,"G2 eta=0.30",1.03189416983786,1.03189416983786,0,1
+E,ruido_riqueza_max_desde_validacion,"G2 eta=0.30",1.03201202475372,1.03201202475372,0,1
+E,ruido_riqueza_min_desde_validacion,"G2 eta=0.50",1.03182951642823,1.03182951642823,0,1
+E,ruido_riqueza_max_desde_validacion,"G2 eta=0.50",1.03184335265216,1.03184335265216,0,1
+E,ruido_riqueza_min_desde_validacion,"G2 eta=1.00",1.03181606268525,1.03181606268525,0,1
+E,ruido_riqueza_max_desde_validacion,"G2 eta=1.00",1.03181992923216,1.03181992923216,0,1
+E,TOL_recalculada,"ruido -> {1,2,5}x10^k",0.0005,0.0005,0,1
+E,seleccion_delta,"G1",0.9,0.9,0,1
+E,seleccion_eta,"G1",0.01,0.01,0,1
+E,seleccion_igual_guardada,"G1",2.330695995534,2.330695995534,0,1
+E,seleccion_delta,"G2",0.8,0.8,0,1
+E,seleccion_eta,"G2",0.01,0.01,0,1
+E,seleccion_igual_guardada,"G2",2.34165920831819,2.34165920831819,0,1
+F,G1_truncado_n_meses,"G1 (0.90, 0.01)",48,48,0,1
+F,G1_truncado_mismas_fechas,"G1 (0.90, 0.01)",1,1,0,1
+F,G1_truncado_max_abs_dx,"G1 (0.90, 0.01)",0,0,0,1
+F,G1_truncado_max_abs_dG,"G1 (0.90, 0.01)",0,0,0,1
+F,G1_truncado_riqueza_validacion,"G1 (0.90, 0.01)",2.330695995534,2.330695995534,1.33226762955019e-15,1
