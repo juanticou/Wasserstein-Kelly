@@ -58,10 +58,10 @@ grid = run_grid_delta_eta_wdro_only(data, base_params, DELTA_GRID, ETA_GRID);
 %% 4. Guardar resultados crudos
 save(fullfile(OUT_DIR, 'grid_delta_eta_high.mat'), 'grid', '-v7.3');
 
-%% 5. Mapa de factibilidad
+%% 5. Mapa de la fraccion de meses con solucion optima
 plot_heatmap(grid.feas_wdro, ETA_GRID, DELTA_GRID, ...
-    'Factibilidad WDRO, valores altos (fraccion de fechas resueltas)', ...
-    'Fraccion Solved', '%.2f', OUT_DIR, 'heatmap_factibilidad_high.png');
+    'Fraccion de meses con solucion optima, valores altos', ...
+    'Fraccion optima', '%.2f', OUT_DIR, 'heatmap_factibilidad_high.png');
 
 %% 6. Mapas de desempeno vs. baseline (eta=0 de cada fila)
 if ~isempty(grid.baseline_col)
