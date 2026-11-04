@@ -3,9 +3,11 @@
 % (Seccion 15.2 y 17.3 de la propuesta: enero 2015 - diciembre 2018).
 % NO vuelve a correr ningun backtest: reusa los resultados ya guardados
 % en results_eta_delta_grid_wdro/grid_delta_eta.mat y los recorta por
-% fecha con extract_period_results.m. Esto es valido porque cada decision
-% del backtest de origen movil solo mira hacia atras (ver el comentario
-% en extract_period_results.m para el argumento completo).
+% fecha con extract_period_results.m. El recorte no usa informacion futura
+% porque cada decision del backtest de origen movil solo mira hacia atras,
+% pero no equivale a correr el tramo por separado desde efectivo: hereda
+% el portafolio y los costos de los meses previos (ver el comentario en
+% extract_period_results.m).
 %
 % Genera exactamente el mismo tipo de salida que main_grid_delta_eta.m
 % (heatmaps, tablas anchas de varianza/CVaR/turnover, tabla maestra,
@@ -84,7 +86,7 @@ save(fullfile(OUT_DIR, 'pm_validacion.mat'), 'pm_val', 'VALIDATION_START', 'VALI
 period_tag = sprintf('(validacion %d-%d)', year(VALIDATION_START), year(VALIDATION_END));
 
 plot_heatmap(pm_val.feas, ETA_GRID, DELTA_GRID, ...
-    ['Factibilidad WDRO ', period_tag], 'Fraccion Solved', '%.2f', ...
+    ['Fraccion de meses con solucion optima ', period_tag], 'Fraccion optima', '%.2f', ...
     OUT_DIR, 'heatmap_factibilidad_validacion.png');
 
 plot_heatmap(pm_val.Wealth, ETA_GRID, DELTA_GRID, ...

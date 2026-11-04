@@ -7,14 +7,16 @@ function sub = extract_period_results(results, period_start, period_end)
 % de validacion (2015-2018) y el periodo de prueba (2019-2025) por
 % separado, tal como exige la Seccion 17.3 de la propuesta.
 %
-% IMPORTANTE sobre por que esto es valido sin volver a correr el backtest:
-% cada decision xk del backtest de origen movil usa UNICAMENTE la ventana
-% Dk (informacion hasta la fecha k), nunca datos posteriores. Por tanto,
-% los meses correspondientes a 2015-2018 dentro de un backtest que corrio
-% hasta 2025 son IDENTICOS a los que se habrian obtenido deteniendo el
-% backtest en 2018 -- particionar por fecha DESPUES de correr es
-% matematicamente equivalente a correr cada tramo por separado, pero sin
-% repetir el computo.
+% IMPORTANTE sobre que significa el recorte: cada decision xk del backtest
+% de origen movil usa UNICAMENTE la ventana Dk (informacion hasta la fecha
+% k), nunca datos posteriores. Por tanto, los meses de 2015-2018 dentro de
+% un backtest que corrio hasta 2025 son identicos a los que se obtienen
+% deteniendo el backtest en 2018 (no hay informacion futura en el tramo).
+% Pero el recorte NO equivale a correr cada tramo por separado desde
+% efectivo: el primer mes del tramo hereda el portafolio h y paga los
+% costos de transaccion a partir de las posiciones de los meses previos.
+% El tramo es la continuacion de una sola trayectoria, con la riqueza
+% re-basada a 1 al inicio (metodologia_6.tex, correcciones C22/C24).
 %
 % NOTA sobre las fechas: results.dates(i) es la fecha de DECISION (fin de
 % la ventana Dk, ecuacion en run_backtest_*.m), no la fecha en la que se

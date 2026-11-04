@@ -2,9 +2,11 @@
 
 Fuente: `results_v2/results_prueba_v2/metricas_por_tramo.csv`; la fila de cota delta activa sale de `r2_cota_delta.csv`. † = configuracion elegida en validacion (T9). Porcentajes con 2 decimales; las cifras exactas estan en los CSV.
 
+Tablas (e) y (f): `results_v2/results_benchmarks/metricas_por_tramo_benchmarks.csv` (main_benchmarks.m). Nominal sin costos = Kelly nominal con tau = 0 y turnover canonico; — = no definido o no aplica.
+
 ## (a) Prueba 2019-2025: desempeno
 
-CSV: `tabla_a_prueba_desempeno.csv`
+CSV: `tabla_a_prueba_desempeno.csv`; .tex: `tabla_a_prueba_desempeno.tex`
 
 | Metrica | Nominal (0.80) | Nominal (0.90) | G1 (0.80, 0.01) | G1 (0.90, 0.01) † | G2 (0.80, 0.01) † | G2 (0.90, 0.01) |
 |---|---:|---:|---:|---:|---:|---:|
@@ -21,7 +23,7 @@ CSV: `tabla_a_prueba_desempeno.csv`
 
 ## (b) Prueba 2019-2025: operacion y concentracion
 
-CSV: `tabla_b_prueba_operacion.csv`
+CSV: `tabla_b_prueba_operacion.csv`; .tex: `tabla_b_prueba_operacion.tex`
 
 | Metrica | Nominal (0.80) | Nominal (0.90) | G1 (0.80, 0.01) | G1 (0.90, 0.01) † | G2 (0.80, 0.01) † | G2 (0.90, 0.01) |
 |---|---:|---:|---:|---:|---:|---:|
@@ -35,7 +37,7 @@ CSV: `tabla_b_prueba_operacion.csv`
 
 ## (c) Prueba 2019-2025: restricciones y solucionador
 
-CSV: `tabla_c_prueba_restricciones.csv`
+CSV: `tabla_c_prueba_restricciones.csv`; .tex: `tabla_c_prueba_restricciones.tex`
 
 | Metrica | Nominal (0.80) | Nominal (0.90) | G1 (0.80, 0.01) | G1 (0.90, 0.01) † | G2 (0.80, 0.01) † | G2 (0.90, 0.01) |
 |---|---:|---:|---:|---:|---:|---:|
@@ -47,7 +49,7 @@ CSV: `tabla_c_prueba_restricciones.csv`
 
 ## (d) Validacion 2015-2018: configuraciones elegidas y nominal
 
-CSV: `tabla_d_validacion.csv`
+CSV: `tabla_d_validacion.csv`; .tex: `tabla_d_validacion.tex`
 
 | Metrica | Nominal (0.80) | Nominal (0.90) | G1 (0.90, 0.01) † | G2 (0.80, 0.01) † |
 |---|---:|---:|---:|---:|
@@ -69,6 +71,50 @@ CSV: `tabla_d_validacion.csv`
 | N_eff medio | 4.22 | 4.23 | 4.34 | 4.33 |
 | Proporcion en riesgo media | 99.99 % | 99.99 % | 99.99 % | 99.99 % |
 
+## (e) Prueba 2019-2025: estrategias de referencia
+
+CSV: `tabla_e_prueba_referencias.csv`; .tex: `tabla_e_prueba_referencias.tex`
+
+| Metrica | Bajo riesgo | Igual ponderación | SPY pasivo | Nominal sin costos (0.80) | Nominal sin costos (0.90) |
+|---|---:|---:|---:|---:|---:|
+| Riqueza final (base 1) | 1.206 | 3.734 | 3.034 | 3.743 | 3.755 |
+| Crecimiento logaritmico medio mensual | 0.22 % | 1.57 % | 1.32 % | 1.57 % | 1.58 % |
+| CAGR | 2.71 % | 20.71 % | 17.18 % | 20.75 % | 20.81 % |
+| Maxima caida (MDD) | 0.00 % | 15.91 % | 23.93 % | 24.94 % | 24.92 % |
+| Peor mes | 0.00 % | -8.86 % | -12.49 % | -12.13 % | -11.41 % |
+| VaR 95 % (perdida mensual) | -0.00 % | 6.94 % | 7.92 % | 8.48 % | 8.00 % |
+| CVaR 95 % (perdida mensual) | -0.00 % | 8.03 % | 9.60 % | 10.25 % | 9.69 % |
+| Sharpe | — | 1.162 | 0.883 | 0.929 | 0.970 |
+| Sortino | — | 2.450 | 1.714 | 1.857 | 2.000 |
+| Calmar | — | 1.302 | 0.718 | 0.832 | 0.835 |
+| Turnover acumulado | 0.00 | 3.56 | 0.00 | 15.30 | 14.99 |
+| Meses con transaccion | 0 | 84 | 0 | 84 | 84 |
+| Costo monetario acumulado (riqueza inicial = 1) | 0.0000 | 0.0074 | 0.0000 | 0.0000 | 0.0000 |
+| N_eff medio | — | 10.00 | — | 4.16 | 4.55 |
+| Proporcion en riesgo media | 0.00 % | 100.00 % | 100.00 % | 100.00 % | 100.00 % |
+
+## (f) Validacion 2015-2018: estrategias de referencia
+
+CSV: `tabla_f_validacion_referencias.csv`; .tex: `tabla_f_validacion_referencias.tex`
+
+| Metrica | Bajo riesgo | Igual ponderación | SPY pasivo | Nominal sin costos (0.80) | Nominal sin costos (0.90) |
+|---|---:|---:|---:|---:|---:|
+| Riqueza final (base 1) | 1.032 | 1.682 | 1.316 | 2.313 | 2.324 |
+| Crecimiento logaritmico medio mensual | 0.07 % | 1.08 % | 0.57 % | 1.75 % | 1.76 % |
+| CAGR | 0.79 % | 13.88 % | 7.10 % | 23.32 % | 23.47 % |
+| Maxima caida (MDD) | 0.00 % | 10.58 % | 13.53 % | 19.57 % | 19.57 % |
+| Peor mes | 0.00 % | -8.91 % | -8.80 % | -10.85 % | -10.85 % |
+| VaR 95 % (perdida mensual) | -0.00 % | 4.66 % | 6.09 % | 5.80 % | 5.80 % |
+| CVaR 95 % (perdida mensual) | -0.00 % | 6.89 % | 7.56 % | 8.88 % | 8.88 % |
+| Sharpe | — | 1.085 | 0.583 | 1.295 | 1.302 |
+| Sortino | — | 1.965 | 0.980 | 2.600 | 2.614 |
+| Calmar | — | 1.312 | 0.524 | 1.192 | 1.200 |
+| Turnover acumulado | 0.00 | 2.75 | 1.00 | 6.70 | 6.70 |
+| Meses con transaccion | 0 | 48 | 1 | 48 | 48 |
+| Costo monetario acumulado (riqueza inicial = 1) | 0.0000 | 0.0033 | 0.0010 | 0.0000 | 0.0000 |
+| N_eff medio | — | 10.00 | — | 4.05 | 4.07 |
+| Proporcion en riesgo media | 0.00 % | 99.99 % | 100.00 % | 100.00 % | 100.00 % |
+
 ## Verificacion
 
-210 comprobaciones, 0 fallidas (detalle en `r2_verificacion.csv`).
+360 comprobaciones, 0 fallidas (detalle en `r2_verificacion.csv`).

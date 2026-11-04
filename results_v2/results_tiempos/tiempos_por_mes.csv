@@ -1,0 +1,793 @@
+estrategia,modelo,fecha_decision,segundos_solucion,segundos_C_rho,estado,max_dx_vs_guardado,drho_vs_guardado,ok_x,ok_rho,tramo
+"Nominal (0.80)",Nominal,31-Dec-2014,0.2280995,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Jan-2015,0.1853405,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,28-Feb-2015,0.1269943,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Mar-2015,0.2309596,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,30-Apr-2015,0.1039652,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-May-2015,0.0898893,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,30-Jun-2015,0.0904147,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Jul-2015,0.0907517,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Aug-2015,0.0893549,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,30-Sep-2015,0.0913175,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Oct-2015,0.0902264,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,30-Nov-2015,0.0897227,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Dec-2015,0.0898896,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Jan-2016,0.090709,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,29-Feb-2016,0.0899986,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Mar-2016,0.0917202,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,30-Apr-2016,0.0974061,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-May-2016,0.0928263,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,30-Jun-2016,0.0933229,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Jul-2016,0.090413,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Aug-2016,0.0941126,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,30-Sep-2016,0.0913976,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Oct-2016,0.0902779,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,30-Nov-2016,0.0976421,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Dec-2016,0.0901429,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Jan-2017,0.0898402,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,28-Feb-2017,0.0902614,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Mar-2017,0.0904037,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,30-Apr-2017,0.0936842,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-May-2017,0.0898728,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,30-Jun-2017,0.0948084,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Jul-2017,0.0974296,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Aug-2017,0.0906468,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,30-Sep-2017,0.0899399,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Oct-2017,0.0905462,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,30-Nov-2017,0.0891536,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Dec-2017,0.0900687,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Jan-2018,0.0914647,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,28-Feb-2018,0.0923155,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Mar-2018,0.0902521,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,30-Apr-2018,0.0922967,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-May-2018,0.0904105,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,30-Jun-2018,0.0965194,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Jul-2018,0.0950692,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Aug-2018,0.0896506,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,30-Sep-2018,0.0912164,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Oct-2018,0.0983464,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,30-Nov-2018,0.0900441,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.80)",Nominal,31-Dec-2018,0.0902057,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Jan-2019,0.0894021,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,28-Feb-2019,0.089346,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Mar-2019,0.0933789,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Apr-2019,0.0889014,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-May-2019,0.0910403,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Jun-2019,0.0902371,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Jul-2019,0.0890667,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Aug-2019,0.0901149,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Sep-2019,0.0902538,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Oct-2019,0.0925108,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Nov-2019,0.0896543,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Dec-2019,0.0889672,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Jan-2020,0.0898767,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,29-Feb-2020,0.0912304,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Mar-2020,0.0914416,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Apr-2020,0.0918603,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-May-2020,0.0905522,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Jun-2020,0.0903983,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Jul-2020,0.0932352,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Aug-2020,0.090763,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Sep-2020,0.0903137,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Oct-2020,0.0897026,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Nov-2020,0.0916454,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Dec-2020,0.090913,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Jan-2021,0.0894144,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,28-Feb-2021,0.0898122,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Mar-2021,0.0932742,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Apr-2021,0.090282,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-May-2021,0.0916529,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Jun-2021,0.0903526,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Jul-2021,0.0907781,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Aug-2021,0.0904902,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Sep-2021,0.0899232,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Oct-2021,0.0891804,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Nov-2021,0.089186,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Dec-2021,0.0891741,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Jan-2022,0.0898163,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,28-Feb-2022,0.0924796,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Mar-2022,0.0955883,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Apr-2022,0.0956922,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-May-2022,0.0923599,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Jun-2022,0.0957661,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Jul-2022,0.0902983,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Aug-2022,0.0900583,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Sep-2022,0.0883222,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Oct-2022,0.0908256,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Nov-2022,0.0931759,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Dec-2022,0.0918269,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Jan-2023,0.0893525,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,28-Feb-2023,0.0908692,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Mar-2023,0.0923903,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Apr-2023,0.0908359,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-May-2023,0.0911943,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Jun-2023,0.0908586,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Jul-2023,0.0899666,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Aug-2023,0.0894428,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Sep-2023,0.0890714,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Oct-2023,0.0893923,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Nov-2023,0.0902281,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Dec-2023,0.0902077,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Jan-2024,0.0907951,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,29-Feb-2024,0.0943793,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Mar-2024,0.0907652,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Apr-2024,0.0900562,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-May-2024,0.0897363,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Jun-2024,0.0897467,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Jul-2024,0.0895861,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Aug-2024,0.0985335,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Sep-2024,0.0886806,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Oct-2024,0.0917464,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Nov-2024,0.0917238,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Dec-2024,0.089381,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Jan-2025,0.0897225,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,28-Feb-2025,0.0895901,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Mar-2025,0.0885231,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Apr-2025,0.0940493,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-May-2025,0.0919507,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Jun-2025,0.0911957,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Jul-2025,0.0902575,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Aug-2025,0.0889455,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Sep-2025,0.0912738,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,31-Oct-2025,0.0906981,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.80)",Nominal,30-Nov-2025,0.0907101,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Dec-2014,0.0902579,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Jan-2015,0.0897261,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,28-Feb-2015,0.0896537,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Mar-2015,0.0902944,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,30-Apr-2015,0.0897742,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-May-2015,0.0898587,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,30-Jun-2015,0.0884333,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Jul-2015,0.0892965,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Aug-2015,0.0910489,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,30-Sep-2015,0.0934277,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Oct-2015,0.0929009,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,30-Nov-2015,0.0943388,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Dec-2015,0.0948406,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Jan-2016,0.0929524,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,29-Feb-2016,0.0906187,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Mar-2016,0.0897951,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,30-Apr-2016,0.0896637,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-May-2016,0.089425,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,30-Jun-2016,0.0895687,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Jul-2016,0.0904124,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Aug-2016,0.0928574,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,30-Sep-2016,0.0949872,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Oct-2016,0.0893228,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,30-Nov-2016,0.088802,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Dec-2016,0.0891164,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Jan-2017,0.0897193,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,28-Feb-2017,0.0884552,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Mar-2017,0.0907041,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,30-Apr-2017,0.0887321,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-May-2017,0.0899602,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,30-Jun-2017,0.0930023,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Jul-2017,0.0896219,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Aug-2017,0.0891521,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,30-Sep-2017,0.0931392,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Oct-2017,0.0960801,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,30-Nov-2017,0.0928229,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Dec-2017,0.0911622,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Jan-2018,0.0892828,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,28-Feb-2018,0.0884912,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Mar-2018,0.0897861,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,30-Apr-2018,0.0899175,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-May-2018,0.0906493,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,30-Jun-2018,0.0893937,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Jul-2018,0.0887853,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Aug-2018,0.0911652,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,30-Sep-2018,0.0899152,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Oct-2018,0.0889405,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,30-Nov-2018,0.0898292,0,Solved,0,NaN,1,1,validacion
+"Nominal (0.90)",Nominal,31-Dec-2018,0.0889561,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Jan-2019,0.0910189,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,28-Feb-2019,0.0900794,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Mar-2019,0.089106,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Apr-2019,0.0896937,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-May-2019,0.0894567,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Jun-2019,0.0890419,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Jul-2019,0.0948333,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Aug-2019,0.089304,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Sep-2019,0.089586,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Oct-2019,0.0895389,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Nov-2019,0.0906374,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Dec-2019,0.0897474,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Jan-2020,0.0899105,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,29-Feb-2020,0.0897773,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Mar-2020,0.0911747,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Apr-2020,0.0893801,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-May-2020,0.0894774,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Jun-2020,0.0963826,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Jul-2020,0.1025619,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Aug-2020,0.0985212,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Sep-2020,0.0943557,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Oct-2020,0.0911886,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Nov-2020,0.0897368,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Dec-2020,0.0902849,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Jan-2021,0.0885624,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,28-Feb-2021,0.0908032,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Mar-2021,0.0894598,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Apr-2021,0.0887131,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-May-2021,0.0885723,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Jun-2021,0.089087,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Jul-2021,0.0899075,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Aug-2021,0.0894254,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Sep-2021,0.0909733,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Oct-2021,0.0898413,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Nov-2021,0.0919053,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Dec-2021,0.0895683,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Jan-2022,0.090758,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,28-Feb-2022,0.0890367,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Mar-2022,0.0901446,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Apr-2022,0.0890223,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-May-2022,0.0892864,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Jun-2022,0.0891421,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Jul-2022,0.0895947,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Aug-2022,0.0895112,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Sep-2022,0.0887219,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Oct-2022,0.0901935,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Nov-2022,0.0894382,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Dec-2022,0.0928941,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Jan-2023,0.0902648,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,28-Feb-2023,0.0901264,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Mar-2023,0.0895205,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Apr-2023,0.0908323,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-May-2023,0.0886894,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Jun-2023,0.0912923,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Jul-2023,0.0905803,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Aug-2023,0.0905144,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Sep-2023,0.0900114,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Oct-2023,0.0892098,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Nov-2023,0.0888023,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Dec-2023,0.0894021,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Jan-2024,0.0890455,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,29-Feb-2024,0.0891461,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Mar-2024,0.0883039,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Apr-2024,0.0894772,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-May-2024,0.0893662,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Jun-2024,0.0888019,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Jul-2024,0.0890286,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Aug-2024,0.0984259,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Sep-2024,0.0932807,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Oct-2024,0.1013213,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Nov-2024,0.0953419,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Dec-2024,0.0912029,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Jan-2025,0.0918519,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,28-Feb-2025,0.0888352,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Mar-2025,0.0898204,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Apr-2025,0.0899984,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-May-2025,0.0932245,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Jun-2025,0.0945799,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Jul-2025,0.0903649,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Aug-2025,0.0914937,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Sep-2025,0.091511,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,31-Oct-2025,0.0894875,0,Solved,0,NaN,1,1,prueba
+"Nominal (0.90)",Nominal,30-Nov-2025,0.0959286,0,Solved,0,NaN,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Dec-2014,0.1498362,0.0078181,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Jan-2015,0.1289222,0.0128189,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,28-Feb-2015,0.1245671,0.0029758,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Mar-2015,0.1396323,0.0147835,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,30-Apr-2015,0.1269841,0.0014919,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-May-2015,0.1235497,0.0005527,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,30-Jun-2015,0.1230562,0.0004598,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Jul-2015,0.1211624,0.0004359,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Aug-2015,0.1222353,0.0004952,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,30-Sep-2015,0.1225725,0.0006181,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Oct-2015,0.1244852,0.0004452,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,30-Nov-2015,0.1213399,0.0004338,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Dec-2015,0.1205708,0.0004633,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Jan-2016,0.1239038,0.000431,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,29-Feb-2016,0.1230797,0.0004212,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Mar-2016,0.1231921,0.0004368,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,30-Apr-2016,0.1231997,0.0004315,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-May-2016,0.1254367,0.0004566,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,30-Jun-2016,0.1224925,0.0004214,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Jul-2016,0.126291,0.0004314,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Aug-2016,0.1231512,0.0004284,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,30-Sep-2016,0.1260865,0.0004741,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Oct-2016,0.1248859,0.0004413,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,30-Nov-2016,0.1219862,0.0004406,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Dec-2016,0.1202345,0.0004279,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Jan-2017,0.1221587,0.0004314,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,28-Feb-2017,0.1267095,0.0004301,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Mar-2017,0.1232241,0.000432,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,30-Apr-2017,0.1254475,0.0004351,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-May-2017,0.1227383,0.0004636,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,30-Jun-2017,0.123049,0.0004328,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Jul-2017,0.1239146,0.0004536,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Aug-2017,0.1252824,0.0004608,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,30-Sep-2017,0.124273,0.000449,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Oct-2017,0.1224893,0.0004271,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,30-Nov-2017,0.1251507,0.0004275,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Dec-2017,0.1294901,0.0004496,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Jan-2018,0.124625,0.000456,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,28-Feb-2018,0.1211,0.000436,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Mar-2018,0.1221595,0.0004287,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,30-Apr-2018,0.1216583,0.0004651,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-May-2018,0.123889,0.0004303,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,30-Jun-2018,0.1207604,0.0004264,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Jul-2018,0.1198096,0.0005005,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Aug-2018,0.1221313,0.0004239,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,30-Sep-2018,0.1214339,0.0004528,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Oct-2018,0.1212884,0.0004442,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,30-Nov-2018,0.1218055,0.0004512,Solved,0,0,1,1,validacion
+"G1 (0.80, 0.01)",G1,31-Dec-2018,0.1190228,0.0004218,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Jan-2019,0.1216223,0.0004257,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,28-Feb-2019,0.1220638,0.0004393,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Mar-2019,0.1346908,0.0005426,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Apr-2019,0.1318802,0.0004969,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-May-2019,0.1235661,0.00044,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Jun-2019,0.1211229,0.0004571,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Jul-2019,0.1205562,0.0004302,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Aug-2019,0.1211884,0.0004514,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Sep-2019,0.1227686,0.0004326,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Oct-2019,0.120956,0.0004185,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Nov-2019,0.1219403,0.0004786,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Dec-2019,0.123749,0.0004552,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Jan-2020,0.1188552,0.0004216,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,29-Feb-2020,0.1299909,0.0004349,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Mar-2020,0.1247266,0.0004287,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Apr-2020,0.121726,0.0004982,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-May-2020,0.1232981,0.0004301,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Jun-2020,0.1214809,0.0004673,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Jul-2020,0.121235,0.000662,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Aug-2020,0.121724,0.0004543,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Sep-2020,0.1280777,0.0004238,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Oct-2020,0.1233364,0.000432,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Nov-2020,0.1233157,0.0004578,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Dec-2020,0.1249904,0.0004354,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Jan-2021,0.1204823,0.0004264,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,28-Feb-2021,0.1202746,0.0004374,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Mar-2021,0.1204818,0.0004205,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Apr-2021,0.1209243,0.0004282,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-May-2021,0.1248902,0.0004176,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Jun-2021,0.1311647,0.0004465,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Jul-2021,0.1257432,0.000475,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Aug-2021,0.1241077,0.0004628,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Sep-2021,0.1227164,0.0004243,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Oct-2021,0.1212437,0.000458,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Nov-2021,0.125122,0.0004321,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Dec-2021,0.1253809,0.0004318,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Jan-2022,0.1290522,0.0004272,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,28-Feb-2022,0.1240932,0.0004276,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Mar-2022,0.126233,0.0004499,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Apr-2022,0.1219056,0.0004283,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-May-2022,0.124652,0.0004479,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Jun-2022,0.1261001,0.0004423,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Jul-2022,0.1209595,0.0004781,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Aug-2022,0.1224884,0.0004381,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Sep-2022,0.1269245,0.000459,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Oct-2022,0.1275899,0.0004243,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Nov-2022,0.1257378,0.0004862,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Dec-2022,0.1220349,0.0004347,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Jan-2023,0.1235719,0.0004366,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,28-Feb-2023,0.122892,0.000485,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Mar-2023,0.1213596,0.0004496,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Apr-2023,0.1239036,0.0004294,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-May-2023,0.1238373,0.0004774,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Jun-2023,0.1244821,0.0004303,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Jul-2023,0.1222173,0.0004612,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Aug-2023,0.1237254,0.0004351,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Sep-2023,0.1200982,0.0004305,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Oct-2023,0.1254849,0.0004748,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Nov-2023,0.121134,0.0004392,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Dec-2023,0.1236166,0.0004335,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Jan-2024,0.1217738,0.0004287,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,29-Feb-2024,0.1247563,0.0004786,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Mar-2024,0.1292524,0.0004276,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Apr-2024,0.1238931,0.0004337,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-May-2024,0.1221235,0.0004211,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Jun-2024,0.1204627,0.0004667,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Jul-2024,0.1218507,0.0004296,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Aug-2024,0.1262891,0.0004386,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Sep-2024,0.12536,0.0004491,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Oct-2024,0.1239008,0.0004456,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Nov-2024,0.1309854,0.0004284,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Dec-2024,0.126424,0.0004621,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Jan-2025,0.1243036,0.0004322,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,28-Feb-2025,0.1254605,0.0004376,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Mar-2025,0.1257355,0.0004444,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Apr-2025,0.1239051,0.0004333,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-May-2025,0.1241475,0.0004343,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Jun-2025,0.1237018,0.0004388,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Jul-2025,0.1207828,0.0008277,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Aug-2025,0.1216187,0.0004437,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Sep-2025,0.1218721,0.0004379,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,31-Oct-2025,0.1222781,0.0004335,Solved,0,0,1,1,prueba
+"G1 (0.80, 0.01)",G1,30-Nov-2025,0.12349,0.0004859,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Dec-2014,0.1231639,0.0004896,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Jan-2015,0.1252644,0.0004332,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,28-Feb-2015,0.1233285,0.0004454,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Mar-2015,0.1230657,0.0004227,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,30-Apr-2015,0.1210945,0.0004418,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-May-2015,0.1226121,0.0004275,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,30-Jun-2015,0.1228344,0.0004381,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Jul-2015,0.1246204,0.0004457,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Aug-2015,0.1226911,0.0004776,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,30-Sep-2015,0.1283459,0.0004338,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Oct-2015,0.1201399,0.0004312,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,30-Nov-2015,0.1217027,0.0004336,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Dec-2015,0.1202426,0.0005864,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Jan-2016,0.1241918,0.0004598,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,29-Feb-2016,0.1238637,0.0004354,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Mar-2016,0.124079,0.0004334,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,30-Apr-2016,0.1237249,0.000432,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-May-2016,0.1255232,0.000436,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,30-Jun-2016,0.1245107,0.0004373,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Jul-2016,0.1208364,0.0004981,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Aug-2016,0.122003,0.0004279,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,30-Sep-2016,0.1254499,0.0004403,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Oct-2016,0.1223827,0.0004392,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,30-Nov-2016,0.1229365,0.0004667,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Dec-2016,0.130836,0.0004612,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Jan-2017,0.1319419,0.0004205,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,28-Feb-2017,0.1327405,0.0004537,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Mar-2017,0.125497,0.0004425,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,30-Apr-2017,0.1314618,0.000445,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-May-2017,0.1292798,0.0004695,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,30-Jun-2017,0.12372,0.0004622,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Jul-2017,0.1251674,0.0004256,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Aug-2017,0.1327253,0.0004324,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,30-Sep-2017,0.1234192,0.0004268,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Oct-2017,0.1239078,0.0004947,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,30-Nov-2017,0.1236325,0.0004156,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Dec-2017,0.1220577,0.0004383,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Jan-2018,0.1203536,0.0004292,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,28-Feb-2018,0.1198775,0.0004297,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Mar-2018,0.1214186,0.0004326,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,30-Apr-2018,0.1205862,0.0004297,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-May-2018,0.1214093,0.0004342,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,30-Jun-2018,0.118625,0.0004291,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Jul-2018,0.1193709,0.0004407,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Aug-2018,0.1191281,0.0004362,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,30-Sep-2018,0.1203069,0.0004255,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Oct-2018,0.1207369,0.0004349,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,30-Nov-2018,0.1210327,0.0004303,Solved,0,0,1,1,validacion
+"G1 (0.90, 0.01)",G1,31-Dec-2018,0.1213758,0.000474,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Jan-2019,0.1258457,0.0004358,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,28-Feb-2019,0.1225388,0.0004632,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Mar-2019,0.1212034,0.0004958,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Apr-2019,0.1206641,0.0004672,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-May-2019,0.1206009,0.0004442,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Jun-2019,0.1204076,0.0004303,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Jul-2019,0.1201993,0.0004465,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Aug-2019,0.1205036,0.000428,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Sep-2019,0.1191379,0.000443,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Oct-2019,0.1247641,0.0005493,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Nov-2019,0.1209918,0.0004577,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Dec-2019,0.1206707,0.0004357,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Jan-2020,0.1186755,0.0004976,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,29-Feb-2020,0.1217587,0.0004393,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Mar-2020,0.1195452,0.0004449,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Apr-2020,0.1214326,0.0004213,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-May-2020,0.1203189,0.0004313,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Jun-2020,0.1235115,0.0004383,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Jul-2020,0.1218016,0.0004344,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Aug-2020,0.1207258,0.0004251,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Sep-2020,0.1193559,0.0004458,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Oct-2020,0.1233964,0.0004602,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Nov-2020,0.1271992,0.0004635,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Dec-2020,0.126722,0.0004677,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Jan-2021,0.1187737,0.0004228,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,28-Feb-2021,0.1213858,0.0004479,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Mar-2021,0.1202761,0.0004214,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Apr-2021,0.1214319,0.0004266,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-May-2021,0.1198224,0.0004195,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Jun-2021,0.1199874,0.0004408,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Jul-2021,0.120239,0.0004257,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Aug-2021,0.1230807,0.0004266,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Sep-2021,0.1203528,0.0004474,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Oct-2021,0.1282378,0.0004499,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Nov-2021,0.1260221,0.0005737,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Dec-2021,0.1268664,0.000423,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Jan-2022,0.1222432,0.0006317,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,28-Feb-2022,0.122433,0.0004577,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Mar-2022,0.124577,0.0004366,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Apr-2022,0.1210232,0.0004264,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-May-2022,0.1209139,0.0004386,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Jun-2022,0.1266896,0.000445,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Jul-2022,0.1226226,0.0004238,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Aug-2022,0.1202478,0.000447,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Sep-2022,0.1239586,0.0004386,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Oct-2022,0.1220648,0.000444,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Nov-2022,0.1234142,0.0004203,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Dec-2022,0.12185,0.000437,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Jan-2023,0.1209818,0.0004324,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,28-Feb-2023,0.1238028,0.0004263,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Mar-2023,0.1233496,0.0004782,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Apr-2023,0.1272111,0.0004269,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-May-2023,0.1227134,0.0005143,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Jun-2023,0.1312445,0.0004421,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Jul-2023,0.1383936,0.0004597,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Aug-2023,0.1315186,0.0004506,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Sep-2023,0.1362249,0.0004809,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Oct-2023,0.1313127,0.0004474,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Nov-2023,0.1258646,0.0004538,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Dec-2023,0.1262953,0.000456,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Jan-2024,0.1310382,0.0004562,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,29-Feb-2024,0.1235013,0.0004712,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Mar-2024,0.1297169,0.000434,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Apr-2024,0.1437968,0.0004815,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-May-2024,0.1304266,0.0005879,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Jun-2024,0.1233393,0.00049,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Jul-2024,0.1237979,0.0004247,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Aug-2024,0.1213062,0.0004867,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Sep-2024,0.1226111,0.0004394,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Oct-2024,0.1219666,0.0004309,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Nov-2024,0.1204799,0.0005046,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Dec-2024,0.1223523,0.0004846,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Jan-2025,0.1191231,0.0004342,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,28-Feb-2025,0.1227902,0.0004388,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Mar-2025,0.1200041,0.0004342,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Apr-2025,0.1228249,0.0004412,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-May-2025,0.121718,0.0004697,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Jun-2025,0.1224381,0.0004348,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Jul-2025,0.121624,0.0004266,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Aug-2025,0.1198065,0.000436,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Sep-2025,0.1204337,0.0004397,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,31-Oct-2025,0.1268297,0.0004212,Solved,0,0,1,1,prueba
+"G1 (0.90, 0.01)",G1,30-Nov-2025,0.1234901,0.0004197,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Dec-2014,0.1225176,0.0325594,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Jan-2015,0.1224502,0.0016281,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,28-Feb-2015,0.1235953,0.0028145,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Mar-2015,0.1255763,0.0012472,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,30-Apr-2015,0.1273988,0.0045518,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-May-2015,0.1325896,0.0007166,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,30-Jun-2015,0.1258229,0.0008846,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Jul-2015,0.1235292,0.0005658,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Aug-2015,0.1219302,0.000531,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,30-Sep-2015,0.1262567,0.0005651,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Oct-2015,0.1244618,0.0005456,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,30-Nov-2015,0.1263041,0.0005333,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Dec-2015,0.1235636,0.0005315,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Jan-2016,0.1260145,0.0005608,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,29-Feb-2016,0.1226882,0.0005505,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Mar-2016,0.1217788,0.0005291,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,30-Apr-2016,0.1243897,0.0005453,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-May-2016,0.1273093,0.0005348,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,30-Jun-2016,0.1264159,0.0005898,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Jul-2016,0.1236806,0.0005884,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Aug-2016,0.1248215,0.0005502,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,30-Sep-2016,0.1360598,0.0005447,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Oct-2016,0.1284979,0.000645,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,30-Nov-2016,0.1268239,0.0005527,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Dec-2016,0.1234918,0.0005396,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Jan-2017,0.120494,0.0005348,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,28-Feb-2017,0.1243795,0.0005996,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Mar-2017,0.1225963,0.0005236,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,30-Apr-2017,0.1208779,0.0005461,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-May-2017,0.1234498,0.0005766,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,30-Jun-2017,0.1219127,0.0005562,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Jul-2017,0.1223906,0.0009183,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Aug-2017,0.1207772,0.000551,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,30-Sep-2017,0.121066,0.0005599,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Oct-2017,0.1209786,0.0005269,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,30-Nov-2017,0.1222663,0.0005734,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Dec-2017,0.1249976,0.0005713,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Jan-2018,0.1220969,0.0005284,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,28-Feb-2018,0.123123,0.0005701,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Mar-2018,0.1215143,0.0005569,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,30-Apr-2018,0.1210335,0.0005507,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-May-2018,0.1221459,0.0005448,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,30-Jun-2018,0.1235087,0.0005396,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Jul-2018,0.1237015,0.0005401,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Aug-2018,0.1245146,0.0005281,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,30-Sep-2018,0.1224986,0.0006332,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Oct-2018,0.1216972,0.0007023,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,30-Nov-2018,0.1231936,0.0006026,Solved,0,0,1,1,validacion
+"G2 (0.80, 0.01)",G2,31-Dec-2018,0.1222834,0.0009945,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Jan-2019,0.1244431,0.0005554,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,28-Feb-2019,0.1212521,0.0005893,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Mar-2019,0.1228008,0.0005664,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Apr-2019,0.1226002,0.0005391,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-May-2019,0.1204542,0.0005834,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Jun-2019,0.1207189,0.0005592,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Jul-2019,0.1219655,0.0005441,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Aug-2019,0.1218826,0.0005592,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Sep-2019,0.1263278,0.0005238,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Oct-2019,0.1204818,0.0005587,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Nov-2019,0.1190758,0.0005281,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Dec-2019,0.1216256,0.0005499,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Jan-2020,0.1205647,0.000545,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,29-Feb-2020,0.1236454,0.0005826,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Mar-2020,0.1302621,0.0006243,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Apr-2020,0.1280052,0.0005808,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-May-2020,0.1250844,0.0005239,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Jun-2020,0.1243132,0.0005383,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Jul-2020,0.1253089,0.0005689,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Aug-2020,0.122752,0.0006265,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Sep-2020,0.1308763,0.0005422,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Oct-2020,0.1235545,0.0005512,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Nov-2020,0.1253964,0.0005243,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Dec-2020,0.1269595,0.0005365,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Jan-2021,0.1252762,0.0005432,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,28-Feb-2021,0.121111,0.0005645,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Mar-2021,0.12732,0.0005325,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Apr-2021,0.123344,0.0005267,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-May-2021,0.1257602,0.0005563,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Jun-2021,0.1294851,0.0006052,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Jul-2021,0.1245188,0.0005477,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Aug-2021,0.1253269,0.0005332,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Sep-2021,0.1230523,0.0006081,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Oct-2021,0.1221043,0.0007004,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Nov-2021,0.1213697,0.0005462,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Dec-2021,0.1264066,0.0007783,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Jan-2022,0.1268114,0.0005523,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,28-Feb-2022,0.1261981,0.0005667,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Mar-2022,0.1268497,0.0005328,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Apr-2022,0.1231384,0.0005365,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-May-2022,0.1225473,0.0005412,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Jun-2022,0.1242015,0.0005292,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Jul-2022,0.124662,0.0005391,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Aug-2022,0.1217579,0.0005415,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Sep-2022,0.1221851,0.0005516,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Oct-2022,0.1243284,0.0005532,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Nov-2022,0.125945,0.0005316,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Dec-2022,0.1257932,0.0005459,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Jan-2023,0.1240449,0.0005703,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,28-Feb-2023,0.1249637,0.0006134,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Mar-2023,0.1276833,0.0005274,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Apr-2023,0.1334621,0.0005712,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-May-2023,0.1251122,0.0005564,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Jun-2023,0.1325053,0.0006872,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Jul-2023,0.1361613,0.0005486,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Aug-2023,0.1415729,0.0006288,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Sep-2023,0.1211316,0.0006716,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Oct-2023,0.1229422,0.0005642,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Nov-2023,0.1238764,0.0007531,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Dec-2023,0.124183,0.0005534,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Jan-2024,0.1239602,0.0005503,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,29-Feb-2024,0.1204664,0.0005716,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Mar-2024,0.1242098,0.0005701,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Apr-2024,0.125135,0.000538,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-May-2024,0.1232231,0.0005392,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Jun-2024,0.1266205,0.0005591,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Jul-2024,0.1249366,0.0005505,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Aug-2024,0.124405,0.0006193,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Sep-2024,0.1256592,0.000533,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Oct-2024,0.126147,0.000525,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Nov-2024,0.1267527,0.000559,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Dec-2024,0.1218988,0.0005428,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Jan-2025,0.1264951,0.0006013,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,28-Feb-2025,0.126049,0.0005506,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Mar-2025,0.1232917,0.000573,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Apr-2025,0.1243738,0.0006509,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-May-2025,0.1235635,0.0005571,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Jun-2025,0.1266357,0.000534,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Jul-2025,0.1259638,0.0008694,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Aug-2025,0.1223293,0.0005985,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Sep-2025,0.1207347,0.0005648,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,31-Oct-2025,0.1205683,0.0005326,Solved,0,0,1,1,prueba
+"G2 (0.80, 0.01)",G2,30-Nov-2025,0.1227556,0.0005339,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Dec-2014,0.1205476,0.0006686,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Jan-2015,0.1236917,0.0005629,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,28-Feb-2015,0.1217244,0.0005815,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Mar-2015,0.1211098,0.0005667,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,30-Apr-2015,0.1253892,0.0005947,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-May-2015,0.1279612,0.0005709,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,30-Jun-2015,0.1255158,0.000576,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Jul-2015,0.1243203,0.0005361,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Aug-2015,0.1194162,0.0006056,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,30-Sep-2015,0.1271637,0.0005429,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Oct-2015,0.1292538,0.0005474,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,30-Nov-2015,0.124153,0.0006831,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Dec-2015,0.1245429,0.0005442,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Jan-2016,0.1279242,0.000658,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,29-Feb-2016,0.1230283,0.0005565,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Mar-2016,0.1216792,0.0005601,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,30-Apr-2016,0.1298317,0.0005933,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-May-2016,0.1324435,0.0005671,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,30-Jun-2016,0.1267897,0.0005361,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Jul-2016,0.122881,0.0006795,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Aug-2016,0.1268869,0.0005887,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,30-Sep-2016,0.126884,0.0005403,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Oct-2016,0.1229181,0.0006095,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,30-Nov-2016,0.1264769,0.0005343,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Dec-2016,0.1285984,0.000579,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Jan-2017,0.1235742,0.000547,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,28-Feb-2017,0.1251606,0.0005788,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Mar-2017,0.1222207,0.0005567,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,30-Apr-2017,0.1215986,0.0005329,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-May-2017,0.1199022,0.0005313,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,30-Jun-2017,0.1200763,0.0005399,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Jul-2017,0.1181663,0.0005332,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Aug-2017,0.1211817,0.000545,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,30-Sep-2017,0.1210375,0.0005549,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Oct-2017,0.1197268,0.0005364,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,30-Nov-2017,0.1203685,0.0005369,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Dec-2017,0.1228148,0.0005307,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Jan-2018,0.1216097,0.0007035,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,28-Feb-2018,0.1196598,0.0005894,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Mar-2018,0.1211239,0.0005388,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,30-Apr-2018,0.118333,0.0005402,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-May-2018,0.1218139,0.000547,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,30-Jun-2018,0.1231118,0.0005339,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Jul-2018,0.1240632,0.0005342,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Aug-2018,0.1277691,0.0005512,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,30-Sep-2018,0.1236247,0.0007749,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Oct-2018,0.1251972,0.0005721,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,30-Nov-2018,0.1247654,0.0005377,Solved,0,0,1,1,validacion
+"G2 (0.90, 0.01)",G2,31-Dec-2018,0.1297124,0.0005585,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Jan-2019,0.1231199,0.0005363,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,28-Feb-2019,0.1214271,0.0005777,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Mar-2019,0.1218386,0.0005335,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Apr-2019,0.1222989,0.0005336,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-May-2019,0.1228849,0.000572,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Jun-2019,0.1216979,0.0005659,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Jul-2019,0.1298682,0.0005776,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Aug-2019,0.1218009,0.0005712,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Sep-2019,0.1295693,0.0005275,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Oct-2019,0.119287,0.0005532,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Nov-2019,0.1209764,0.0005729,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Dec-2019,0.1212987,0.0005423,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Jan-2020,0.1219559,0.0005745,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,29-Feb-2020,0.1279168,0.0005386,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Mar-2020,0.1233455,0.0005766,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Apr-2020,0.1209287,0.0005694,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-May-2020,0.1230298,0.0005342,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Jun-2020,0.1261583,0.0005439,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Jul-2020,0.1245379,0.0005326,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Aug-2020,0.121591,0.0005732,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Sep-2020,0.1226932,0.0005665,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Oct-2020,0.1214349,0.0005355,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Nov-2020,0.1225412,0.0005497,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Dec-2020,0.1231645,0.0005524,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Jan-2021,0.1232604,0.0005412,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,28-Feb-2021,0.1200108,0.0005545,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Mar-2021,0.1204189,0.0005439,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Apr-2021,0.1196883,0.0005612,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-May-2021,0.1210892,0.000529,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Jun-2021,0.1200901,0.0005315,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Jul-2021,0.1192262,0.0005405,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Aug-2021,0.1261245,0.0005588,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Sep-2021,0.1269359,0.0005799,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Oct-2021,0.1199114,0.000563,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Nov-2021,0.1232463,0.0005622,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Dec-2021,0.1248617,0.0005524,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Jan-2022,0.1258897,0.0005308,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,28-Feb-2022,0.1334198,0.000538,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Mar-2022,0.1231421,0.0005784,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Apr-2022,0.1237534,0.0005748,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-May-2022,0.1237599,0.000524,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Jun-2022,0.1219482,0.0005379,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Jul-2022,0.1261398,0.0005353,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Aug-2022,0.1213312,0.0005342,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Sep-2022,0.1231782,0.0005812,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Oct-2022,0.1224552,0.000536,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Nov-2022,0.1221111,0.0005394,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Dec-2022,0.1280865,0.0006581,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Jan-2023,0.129407,0.0005431,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,28-Feb-2023,0.1227849,0.0006192,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Mar-2023,0.1234975,0.0005567,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Apr-2023,0.121514,0.0006388,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-May-2023,0.1232471,0.0005904,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Jun-2023,0.1240219,0.0005854,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Jul-2023,0.1279931,0.000587,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Aug-2023,0.1260547,0.0008944,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Sep-2023,0.123715,0.0005601,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Oct-2023,0.1197271,0.0005387,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Nov-2023,0.1324206,0.0005455,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Dec-2023,0.1310177,0.0005445,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Jan-2024,0.1302477,0.0005803,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,29-Feb-2024,0.1284321,0.000535,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Mar-2024,0.1274875,0.000585,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Apr-2024,0.132935,0.0005758,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-May-2024,0.1298849,0.0005268,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Jun-2024,0.122522,0.000556,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Jul-2024,0.157106,0.0005302,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Aug-2024,0.3233688,0.0009625,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Sep-2024,0.1616423,0.0008334,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Oct-2024,0.1569217,0.0006183,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Nov-2024,0.1318016,0.0008589,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Dec-2024,0.1369366,0.0005483,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Jan-2025,0.1209524,0.0005286,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,28-Feb-2025,0.1273789,0.000544,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Mar-2025,0.1240669,0.0005334,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Apr-2025,0.1249091,0.0005342,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-May-2025,0.1235952,0.0005387,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Jun-2025,0.122569,0.0005254,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Jul-2025,0.1220928,0.0005448,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Aug-2025,0.121889,0.0005402,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Sep-2025,0.121459,0.0005264,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,31-Oct-2025,0.1252025,0.000527,Solved,0,0,1,1,prueba
+"G2 (0.90, 0.01)",G2,30-Nov-2025,0.1268399,0.0005348,Solved,0,0,1,1,prueba
