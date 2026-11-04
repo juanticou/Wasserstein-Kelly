@@ -1,0 +1,154 @@
+prueba,instancia,comprobacion,valor,tolerancia,ok
+A1,sintetica,"status CVX = Solved",1,1,1
+A1,sintetica,"malla_max - optimo CVX (<= 1e-9)",-1.11854887296925e-07,1e-09,1
+A1,sintetica,"optimo CVX - malla_max (<= 1e-3)",1.11854887296925e-07,0.001,1
+A1,sintetica,"puntos factibles de la malla",176851,NaN,1
+A2,sintetica,"status CVX = Solved",1,1,1
+A2,sintetica,"|x0 + sum x - (1 - tau TO)|",2.88180479479649e-10,1e-08,1
+A2,sintetica,"max min(b_j, s_j)",0,1e-07,1
+A2,sintetica,"max(x - xbar)",-9.30024889767012e-07,1e-08,1
+A2,sintetica,"min x (incluye x0)",1.7631708370487e-07,-1e-08,1
+A2,sintetica,"min(G_s - delta)",0.445407846200992,-1e-08,1
+A2,sintetica,"objetivo con costos - sin costos (<= 1e-9)",-0.00123942266889198,1e-09,1
+B,sintetica G1,"costos fuera de la diagonal > 0",1,1,1
+B,sintetica G1,"eta=0.01: status WK = Solved",1,1,1
+B,sintetica G1,"eta=0.01: |primal - dual|",0,1e-07,1
+B,sintetica G1,"eta=0.01: |primal MOSEK - primal SDPT3| (estado SDPT3: Solved)",3.38953778239448e-10,1e-06,1
+B,sintetica G1,"eta=0.01: |dual - formula cerrada en lambda*|",1.73472347597681e-18,1e-07,1
+B,sintetica G1,"eta=0.01: |fval WK - primal en x*|",7.80086179680284e-10,1e-06,1
+B,sintetica G1,"eta=0.01: |sum p - 1|",0,1e-08,1
+B,sintetica G1,"eta=0.01: min p",0.142152278177458,-1e-08,1
+B,sintetica G1,"eta=0.01: costo de transporte - rho",0,1e-08,1
+B,sintetica G1,"eta=0.30: status WK = Solved",1,1,1
+B,sintetica G1,"eta=0.30: |primal - dual|",6.93889390390723e-18,1e-07,1
+B,sintetica G1,"eta=0.30: |primal MOSEK - primal SDPT3| (estado SDPT3: Solved)",3.48051213284323e-09,1e-06,1
+B,sintetica G1,"eta=0.30: |dual - formula cerrada en lambda*|",8.67361737988404e-18,1e-07,1
+B,sintetica G1,"eta=0.30: |fval WK - primal en x*|",4.46106143345282e-10,1e-06,1
+B,sintetica G1,"eta=0.30: |sum p - 1|",0,1e-08,1
+B,sintetica G1,"eta=0.30: min p",0,-1e-08,1
+B,sintetica G1,"eta=0.30: costo de transporte - rho",5.55111512312578e-17,1e-08,1
+B,2014-12 G1,"costos fuera de la diagonal > 0",1,1,1
+B,2014-12 G1,"eta=0.01: status WK = Solved",1,1,1
+B,2014-12 G1,"eta=0.01: |primal - dual|",1.63456351578994e-09,1e-07,1
+B,2014-12 G1,"eta=0.01: |primal MOSEK - primal SDPT3| (estado SDPT3: Solved)",5.61083581505917e-09,1e-06,1
+B,2014-12 G1,"eta=0.01: |dual - formula cerrada en lambda*|",1.62673450751494e-09,1e-07,1
+B,2014-12 G1,"eta=0.01: |fval WK - primal en x*|",8.43409578288323e-11,1e-06,1
+B,2014-12 G1,"eta=0.01: |sum p - 1|",1.33226762955019e-15,1e-08,1
+B,2014-12 G1,"eta=0.01: min p",0.00785325283594733,-1e-08,1
+B,2014-12 G1,"eta=0.01: costo de transporte - rho",0,1e-08,1
+B,2014-12 G1,"eta=0.30: status WK = Solved",1,1,1
+B,2014-12 G1,"eta=0.30: |primal - dual|",5.32456633580043e-14,1e-07,1
+B,2014-12 G1,"eta=0.30: |primal MOSEK - primal SDPT3| (estado SDPT3: Solved)",3.93181526358731e-09,1e-06,1
+B,2014-12 G1,"eta=0.30: |dual - formula cerrada en lambda*|",5.496900271117e-14,1e-07,1
+B,2014-12 G1,"eta=0.30: |fval WK - primal en x*|",7.56278169551498e-10,1e-06,1
+B,2014-12 G1,"eta=0.30: |sum p - 1|",4.44089209850063e-16,1e-08,1
+B,2014-12 G1,"eta=0.30: min p",0,-1e-08,1
+B,2014-12 G1,"eta=0.30: costo de transporte - rho",0,1e-08,1
+B,2014-12 G2,"costos fuera de la diagonal > 0",1,1,1
+B,2014-12 G2,"eta=0.01: status WK = Solved",1,1,1
+B,2014-12 G2,"eta=0.01: |primal - dual|",1.61170914808606e-09,1e-07,1
+B,2014-12 G2,"eta=0.01: |primal MOSEK - primal SDPT3| (estado SDPT3: Solved)",2.71226505837996e-09,1e-06,1
+B,2014-12 G2,"eta=0.01: |dual - formula cerrada en lambda*|",2.76362266404817e-13,1e-07,1
+B,2014-12 G2,"eta=0.01: |fval WK - primal en x*|",2.13372186759486e-09,1e-06,1
+B,2014-12 G2,"eta=0.01: |sum p - 1|",1.33226762955019e-15,1e-08,1
+B,2014-12 G2,"eta=0.01: min p",0.0054947050256437,-1e-08,1
+B,2014-12 G2,"eta=0.01: costo de transporte - rho",0,1e-08,1
+B,2014-12 G2,"eta=0.30: status WK = Solved",1,1,1
+B,2014-12 G2,"eta=0.30: |primal - dual|",5.5760917166392e-09,1e-07,1
+B,2014-12 G2,"eta=0.30: |primal MOSEK - primal SDPT3| (estado SDPT3: Solved)",8.55395778813278e-10,1e-06,1
+B,2014-12 G2,"eta=0.30: |dual - formula cerrada en lambda*|",1.57547838830648e-09,1e-07,1
+B,2014-12 G2,"eta=0.30: |fval WK - primal en x*|",7.93123096698081e-09,1e-06,1
+B,2014-12 G2,"eta=0.30: |sum p - 1|",1.33226762955019e-15,1e-08,1
+B,2014-12 G2,"eta=0.30: min p",0.0166666666666667,-1e-08,1
+B,2014-12 G2,"eta=0.30: costo de transporte - rho",-0.227549290578704,1e-08,1
+B,2018-12 G1,"costos fuera de la diagonal > 0",1,1,1
+B,2018-12 G1,"eta=0.01: status WK = Solved",1,1,1
+B,2018-12 G1,"eta=0.01: |primal - dual|",3.60905886079288e-09,1e-07,1
+B,2018-12 G1,"eta=0.01: |primal MOSEK - primal SDPT3| (estado SDPT3: Solved)",1.14388535171761e-08,1e-06,1
+B,2018-12 G1,"eta=0.01: |dual - formula cerrada en lambda*|",3.47460205052386e-09,1e-07,1
+B,2018-12 G1,"eta=0.01: |fval WK - primal en x*|",1.59035453209388e-10,1e-06,1
+B,2018-12 G1,"eta=0.01: |sum p - 1|",1.33226762955019e-15,1e-08,1
+B,2018-12 G1,"eta=0.01: min p",0.00787172607937528,-1e-08,1
+B,2018-12 G1,"eta=0.01: costo de transporte - rho",0,1e-08,1
+B,2018-12 G1,"eta=0.30: status WK = Solved",1,1,1
+B,2018-12 G1,"eta=0.30: |primal - dual|",1.41315923286173e-09,1e-07,1
+B,2018-12 G1,"eta=0.30: |primal MOSEK - primal SDPT3| (estado SDPT3: Solved)",2.40619581724777e-09,1e-06,1
+B,2018-12 G1,"eta=0.30: |dual - formula cerrada en lambda*|",1.24715879117054e-10,1e-07,1
+B,2018-12 G1,"eta=0.30: |fval WK - primal en x*|",1.97754031986547e-09,1e-06,1
+B,2018-12 G1,"eta=0.30: |sum p - 1|",8.88178419700125e-16,1e-08,1
+B,2018-12 G1,"eta=0.30: min p",0,-1e-08,1
+B,2018-12 G1,"eta=0.30: costo de transporte - rho",0,1e-08,1
+B,2018-12 G2,"costos fuera de la diagonal > 0",1,1,1
+B,2018-12 G2,"eta=0.01: status WK = Solved",1,1,1
+B,2018-12 G2,"eta=0.01: |primal - dual|",7.89872472983788e-11,1e-07,1
+B,2018-12 G2,"eta=0.01: |primal MOSEK - primal SDPT3| (estado SDPT3: Solved)",6.52302633782909e-10,1e-06,1
+B,2018-12 G2,"eta=0.01: |dual - formula cerrada en lambda*|",4.33717298187197e-11,1e-07,1
+B,2018-12 G2,"eta=0.01: |fval WK - primal en x*|",6.02961989018547e-09,1e-06,1
+B,2018-12 G2,"eta=0.01: |sum p - 1|",1.33226762955019e-15,1e-08,1
+B,2018-12 G2,"eta=0.01: min p",0.00847044318436035,-1e-08,1
+B,2018-12 G2,"eta=0.01: costo de transporte - rho",0,1e-08,1
+B,2018-12 G2,"eta=0.30: status WK = Solved",1,1,1
+B,2018-12 G2,"eta=0.30: |primal - dual|",3.98497339510265e-09,1e-07,1
+B,2018-12 G2,"eta=0.30: |primal MOSEK - primal SDPT3| (estado SDPT3: Solved)",3.38994243830396e-09,1e-06,1
+B,2018-12 G2,"eta=0.30: |dual - formula cerrada en lambda*|",3.9238424137493e-09,1e-07,1
+B,2018-12 G2,"eta=0.30: |fval WK - primal en x*|",7.89464801431022e-09,1e-06,1
+B,2018-12 G2,"eta=0.30: |sum p - 1|",1.11022302462516e-15,1e-08,1
+B,2018-12 G2,"eta=0.30: min p",0,-1e-08,1
+B,2018-12 G2,"eta=0.30: costo de transporte - rho",-0.0677808590744248,1e-08,1
+B,2022-06 G1,"costos fuera de la diagonal > 0",1,1,1
+B,2022-06 G1,"eta=0.01: status WK = Solved",1,1,1
+B,2022-06 G1,"eta=0.01: |primal - dual|",2.68859587371217e-11,1e-07,1
+B,2022-06 G1,"eta=0.01: |primal MOSEK - primal SDPT3| (estado SDPT3: Solved)",1.06334169525102e-08,1e-06,1
+B,2022-06 G1,"eta=0.01: |dual - formula cerrada en lambda*|",2.21702482761099e-11,1e-07,1
+B,2022-06 G1,"eta=0.01: |fval WK - primal en x*|",6.75459060212047e-10,1e-06,1
+B,2022-06 G1,"eta=0.01: |sum p - 1|",1.33226762955019e-15,1e-08,1
+B,2022-06 G1,"eta=0.01: min p",0.00692980875038393,-1e-08,1
+B,2022-06 G1,"eta=0.01: costo de transporte - rho",0,1e-08,1
+B,2022-06 G1,"eta=0.30: status WK = Solved",1,1,1
+B,2022-06 G1,"eta=0.30: |primal - dual|",2.27465615787459e-16,1e-07,1
+B,2022-06 G1,"eta=0.30: |primal MOSEK - primal SDPT3| (estado SDPT3: Inaccurate/Solved)",2.7649889012063e-08,1e-06,1
+B,2022-06 G1,"eta=0.30: |dual - formula cerrada en lambda*|",2.38307637512314e-16,1e-07,1
+B,2022-06 G1,"eta=0.30: |fval WK - primal en x*|",4.85266132550614e-09,1e-06,1
+B,2022-06 G1,"eta=0.30: |sum p - 1|",6.66133814775094e-16,1e-08,1
+B,2022-06 G1,"eta=0.30: min p",0,-1e-08,1
+B,2022-06 G1,"eta=0.30: costo de transporte - rho",0,1e-08,1
+B,2022-06 G2,"costos fuera de la diagonal > 0",1,1,1
+B,2022-06 G2,"eta=0.01: status WK = Solved",1,1,1
+B,2022-06 G2,"eta=0.01: |primal - dual|",1.9151347174784e-15,1e-07,1
+B,2022-06 G2,"eta=0.01: |primal MOSEK - primal SDPT3| (estado SDPT3: Solved)",1.41014342598667e-08,1e-06,1
+B,2022-06 G2,"eta=0.01: |dual - formula cerrada en lambda*|",1.87350135405495e-15,1e-07,1
+B,2022-06 G2,"eta=0.01: |fval WK - primal en x*|",4.14886980326656e-09,1e-06,1
+B,2022-06 G2,"eta=0.01: |sum p - 1|",1.11022302462516e-15,1e-08,1
+B,2022-06 G2,"eta=0.01: min p",0,-1e-08,1
+B,2022-06 G2,"eta=0.01: costo de transporte - rho",0,1e-08,1
+B,2022-06 G2,"eta=0.30: status WK = Solved",1,1,1
+B,2022-06 G2,"eta=0.30: |primal - dual|",1.11146118350613e-13,1e-07,1
+B,2022-06 G2,"eta=0.30: |primal MOSEK - primal SDPT3| (estado SDPT3: Inaccurate/Solved)",2.25352529417081e-08,1e-06,1
+B,2022-06 G2,"eta=0.30: |dual - formula cerrada en lambda*|",1.12226200554844e-13,1e-07,1
+B,2022-06 G2,"eta=0.30: |fval WK - primal en x*|",5.06463602523502e-09,1e-06,1
+B,2022-06 G2,"eta=0.30: |sum p - 1|",8.88178419700125e-16,1e-08,1
+B,2022-06 G2,"eta=0.30: min p",0,-1e-08,1
+B,2022-06 G2,"eta=0.30: costo de transporte - rho",-5.55111512312578e-17,1e-08,1
+C1,sintetica G1,"max paso V(eta_{i+1}) - V(eta_i)",-0.000802369124811204,1e-09,1
+C1,sintetica G1,"|V(0) - promedio empirico de log G|",5.20417042793042e-18,1e-08,1
+C1,sintetica G1,"V(0) - V(1.00) (descriptivo)",0.0568351853789801,NaN,1
+C1,2014-12 G1,"max paso V(eta_{i+1}) - V(eta_i)",-0.00128410624382072,1e-09,1
+C1,2014-12 G1,"|V(0) - promedio empirico de log G|",0,1e-08,1
+C1,2014-12 G1,"V(0) - V(1.00) (descriptivo)",0.0883788981825633,NaN,1
+C1,2014-12 G2,"max paso V(eta_{i+1}) - V(eta_i)",-0.00140492542672174,1e-09,1
+C1,2014-12 G2,"|V(0) - promedio empirico de log G|",0,1e-08,1
+C1,2014-12 G2,"V(0) - V(1.00) (descriptivo)",0.088760805635329,NaN,1
+C1,2018-12 G1,"max paso V(eta_{i+1}) - V(eta_i)",-0.00128728441494223,1e-09,1
+C1,2018-12 G1,"|V(0) - promedio empirico de log G|",3.46944695195361e-18,1e-08,1
+C1,2018-12 G1,"V(0) - V(1.00) (descriptivo)",0.099970046292425,NaN,1
+C1,2018-12 G2,"max paso V(eta_{i+1}) - V(eta_i)",-0.00107190822386103,1e-09,1
+C1,2018-12 G2,"|V(0) - promedio empirico de log G|",3.46944695195361e-18,1e-08,1
+C1,2018-12 G2,"V(0) - V(1.00) (descriptivo)",0.0837557480593931,NaN,1
+C1,2022-06 G1,"max paso V(eta_{i+1}) - V(eta_i)",-0.00144571897064741,1e-09,1
+C1,2022-06 G1,"|V(0) - promedio empirico de log G|",0,1e-08,1
+C1,2022-06 G1,"V(0) - V(1.00) (descriptivo)",0.111563593812431,NaN,1
+C1,2022-06 G2,"max paso V(eta_{i+1}) - V(eta_i)",-0.00137128592816804,1e-09,1
+C1,2022-06 G2,"|V(0) - promedio empirico de log G|",0,1e-08,1
+C1,2022-06 G2,"V(0) - V(1.00) (descriptivo)",0.098253540467033,NaN,1
+C2,sintetica G1,"max paso fval(eta_{i+1}) - fval(eta_i)",-5.8522643619263e-05,1e-07,1
+C2,2018-12 G1,"max paso fval(eta_{i+1}) - fval(eta_i)",1.74782926630132e-09,1e-07,1
