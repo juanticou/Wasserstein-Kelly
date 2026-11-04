@@ -1,7 +1,8 @@
 function traj = cargar_trayectorias(RES, data)
 % CARGAR_TRAYECTORIAS  Trayectorias completas (132 decisiones) de las seis
-% estrategias de prueba, igual que main_test_evaluation_v2.m. Compartida
-% por r2_tablas.m y r3_figuras.m; solo lee resultados de RES.
+% estrategias de prueba, igual que main_test_evaluation_v2.m, y de las cinco
+% referencias de main_benchmarks.m. Compartida por r2_tablas.m y
+% r3_figuras.m; solo lee resultados de RES.
 %
 %   traj : containers.Map, clave = nombre de la estrategia
 %          ("Nominal (0.80)", "G1 (0.90, 0.01)", ...), valor = struct results
@@ -20,5 +21,11 @@ function traj = cargar_trayectorias(RES, data)
     for delta = [0.80, 0.90]
         k = find(abs(S.DELTAS_TO_RUN - delta) < 1e-12, 1);
         traj(sprintf('Nominal (%.2f)', delta)) = S.nominal_results{k};
+    end
+    % Referencias (main_benchmarks.m): "Bajo riesgo", "Igual ponderación",
+    % "SPY pasivo", "Nominal sin costos (0.80)" y "Nominal sin costos (0.90)".
+    S = load(fullfile(RES, 'results_benchmarks', 'benchmarks.mat'), 'res');
+    for m = 1:numel(S.res)
+        traj(char(S.res(m).name)) = S.res(m).r;
     end
 end

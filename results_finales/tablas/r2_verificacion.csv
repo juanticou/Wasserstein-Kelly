@@ -207,5 +207,155 @@ tabla_d_validacion,"Nominal (0.80)",proporcion_riesgo_media,99.99,99.99,1
 tabla_d_validacion,"Nominal (0.90)",proporcion_riesgo_media,99.99,99.99,1
 tabla_d_validacion,"G1 (0.90, 0.01)",proporcion_riesgo_media,99.99,99.99,1
 tabla_d_validacion,"G2 (0.80, 0.01)",proporcion_riesgo_media,99.99,99.99,1
+tabla_e_prueba_referencias,"Bajo riesgo",riqueza_final,1.206,1.206,1
+tabla_e_prueba_referencias,"Igual ponderación",riqueza_final,3.734,3.734,1
+tabla_e_prueba_referencias,"SPY pasivo",riqueza_final,3.034,3.034,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.80)",riqueza_final,3.743,3.743,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.90)",riqueza_final,3.755,3.755,1
+tabla_e_prueba_referencias,"Bajo riesgo",log_crecimiento_medio,0.22,0.22,1
+tabla_e_prueba_referencias,"Igual ponderación",log_crecimiento_medio,1.57,1.57,1
+tabla_e_prueba_referencias,"SPY pasivo",log_crecimiento_medio,1.32,1.32,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.80)",log_crecimiento_medio,1.57,1.57,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.90)",log_crecimiento_medio,1.58,1.58,1
+tabla_e_prueba_referencias,"Bajo riesgo",CAGR,2.71,2.71,1
+tabla_e_prueba_referencias,"Igual ponderación",CAGR,20.71,20.71,1
+tabla_e_prueba_referencias,"SPY pasivo",CAGR,17.18,17.18,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.80)",CAGR,20.75,20.75,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.90)",CAGR,20.81,20.81,1
+tabla_e_prueba_referencias,"Bajo riesgo",max_drawdown,0,0,1
+tabla_e_prueba_referencias,"Igual ponderación",max_drawdown,15.91,15.91,1
+tabla_e_prueba_referencias,"SPY pasivo",max_drawdown,23.93,23.93,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.80)",max_drawdown,24.94,24.94,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.90)",max_drawdown,24.92,24.92,1
+tabla_e_prueba_referencias,"Bajo riesgo",peor_mes,0,0,1
+tabla_e_prueba_referencias,"Igual ponderación",peor_mes,-8.86,-8.86,1
+tabla_e_prueba_referencias,"SPY pasivo",peor_mes,-12.49,-12.49,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.80)",peor_mes,-12.13,-12.13,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.90)",peor_mes,-11.41,-11.41,1
+tabla_e_prueba_referencias,"Bajo riesgo",VaR_perdida,-0,-0,1
+tabla_e_prueba_referencias,"Igual ponderación",VaR_perdida,6.94,6.94,1
+tabla_e_prueba_referencias,"SPY pasivo",VaR_perdida,7.92,7.92,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.80)",VaR_perdida,8.48,8.48,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.90)",VaR_perdida,8,8,1
+tabla_e_prueba_referencias,"Bajo riesgo",CVaR_perdida,-0,-0,1
+tabla_e_prueba_referencias,"Igual ponderación",CVaR_perdida,8.03,8.03,1
+tabla_e_prueba_referencias,"SPY pasivo",CVaR_perdida,9.6,9.6,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.80)",CVaR_perdida,10.25,10.25,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.90)",CVaR_perdida,9.69,9.69,1
+tabla_e_prueba_referencias,"Bajo riesgo",sharpe,NaN,NaN,1
+tabla_e_prueba_referencias,"Igual ponderación",sharpe,1.162,1.162,1
+tabla_e_prueba_referencias,"SPY pasivo",sharpe,0.883,0.883,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.80)",sharpe,0.929,0.929,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.90)",sharpe,0.97,0.97,1
+tabla_e_prueba_referencias,"Bajo riesgo",sortino,NaN,NaN,1
+tabla_e_prueba_referencias,"Igual ponderación",sortino,2.45,2.45,1
+tabla_e_prueba_referencias,"SPY pasivo",sortino,1.714,1.714,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.80)",sortino,1.857,1.857,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.90)",sortino,2,2,1
+tabla_e_prueba_referencias,"Bajo riesgo",calmar,NaN,NaN,1
+tabla_e_prueba_referencias,"Igual ponderación",calmar,1.302,1.302,1
+tabla_e_prueba_referencias,"SPY pasivo",calmar,0.718,0.718,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.80)",calmar,0.832,0.832,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.90)",calmar,0.835,0.835,1
+tabla_e_prueba_referencias,"Bajo riesgo",turnover_total,0,0,1
+tabla_e_prueba_referencias,"Igual ponderación",turnover_total,3.56,3.56,1
+tabla_e_prueba_referencias,"SPY pasivo",turnover_total,0,0,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.80)",turnover_total,15.3,15.3,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.90)",turnover_total,14.99,14.99,1
+tabla_e_prueba_referencias,"Bajo riesgo",n_transacciones,0,0,1
+tabla_e_prueba_referencias,"Igual ponderación",n_transacciones,84,84,1
+tabla_e_prueba_referencias,"SPY pasivo",n_transacciones,0,0,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.80)",n_transacciones,84,84,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.90)",n_transacciones,84,84,1
+tabla_e_prueba_referencias,"Bajo riesgo",costo_monetario,0,0,1
+tabla_e_prueba_referencias,"Igual ponderación",costo_monetario,0.0074,0.0074,1
+tabla_e_prueba_referencias,"SPY pasivo",costo_monetario,0,0,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.80)",costo_monetario,0,0,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.90)",costo_monetario,0,0,1
+tabla_e_prueba_referencias,"Bajo riesgo",Neff_promedio,NaN,NaN,1
+tabla_e_prueba_referencias,"Igual ponderación",Neff_promedio,10,10,1
+tabla_e_prueba_referencias,"SPY pasivo",Neff_promedio,NaN,NaN,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.80)",Neff_promedio,4.16,4.16,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.90)",Neff_promedio,4.55,4.55,1
+tabla_e_prueba_referencias,"Bajo riesgo",proporcion_riesgo_media,0,0,1
+tabla_e_prueba_referencias,"Igual ponderación",proporcion_riesgo_media,100,100,1
+tabla_e_prueba_referencias,"SPY pasivo",proporcion_riesgo_media,100,100,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.80)",proporcion_riesgo_media,100,100,1
+tabla_e_prueba_referencias,"Nominal sin costos (0.90)",proporcion_riesgo_media,100,100,1
+tabla_f_validacion_referencias,"Bajo riesgo",riqueza_final,1.032,1.032,1
+tabla_f_validacion_referencias,"Igual ponderación",riqueza_final,1.682,1.682,1
+tabla_f_validacion_referencias,"SPY pasivo",riqueza_final,1.316,1.316,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.80)",riqueza_final,2.313,2.313,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.90)",riqueza_final,2.324,2.324,1
+tabla_f_validacion_referencias,"Bajo riesgo",log_crecimiento_medio,0.07,0.07,1
+tabla_f_validacion_referencias,"Igual ponderación",log_crecimiento_medio,1.08,1.08,1
+tabla_f_validacion_referencias,"SPY pasivo",log_crecimiento_medio,0.57,0.57,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.80)",log_crecimiento_medio,1.75,1.75,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.90)",log_crecimiento_medio,1.76,1.76,1
+tabla_f_validacion_referencias,"Bajo riesgo",CAGR,0.79,0.79,1
+tabla_f_validacion_referencias,"Igual ponderación",CAGR,13.88,13.88,1
+tabla_f_validacion_referencias,"SPY pasivo",CAGR,7.1,7.1,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.80)",CAGR,23.32,23.32,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.90)",CAGR,23.47,23.47,1
+tabla_f_validacion_referencias,"Bajo riesgo",max_drawdown,0,0,1
+tabla_f_validacion_referencias,"Igual ponderación",max_drawdown,10.58,10.58,1
+tabla_f_validacion_referencias,"SPY pasivo",max_drawdown,13.53,13.53,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.80)",max_drawdown,19.57,19.57,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.90)",max_drawdown,19.57,19.57,1
+tabla_f_validacion_referencias,"Bajo riesgo",peor_mes,0,0,1
+tabla_f_validacion_referencias,"Igual ponderación",peor_mes,-8.91,-8.91,1
+tabla_f_validacion_referencias,"SPY pasivo",peor_mes,-8.8,-8.8,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.80)",peor_mes,-10.85,-10.85,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.90)",peor_mes,-10.85,-10.85,1
+tabla_f_validacion_referencias,"Bajo riesgo",VaR_perdida,-0,-0,1
+tabla_f_validacion_referencias,"Igual ponderación",VaR_perdida,4.66,4.66,1
+tabla_f_validacion_referencias,"SPY pasivo",VaR_perdida,6.09,6.09,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.80)",VaR_perdida,5.8,5.8,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.90)",VaR_perdida,5.8,5.8,1
+tabla_f_validacion_referencias,"Bajo riesgo",CVaR_perdida,-0,-0,1
+tabla_f_validacion_referencias,"Igual ponderación",CVaR_perdida,6.89,6.89,1
+tabla_f_validacion_referencias,"SPY pasivo",CVaR_perdida,7.56,7.56,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.80)",CVaR_perdida,8.88,8.88,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.90)",CVaR_perdida,8.88,8.88,1
+tabla_f_validacion_referencias,"Bajo riesgo",sharpe,NaN,NaN,1
+tabla_f_validacion_referencias,"Igual ponderación",sharpe,1.085,1.085,1
+tabla_f_validacion_referencias,"SPY pasivo",sharpe,0.583,0.583,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.80)",sharpe,1.295,1.295,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.90)",sharpe,1.302,1.302,1
+tabla_f_validacion_referencias,"Bajo riesgo",sortino,NaN,NaN,1
+tabla_f_validacion_referencias,"Igual ponderación",sortino,1.965,1.965,1
+tabla_f_validacion_referencias,"SPY pasivo",sortino,0.98,0.98,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.80)",sortino,2.6,2.6,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.90)",sortino,2.614,2.614,1
+tabla_f_validacion_referencias,"Bajo riesgo",calmar,NaN,NaN,1
+tabla_f_validacion_referencias,"Igual ponderación",calmar,1.312,1.312,1
+tabla_f_validacion_referencias,"SPY pasivo",calmar,0.524,0.524,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.80)",calmar,1.192,1.192,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.90)",calmar,1.2,1.2,1
+tabla_f_validacion_referencias,"Bajo riesgo",turnover_total,0,0,1
+tabla_f_validacion_referencias,"Igual ponderación",turnover_total,2.75,2.75,1
+tabla_f_validacion_referencias,"SPY pasivo",turnover_total,1,1,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.80)",turnover_total,6.7,6.7,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.90)",turnover_total,6.7,6.7,1
+tabla_f_validacion_referencias,"Bajo riesgo",n_transacciones,0,0,1
+tabla_f_validacion_referencias,"Igual ponderación",n_transacciones,48,48,1
+tabla_f_validacion_referencias,"SPY pasivo",n_transacciones,1,1,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.80)",n_transacciones,48,48,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.90)",n_transacciones,48,48,1
+tabla_f_validacion_referencias,"Bajo riesgo",costo_monetario,0,0,1
+tabla_f_validacion_referencias,"Igual ponderación",costo_monetario,0.0033,0.0033,1
+tabla_f_validacion_referencias,"SPY pasivo",costo_monetario,0.001,0.001,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.80)",costo_monetario,0,0,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.90)",costo_monetario,0,0,1
+tabla_f_validacion_referencias,"Bajo riesgo",Neff_promedio,NaN,NaN,1
+tabla_f_validacion_referencias,"Igual ponderación",Neff_promedio,10,10,1
+tabla_f_validacion_referencias,"SPY pasivo",Neff_promedio,NaN,NaN,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.80)",Neff_promedio,4.05,4.05,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.90)",Neff_promedio,4.07,4.07,1
+tabla_f_validacion_referencias,"Bajo riesgo",proporcion_riesgo_media,0,0,1
+tabla_f_validacion_referencias,"Igual ponderación",proporcion_riesgo_media,99.99,99.99,1
+tabla_f_validacion_referencias,"SPY pasivo",proporcion_riesgo_media,100,100,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.80)",proporcion_riesgo_media,100,100,1
+tabla_f_validacion_referencias,"Nominal sin costos (0.90)",proporcion_riesgo_media,100,100,1
 n_meses,"validacion",n_meses,48,48,1
 n_meses,"prueba",n_meses,84,84,1

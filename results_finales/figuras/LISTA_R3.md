@@ -18,7 +18,9 @@ Cada figura está en PDF (vectorial) y PNG. Fuente: `results_v2/`. † = configu
 | `riqueza_vs_eta_validacion.pdf/.png` | results_seleccion/riqueza_vs_eta.csv | Riqueza final de validación frente a eta (espaciado categórico), una línea por delta, para cada geometría. |
 | `exposicion_eta_alto.pdf/.png` | results_estado_solver/diagnostico_eta_alto.csv | Proporción en riesgo de G1 con delta = 0.90 y eta en {0, 0.10, 0.15, 0.30}, 132 decisiones (diagnóstico de trayectorias planas). |
 | `dk_contraste_principal.pdf/.png` | trayectorias recortadas a 2019-2025; contrastes_prueba.csv | Diferencia mensual de crecimiento logarítmico D_k (en puntos porcentuales) de los contrastes 1 y 2 (G2 frente a G1 con los mismos parámetros). |
+| `riqueza_referencias_prueba.pdf/.png` | trayectorias recortadas a 2019-2025 (incluye results_benchmarks/benchmarks.mat) | Riqueza re-basada a 1 en la prueba: G1 y G2 elegidas, nominal (0.90), igual ponderación, SPY pasivo y bajo riesgo. |
+| `turnover_con_sin_costos_prueba.pdf/.png` | trayectorias recortadas a 2019-2025 (incluye results_benchmarks/benchmarks.mat) | Turnover acumulado de prueba del Kelly nominal con tau = 0.001 y con tau = 0 (turnover canónico), para delta = 0.80 y 0.90. |
 
 ## Verificación
 
-61 comprobaciones, 0 fallidas (detalle en `r3_verificacion.csv`).
+77 comprobaciones, 0 fallidas (detalle en `r3_verificacion.csv`).

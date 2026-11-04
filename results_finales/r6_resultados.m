@@ -22,6 +22,9 @@ function r6_resultados()
         assert(all(T.ok == 1), 'r6_resultados: %s tiene comprobaciones fallidas.', VER{v});
         nchk = nchk + height(T);
     end
+    T = readtable(fullfile(RES, 'results_benchmarks', 'verificaciones_benchmarks.csv'));   % main_benchmarks.m
+    assert(all(T.ok == 1), 'r6_resultados: verificaciones_benchmarks.csv tiene comprobaciones fallidas.');
+    nchk = nchk + height(T);
 
     %% Fuentes
     F.M   = 'results_v2/results_prueba_v2/metricas_por_tramo.csv';
@@ -34,7 +37,9 @@ function r6_resultados()
     F.SS  = 'results_v2/results_seleccion/sensibilidad_seleccion.csv';
     F.SEL = 'results_v2/results_seleccion/seleccion_G1.csv y seleccion_G2.csv';
     F.R5  = 'results_finales/verificacion_cruzada.csv';
+    F.MB  = 'results_v2/results_benchmarks/metricas_por_tramo_benchmarks.csv';
     rd = @(f) readtable(fullfile(root, f), 'TextType', 'string');
+    MB = readtable(fullfile(root, F.MB), 'TextType', 'string', 'Encoding', 'UTF-8');
     M = rd(F.M); A = rd(F.A); RB = rd(F.RB); CD = rd(F.CD); SS = rd(F.SS); R5 = rd(F.R5);
     V.G1 = rd(F.V1); V.G2 = rd(F.V2);
     src = @(f, col) " (`" + f + "`, `" + col + "`)";
@@ -51,13 +56,15 @@ function r6_resultados()
           "No editar a mano: se regenera con `r6_resultados`. Todas las cifras salen de los archivos citados entre paréntesis " + ...
           "(archivo y columna). Fuente común: `results_v2/` (aprobado en R1). c1 = (δ, η) = (0.90, 0.01), elegida para G1; " + ...
           "c2 = (0.80, 0.01), elegida para G2 (T9). Prueba: 84 meses realizados (ene-2019 a dic-2025); validación: 48 (ene-2015 a dic-2018).", "", ...
-          sprintf("Antes de escribir este índice se comprobó que R2–R5 no tienen fallos (%d comprobaciones en total).", nchk), "", ...
+          sprintf("Antes de escribir este índice se comprobó que R2–R5 y main_benchmarks.m no tienen fallos (%d comprobaciones en total).", nchk), "", ...
           "## 1. Tablas y figuras", "", "| Archivo | Script | Qué muestra |", "|---|---|---|"];
     IDX = ["tablas/tabla_a_prueba_desempeno.csv/.tex", "r2_tablas.m", "Prueba: riqueza final, crecimiento logarítmico medio, CAGR, MDD, peor mes, VaR y CVaR al 95 %, Sharpe, Sortino y Calmar de las seis estrategias."
            "tablas/tabla_b_prueba_operacion.csv/.tex", "r2_tablas.m", "Prueba: turnover, meses con transacción, costo fraccional y monetario, peso máximo, N_eff y proporción en riesgo."
            "tablas/tabla_c_prueba_restricciones.csv/.tex", "r2_tablas.m", "Prueba: incumplimientos de δ, mínimo factor de crecimiento, meses con la cota δ activa y meses sin optimización."
            "tablas/tabla_d_validacion.csv/.tex", "r2_tablas.m", "Validación: las dos configuraciones elegidas y el nominal de cada δ, con las métricas de (a) y (b)."
-           "tablas/TABLAS_R2.md", "r2_tablas.m", "Las tablas (a)–(d) en Markdown."];
+           "tablas/tabla_e_prueba_referencias.csv/.tex", "r2_tablas.m", "Prueba: estrategias de referencia (bajo riesgo, igual ponderación, SPY pasivo y Kelly nominal sin costos con δ = 0.80 y 0.90), con las métricas de (a) y turnover, costo, N_eff y proporción en riesgo."
+           "tablas/tabla_f_validacion_referencias.csv/.tex", "r2_tablas.m", "Validación: las mismas estrategias de referencia y métricas que (e)."
+           "tablas/TABLAS_R2.md", "r2_tablas.m", "Las tablas (a)–(f) en Markdown."];
     for i = 1:size(IDX, 1)
         md(end + 1) = "| `results_finales/" + IDX(i, 1) + "` | `" + IDX(i, 2) + "` | " + IDX(i, 3) + " |"; %#ok<AGROW>
     end
@@ -158,6 +165,21 @@ function r6_resultados()
     end
     k = k + 1; md(end + 1) = k + ". Validación, malla δ × η: " + strjoin(w, "; ") + src("tabla_maestra_validacion_G*.csv", "riqueza_final") + ".";
 
+    % Estrategias de referencia (main_benchmarks.m)
+    REF = ["Bajo riesgo", "Igual ponderación", "SPY pasivo", "Nominal sin costos (0.80)", "Nominal sin costos (0.90)"];
+    mb = @(s, tramo, col) MB.(col)(MB.estrategia == s & MB.tramo == tramo);
+    w = arrayfun(@(s) s + ": " + sprintf('%.3f', mb(s, "prueba", 'riqueza_final')), REF);
+    k = k + 1; md(end + 1) = k + ". Riqueza final de prueba de las estrategias de referencia (base 1), una trayectoria por estrategia: " + ...
+        strjoin(w, "; ") + src(F.MB, "riqueza_final") + ". Máxima caída de prueba: " + ...
+        strjoin(arrayfun(@(s) s + " " + pct(mb(s, "prueba", 'max_drawdown'), 1), REF(2:end)), "; ") + src(F.MB, "max_drawdown") + ".";
+    w = strings(1, 0);
+    for dl = [0.80, 0.90]
+        a = sprintf("Nominal (%.2f)", dl); b = sprintf("Nominal sin costos (%.2f)", dl);
+        w(end + 1) = sprintf("%s %.2f vs. %s %.2f", a, m(a, "prueba", 'turnover_total'), b, mb(b, "prueba", 'turnover_total')); %#ok<AGROW>
+    end
+    k = k + 1; md(end + 1) = k + ". Turnover acumulado de prueba del Kelly nominal con τ = 0.001 frente a τ = 0 (turnover canónico): " + ...
+        strjoin(w, "; ") + src(F.M, "turnover_total") + src(F.MB, "turnover_total") + ".";
+
     e5 = R5(R5.bloque == "E", :); f5 = R5(R5.bloque == "F", :);
     k = k + 1; md(end + 1) = k + ". La selección de T9 se reproduce con las tablas de validación, sin leer resultados de 2019–2025, y G1 (0.90, 0.01) " + ...
         "corrido con el panel truncado a dic-2018 reproduce exactamente sus 48 meses: " + nnz(e5.ok) + " de " + height(e5) + " y " + ...
@@ -176,6 +198,8 @@ function r6_resultados()
         ifelse(isempty(excl), "", "; los IC que excluyen el 0 (punto " + k_excl + " de la sección 2) pueden deberse a multiplicidad") + " (metodologia_6.tex, sec. «Inferencia sobre las diferencias»).";
     k = k + 1; md(end + 1) = k + ". Un orden entre estrategias a partir de la riqueza final: es una sola trayectoria por estrategia, no una estimación con incertidumbre (metodologia_6.tex).";
     k = k + 1; md(end + 1) = k + ". Un efecto de la geometría a partir del contraste 3 (" + LAB(3) + "): cambian a la vez la geometría y δ (metodologia_6.tex, sec. «Contrastes de la fase de prueba»).";
+    k = k + 1; md(end + 1) = k + ". Que alguna estrategia supere o no a las de referencia (bajo riesgo, igual ponderación, SPY pasivo, nominal sin costos): " + ...
+        "no se calcularon contrastes D_k ni intervalos frente a ellas; sus cifras son solo descriptivas" + src(F.MB, "riqueza_final") + ".";
     k = k + 1; md(end + 1) = k + ". Estimaciones precisas de riesgo extremo con VaR y CVaR: con 84 meses de prueba la cola al 95 % equivale a (1 − 0.95)·84 = " + ...
         sprintf('%.1f', (1 - ALPHA) * 84) + " meses (VaR = L_(⌈0.95·84⌉) = L_(" + ceil(ALPHA * 84) + "); metodologia_6.tex, sec. «Métricas de desempeño»).";
     RC = rd(F.RC);

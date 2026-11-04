@@ -60,3 +60,19 @@ riqueza_vs_eta_menos_tabla_maestra_max,"G2 delta=0.90",0,0,0,1
 n_decisiones_diagnostico,"G1 delta=0.90",132,132,0,1
 suma_D,"emparejado (0.90, 0.01)",-0.0320451364719585,-0.0320451364719585,2.08166817117217e-17,1
 suma_D,"emparejado (0.80, 0.01)",0.049586821570955,0.049586821570955,2.77555756156289e-17,1
+n_meses_prueba,"G1 (0.90, 0.01)",84,84,0,1
+riqueza_final_prueba_referencias,"G1 (0.90, 0.01)",3.99948221573723,3.99948221573723,3.99680288865056e-15,1
+n_meses_prueba,"G2 (0.80, 0.01)",84,84,0,1
+riqueza_final_prueba_referencias,"G2 (0.80, 0.01)",3.87301160545156,3.87301160545156,4.44089209850063e-15,1
+n_meses_prueba,"Nominal (0.90)",84,84,0,1
+riqueza_final_prueba_referencias,"Nominal (0.90)",3.74129516843451,3.74129516843451,3.10862446895044e-15,1
+n_meses_prueba,"Igual ponderación",84,84,0,1
+riqueza_final_prueba_referencias,"Igual ponderación",3.733735481767,3.733735481767,4.88498130835069e-15,1
+n_meses_prueba,"SPY pasivo",84,84,0,1
+riqueza_final_prueba_referencias,"SPY pasivo",3.03397203671043,3.03397203671043,4.44089209850063e-16,1
+n_meses_prueba,"Bajo riesgo",84,84,0,1
+riqueza_final_prueba_referencias,"Bajo riesgo",1.20622363029142,1.20622363029142,4.44089209850063e-16,1
+turnover_total_con_sin_costos,"Nominal (0.80)",8.72748531710497,8.72748531710497,1.77635683940025e-15,1
+turnover_total_con_sin_costos,"Nominal sin costos (0.80)",15.3004371737764,15.3004371737764,1.77635683940025e-15,1
+turnover_total_con_sin_costos,"Nominal (0.90)",7.59879282137679,7.59879282137679,8.88178419700125e-16,1
+turnover_total_con_sin_costos,"Nominal sin costos (0.90)",14.9909345871805,14.9909345871805,3.73034936274053e-14,1

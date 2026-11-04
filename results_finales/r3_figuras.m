@@ -7,6 +7,8 @@ function r3_figuras()
 %   5 mapa_* (validacion, G1 y G2, siete metricas)
 %   6 riqueza_vs_eta_validacion 7 exposicion_eta_alto (diagnostico, G1, delta=0.90)
 %   8 dk_contraste_principal    (contrastes 1 y 2, emparejados)
+%   9 riqueza_referencias_prueba     (elegidas frente a las referencias)
+%  10 turnover_con_sin_costos_prueba (nominal con tau = 0.001 y tau = 0)
 %
 % Estilo para blanco y negro: tipo de linea = modelo (nominal, G1, G2),
 % marcador = delta; mapas de calor en escala de grises.
@@ -34,6 +36,9 @@ function r3_figuras()
         'defaultAxesTickLabelInterpreter', 'remove', 'defaultLegendInterpreter', 'remove'));
 
     M = readtable(fullfile(RES, 'results_prueba_v2', 'metricas_por_tramo.csv'), 'TextType', 'string');
+    MB = readtable(fullfile(RES, 'results_benchmarks', 'metricas_por_tramo_benchmarks.csv'), ...
+        'TextType', 'string', 'Encoding', 'UTF-8');                      % main_benchmarks.m
+    M = [M; MB];
     data = load_monthly_data(PANEL, TICKERS);
     traj = cargar_trayectorias(RES, data);
     chk = {};
@@ -252,6 +257,41 @@ function r3_figuras()
     lista(end + 1, :) = save_fig(fig, OUT, 'dk_contraste_principal', 'trayectorias recortadas a 2019-2025; contrastes_prueba.csv', ...
         'Diferencia mensual de crecimiento logarítmico D_k (en puntos porcentuales) de los contrastes 1 y 2 (G2 frente a G1 con los mismos parámetros).');
 
+    %% 9. Riqueza de prueba frente a las estrategias de referencia
+    REF_FIG = ["G1 (0.90, 0.01)", "G2 (0.80, 0.01)", "Nominal (0.90)", ...
+               "Igual ponderación", "SPY pasivo", "Bajo riesgo"];
+    fig = new_fig(780, 420);
+    hold on
+    for s = REF_FIG
+        r = extract_period_results(traj(char(s)), TEST{1}, TEST{2});
+        chk{end + 1} = check_row("n_meses_prueba", s, TEST{3}, numel(r.dates)); %#ok<AGROW>
+        plot_series(wealth_dates(r), r.wealth, s, CHOSEN);
+        chk{end + 1} = check_row("riqueza_final_prueba_referencias", s, mrow(s, "prueba").riqueza_final, r.wealth(end)); %#ok<AGROW>
+    end
+    hold off
+    ylabel('Riqueza (base 1)'); title('Riqueza, prueba: estrategias elegidas y de referencia');
+    finish_axes('northwest');
+    lista(end + 1, :) = save_fig(fig, OUT, 'riqueza_referencias_prueba', ...
+        'trayectorias recortadas a 2019-2025 (incluye results_benchmarks/benchmarks.mat)', ...
+        'Riqueza re-basada a 1 en la prueba: G1 y G2 elegidas, nominal (0.90), igual ponderación, SPY pasivo y bajo riesgo.');
+
+    %% 10. Turnover acumulado del nominal con y sin costos
+    TAU_FIG = ["Nominal (0.80)", "Nominal sin costos (0.80)", "Nominal (0.90)", "Nominal sin costos (0.90)"];
+    fig = new_fig(780, 420);
+    hold on
+    for s = TAU_FIG
+        r = extract_period_results(traj(char(s)), TEST{1}, TEST{2});
+        to_acum = cumsum(r.turnover);
+        plot_series(r.dates, to_acum, s, CHOSEN);
+        chk{end + 1} = check_row("turnover_total_con_sin_costos", s, mrow(s, "prueba").turnover_total, to_acum(end)); %#ok<AGROW>
+    end
+    hold off
+    ylabel('Turnover acumulado'); title('Turnover acumulado del Kelly nominal con y sin costos, prueba');
+    finish_axes('northwest');
+    lista(end + 1, :) = save_fig(fig, OUT, 'turnover_con_sin_costos_prueba', ...
+        'trayectorias recortadas a 2019-2025 (incluye results_benchmarks/benchmarks.mat)', ...
+        'Turnover acumulado de prueba del Kelly nominal con tau = 0.001 y con tau = 0 (turnover canónico), para delta = 0.80 y 0.90.');
+
     %% Verificacion y lista
     Vt = vertcat(chk{:});
     writetable(Vt, fullfile(OUT, 'r3_verificacion.csv'));
@@ -275,6 +315,19 @@ end
 function st = style_of(s)
 % Estilo fijo por estrategia: linea = modelo, marcador = delta
     s = string(s);
+    % Estrategias de referencia (main_benchmarks.m)
+    switch s
+        case "Igual ponderación", st = struct('line', ':', 'marker', '^', 'color', [0.15 0.15 0.15]); return
+        case "SPY pasivo",        st = struct('line', '-', 'marker', 'none', 'color', [0.60 0.60 0.60]); return
+        case "Bajo riesgo",       st = struct('line', ':', 'marker', 'none', 'color', [0.45 0.45 0.45]); return
+    end
+    if startsWith(s, "Nominal sin costos")
+        st.line = ':';
+        if contains(s, "0.80"), st.marker = 'o'; st.color = [0.45 0.45 0.45];
+        else,                   st.marker = 's'; st.color = [0 0 0];
+        end
+        return
+    end
     if startsWith(s, "Nominal"), st.line = '-';  base = [0 0 0];
     elseif startsWith(s, "G1"),  st.line = '--'; base = [0 0.30 0.60];
     else,                        st.line = '-.'; base = [0.80 0.33 0];

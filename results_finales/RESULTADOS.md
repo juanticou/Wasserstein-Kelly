@@ -2,7 +2,7 @@
 
 No editar a mano: se regenera con `r6_resultados`. Todas las cifras salen de los archivos citados entre paréntesis (archivo y columna). Fuente común: `results_v2/` (aprobado en R1). c1 = (δ, η) = (0.90, 0.01), elegida para G1; c2 = (0.80, 0.01), elegida para G2 (T9). Prueba: 84 meses realizados (ene-2019 a dic-2025); validación: 48 (ene-2015 a dic-2018).
 
-Antes de escribir este índice se comprobó que R2–R5 no tienen fallos (958 comprobaciones en total).
+Antes de escribir este índice se comprobó que R2–R5 y main_benchmarks.m no tienen fallos (1149 comprobaciones en total).
 
 ## 1. Tablas y figuras
 
@@ -12,7 +12,9 @@ Antes de escribir este índice se comprobó que R2–R5 no tienen fallos (958 co
 | `results_finales/tablas/tabla_b_prueba_operacion.csv/.tex` | `r2_tablas.m` | Prueba: turnover, meses con transacción, costo fraccional y monetario, peso máximo, N_eff y proporción en riesgo. |
 | `results_finales/tablas/tabla_c_prueba_restricciones.csv/.tex` | `r2_tablas.m` | Prueba: incumplimientos de δ, mínimo factor de crecimiento, meses con la cota δ activa y meses sin optimización. |
 | `results_finales/tablas/tabla_d_validacion.csv/.tex` | `r2_tablas.m` | Validación: las dos configuraciones elegidas y el nominal de cada δ, con las métricas de (a) y (b). |
-| `results_finales/tablas/TABLAS_R2.md` | `r2_tablas.m` | Las tablas (a)–(d) en Markdown. |
+| `results_finales/tablas/tabla_e_prueba_referencias.csv/.tex` | `r2_tablas.m` | Prueba: estrategias de referencia (bajo riesgo, igual ponderación, SPY pasivo y Kelly nominal sin costos con δ = 0.80 y 0.90), con las métricas de (a) y turnover, costo, N_eff y proporción en riesgo. |
+| `results_finales/tablas/tabla_f_validacion_referencias.csv/.tex` | `r2_tablas.m` | Validación: las mismas estrategias de referencia y métricas que (e). |
+| `results_finales/tablas/TABLAS_R2.md` | `r2_tablas.m` | Las tablas (a)–(f) en Markdown. |
 | `results_finales/figuras/riqueza_prueba.pdf/.png` | `r3_figuras.m` | Riqueza re-basada a 1 al inicio de la prueba de las seis estrategias evaluadas. |
 | `results_finales/figuras/drawdown_prueba.pdf/.png` | `r3_figuras.m` | Caída porcentual desde el máximo previo de la riqueza (eje invertido), seis estrategias. |
 | `results_finales/figuras/riesgo_neff_prueba.pdf/.png` | `r3_figuras.m` | Proporción invertida en activos riesgosos y número efectivo de activos riesgosos por mes (N_eff = 0 sin exposición). |
@@ -27,6 +29,8 @@ Antes de escribir este índice se comprobó que R2–R5 no tienen fallos (958 co
 | `results_finales/figuras/riqueza_vs_eta_validacion.pdf/.png` | `r3_figuras.m` | Riqueza final de validación frente a eta (espaciado categórico), una línea por delta, para cada geometría. |
 | `results_finales/figuras/exposicion_eta_alto.pdf/.png` | `r3_figuras.m` | Proporción en riesgo de G1 con delta = 0.90 y eta en {0, 0.10, 0.15, 0.30}, 132 decisiones (diagnóstico de trayectorias planas). |
 | `results_finales/figuras/dk_contraste_principal.pdf/.png` | `r3_figuras.m` | Diferencia mensual de crecimiento logarítmico D_k (en puntos porcentuales) de los contrastes 1 y 2 (G2 frente a G1 con los mismos parámetros). |
+| `results_finales/figuras/riqueza_referencias_prueba.pdf/.png` | `r3_figuras.m` | Riqueza re-basada a 1 en la prueba: G1 y G2 elegidas, nominal (0.90), igual ponderación, SPY pasivo y bajo riesgo. |
+| `results_finales/figuras/turnover_con_sin_costos_prueba.pdf/.png` | `r3_figuras.m` | Turnover acumulado de prueba del Kelly nominal con tau = 0.001 y con tau = 0 (turnover canónico), para delta = 0.80 y 0.90. |
 | `results_finales/inferencia/tabla_r4a_bootstrap.csv/.tex` | `r4_inferencia.m` | Prueba: media, mediana, % D_k > 0, empates e IC 95 % por bootstrap con ℓ ∈ {3, 6, 12} de los siete contrastes. |
 | `results_finales/inferencia/tabla_r4b_regimen.csv/.tex` | `r4_inferencia.m` | Prueba: media de D_k y % D_k > 0 por régimen (todos, VIX alto/bajo, SPY_k < 0 / ≥ 0), siete contrastes. |
 | `results_finales/inferencia/tabla_r4c_cruce.csv/.tex` | `r4_inferencia.m` | Prueba: cruce 2×2 de VIX y SPY_k para los contrastes principales 1 y 2. |
@@ -45,7 +49,9 @@ Antes de escribir este índice se comprobó que R2–R5 no tienen fallos (958 co
 8. Meses de prueba con la cota δ activa en la ventana: Nominal (0.80): 0; Nominal (0.90): 65; G1 (0.80, 0.01): 0; G1 (0.90, 0.01): 60; G2 (0.80, 0.01): 0; G2 (0.90, 0.01): 66 (`results_finales/tablas/r2_cota_delta.csv`, `meses_cota_activa`). En validación, la cota solo está activa en alguna celda con G1: δ ∈ {0.90}; G2: δ ∈ {0.90} (`results_v2/results_seleccion/diagnostico_cota_delta.csv`).
 9. Turnover acumulado de prueba, Wasserstein–Kelly frente al nominal del mismo δ: G1 (0.80, 0.01) 7.92 vs. Nominal (0.80) 8.73; G2 (0.80, 0.01) 7.05 vs. Nominal (0.80) 8.73; G1 (0.90, 0.01) 6.59 vs. Nominal (0.90) 7.60; G2 (0.90, 0.01) 6.77 vs. Nominal (0.90) 7.60 (`results_v2/results_prueba_v2/metricas_por_tramo.csv`, `turnover_total`). Costo monetario acumulado (riqueza inicial = 1): Nominal (0.80) 0.0216; Nominal (0.90) 0.0180; G1 (0.80, 0.01) 0.0192; G1 (0.90, 0.01) 0.0159; G2 (0.80, 0.01) 0.0181; G2 (0.90, 0.01) 0.0167 (`results_v2/results_prueba_v2/metricas_por_tramo.csv`, `costo_monetario`).
 10. Validación, malla δ × η: G1: diferencia relativa máxima entre δ con η fijo = 0.458 %; con η ≥ 0.30 la riqueza está entre 1.0318 y 1.0320; G2: diferencia relativa máxima entre δ con η fijo = 0.081 %; con η ≥ 0.30 la riqueza está entre 1.0318 y 1.0320 (`tabla_maestra_validacion_G*.csv`, `riqueza_final`).
-11. La selección de T9 se reproduce con las tablas de validación, sin leer resultados de 2019–2025, y G1 (0.90, 0.01) corrido con el panel truncado a dic-2018 reproduce exactamente sus 48 meses: 65 de 65 y 5 de 5 comprobaciones correctas (`results_finales/verificacion_cruzada.csv`, `bloque E y F`).
+11. Riqueza final de prueba de las estrategias de referencia (base 1), una trayectoria por estrategia: Bajo riesgo: 1.206; Igual ponderación: 3.734; SPY pasivo: 3.034; Nominal sin costos (0.80): 3.743; Nominal sin costos (0.90): 3.755 (`results_v2/results_benchmarks/metricas_por_tramo_benchmarks.csv`, `riqueza_final`). Máxima caída de prueba: Igual ponderación 15.9 %; SPY pasivo 23.9 %; Nominal sin costos (0.80) 24.9 %; Nominal sin costos (0.90) 24.9 % (`results_v2/results_benchmarks/metricas_por_tramo_benchmarks.csv`, `max_drawdown`).
+12. Turnover acumulado de prueba del Kelly nominal con τ = 0.001 frente a τ = 0 (turnover canónico): Nominal (0.80) 8.73 vs. Nominal sin costos (0.80) 15.30; Nominal (0.90) 7.60 vs. Nominal sin costos (0.90) 14.99 (`results_v2/results_prueba_v2/metricas_por_tramo.csv`, `turnover_total`) (`results_v2/results_benchmarks/metricas_por_tramo_benchmarks.csv`, `turnover_total`).
+13. La selección de T9 se reproduce con las tablas de validación, sin leer resultados de 2019–2025, y G1 (0.90, 0.01) corrido con el panel truncado a dic-2018 reproduce exactamente sus 48 meses: 65 de 65 y 5 de 5 comprobaciones correctas (`results_finales/verificacion_cruzada.csv`, `bloque E y F`).
 
 ## 3. Lo que los resultados NO permiten afirmar
 
@@ -53,10 +59,11 @@ Antes de escribir este índice se comprobó que R2–R5 no tienen fallos (958 co
 2. Superioridad estadística global de alguna estrategia: se calculan siete intervalos sin ajuste por comparaciones múltiples y los contrastes 3 a 7 son exploratorios; los IC que excluyen el 0 (punto 5 de la sección 2) pueden deberse a multiplicidad (metodologia_6.tex, sec. «Inferencia sobre las diferencias»).
 3. Un orden entre estrategias a partir de la riqueza final: es una sola trayectoria por estrategia, no una estimación con incertidumbre (metodologia_6.tex).
 4. Un efecto de la geometría a partir del contraste 3 (G2(c2) − G1(c1)): cambian a la vez la geometría y δ (metodologia_6.tex, sec. «Contrastes de la fase de prueba»).
-5. Estimaciones precisas de riesgo extremo con VaR y CVaR: con 84 meses de prueba la cola al 95 % equivale a (1 − 0.95)·84 = 4.2 meses (VaR = L_(⌈0.95·84⌉) = L_(80); metodologia_6.tex, sec. «Métricas de desempeño»).
-6. Diferencias entre regímenes: el desglose es descriptivo, sin intervalos por grupo, y el grupo más pequeño tiene n = 5 (`results_finales/inferencia/tabla_r4c_cruce.csv`, `n_meses`).
-7. Que el δ elegido para G2 sea mejor que otros δ en validación: 5 celdas quedan dentro de la tolerancia de empate (TOL = 0.0005) y la elección cambia con la tolerancia: TOL x 10 → (0.90, 0.01); TOL / 10 → (0.75, 0.01) (`results_v2/results_seleccion/sensibilidad_seleccion.csv`, `caso, delta, eta`).
-8. Generalización fuera de la muestra estudiada: diez acciones de EE. UU., un solo periodo de prueba, y la configuración de la geometría 1 ya se había evaluado en prueba antes de T9 (metodologia_6.tex, limitaciones).
+5. Que alguna estrategia supere o no a las de referencia (bajo riesgo, igual ponderación, SPY pasivo, nominal sin costos): no se calcularon contrastes D_k ni intervalos frente a ellas; sus cifras son solo descriptivas (`results_v2/results_benchmarks/metricas_por_tramo_benchmarks.csv`, `riqueza_final`).
+6. Estimaciones precisas de riesgo extremo con VaR y CVaR: con 84 meses de prueba la cola al 95 % equivale a (1 − 0.95)·84 = 4.2 meses (VaR = L_(⌈0.95·84⌉) = L_(80); metodologia_6.tex, sec. «Métricas de desempeño»).
+7. Diferencias entre regímenes: el desglose es descriptivo, sin intervalos por grupo, y el grupo más pequeño tiene n = 5 (`results_finales/inferencia/tabla_r4c_cruce.csv`, `n_meses`).
+8. Que el δ elegido para G2 sea mejor que otros δ en validación: 5 celdas quedan dentro de la tolerancia de empate (TOL = 0.0005) y la elección cambia con la tolerancia: TOL x 10 → (0.90, 0.01); TOL / 10 → (0.75, 0.01) (`results_v2/results_seleccion/sensibilidad_seleccion.csv`, `caso, delta, eta`).
+9. Generalización fuera de la muestra estudiada: diez acciones de EE. UU., un solo periodo de prueba, y la configuración de la geometría 1 ya se había evaluado en prueba antes de T9 (metodologia_6.tex, limitaciones).
 
 ## 4. Pendientes que no salen de estos resultados
 
