@@ -1,0 +1,26 @@
+comprobacion,valor,tolerancia,ok
+nominal tau=0.001 (0.90) reproduce 4 meses guardados: max|dG|,0,1e-08,1
+nominal tau=0.001 (0.90) reproduce 4 meses guardados: max|dx|,0,1e-08,1
+nominal tau=0 (0.80): max|x0+sum x-1|,3.78555964353211e-10,1e-07,1
+nominal tau=0 (0.80): min x,9.76498289127382e-11,-1e-07,1
+nominal tau=0 (0.80): max x - xbar,-1.17984316760911e-10,1e-07,1
+nominal tau=0 (0.80): min (G_ks - delta) en la ventana,0.0726108087045862,-1e-07,1
+nominal tau=0 (0.80): max(TO canonico - TO cvx),2.77555756156289e-17,1e-07,1
+nominal tau=0 (0.80): meses sin optimizacion,0,0,1
+nominal tau=0 (0.90): max|x0+sum x-1|,4.01952027218044e-10,1e-07,1
+nominal tau=0 (0.90): min x,3.83467875055112e-11,-1e-07,1
+nominal tau=0 (0.90): max x - xbar,-5.10350928184522e-11,1e-07,1
+nominal tau=0 (0.90): min (G_ks - delta) en la ventana,2.60643728822174e-11,-1e-07,1
+nominal tau=0 (0.90): max(TO canonico - TO cvx),5.55111512312578e-17,1e-07,1
+nominal tau=0 (0.90): meses sin optimizacion,0,0,1
+igual ponderacion: max|x0+sum x-(1-tau TO)|,3.33066907387547e-16,1e-12,1
+igual ponderacion: max(max x_j - min x_j),0,1e-12,1
+Bajo riesgo: mismas 132 fechas de decision que el nominal guardado,1,1,1
+Igual ponderación: mismas 132 fechas de decision que el nominal guardado,1,1,1
+SPY pasivo: mismas 132 fechas de decision que el nominal guardado,1,1,1
+Nominal sin costos (0.80): mismas 132 fechas de decision que el nominal guardado,1,1,1
+Nominal sin costos (0.90): mismas 132 fechas de decision que el nominal guardado,1,1,1
+Bajo riesgo (validacion): max|exceso sobre rf|,9.8879238130678e-17,1e-15,1
+Bajo riesgo (prueba): max|exceso sobre rf|,9.77950359581925e-17,1e-15,1
+Bajo riesgo: riqueza de prueba = producto de retornos (error relativo),0,1e-10,1
+SPY pasivo: riqueza de prueba = producto de retornos (error relativo),0,1e-10,1

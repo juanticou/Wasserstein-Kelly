@@ -61,4 +61,4 @@ Antes de escribir este índice se comprobó que R2–R5 no tienen fallos (958 co
 ## 4. Pendientes que no salen de estos resultados
 
 - Los .tex de R2 y R4 no se han compilado en este equipo (no hay LaTeX instalado); insertarlos con \input requiere solo los paquetes que ya carga main_6.tex.
-- Al correr r5_verificacion_cruzada.m, CVX avisó que los modelos con log se resuelven con su método de aproximación sucesiva; falta confirmar si MOSEK trata el cono exponencial de forma nativa, porque la metodología dice «CVX + MOSEK».
+- Resuelto (4-nov-2026): el aviso de aproximación sucesiva que CVX mostró al correr r5_verificacion_cruzada.m es genérico (lo imprime lib/cvx_expert_check.m al construir log(), sin mirar el solucionador). En CVX 2.2 build 1148, lib/@cvxprob/solve.m desactiva la aproximación sucesiva con MOSEK >= 9, y el log de una instancia de prueba muestra «Calling Mosek 9.1.9», una sola llamada y conos exponenciales nativos; lo que dice metodologia_6.tex («CVX + MOSEK», cono exponencial nativo) es correcto.
