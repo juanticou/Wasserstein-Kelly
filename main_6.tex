@@ -15,6 +15,16 @@
 \usepackage[authoryear]{natbib}
 %%% [R-res] graphicx: necesario para las figuras de resultados_6.tex.
 \usepackage{graphicx}
+%%% [R-res] placeins: \FloatBarrier mantiene cada tabla y figura de Resultados dentro de su subsección.
+%%% Los parámetros siguientes permiten más flotantes por página para que no se acumulen al final.
+\usepackage{placeins}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
 
 \title{Portafolios de crecimiento robusto con costos de transacción:\\
 una aproximación Wasserstein--Kelly informada por estados del mercado estadounidense}

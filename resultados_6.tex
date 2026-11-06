@@ -29,6 +29,7 @@ La Tabla~\ref{tab:tiempos} resume el tiempo de solución. Cada problema mensual 
 \input{results_finales/complementarias/tabla_g_tiempos}
 
 % ---------------------------------------------------------------------
+\FloatBarrier %%% [R-res] las flotantes de la subsección anterior no pasan de aquí
 \subsection{Validación y selección de parámetros}\label{sec:res_validacion}
 
 %%% [fuente] results_seleccion/riqueza_vs_eta.csv (perdida_rel_vs_eta0); RESULTADOS.md §2.10; tabla_f_validacion_referencias.csv;
@@ -62,6 +63,7 @@ Con la regla de selección de la Sección~\ref{sec:protocolo}, la geometría~1 e
 \input{results_finales/tablas/tabla_d_validacion}
 
 % ---------------------------------------------------------------------
+\FloatBarrier %%% [R-res] las flotantes de la subsección anterior no pasan de aquí
 \subsection{Desempeño fuera de muestra}\label{sec:res_prueba}
 
 %%% [fuente] tabla_a_prueba_desempeno.csv; contrastes_prueba.csv (riqueza_A_sobre_B_menos_1).
@@ -96,6 +98,7 @@ La Tabla~\ref{tab:r2_b} y la Figura~\ref{fig:turnover_prueba} describen la opera
 \end{figure}
 
 % ---------------------------------------------------------------------
+\FloatBarrier %%% [R-res] las flotantes de la subsección anterior no pasan de aquí
 \subsection{Contraste principal: geometría 2 frente a geometría 1}\label{sec:res_principal}
 
 %%% [fuente] tabla_r4a_bootstrap.csv; contrastes_prueba.csv (max_abs_D); RESULTADOS.md §2.3-2.4.
@@ -116,6 +119,7 @@ La Tabla~\ref{tab:r4_bootstrap} y la Figura~\ref{fig:ic} resumen los siete contr
 \end{figure}
 
 % ---------------------------------------------------------------------
+\FloatBarrier %%% [R-res] las flotantes de la subsección anterior no pasan de aquí
 \subsection{Contrastes exploratorios y desglose por régimen}\label{sec:res_exploratorios}
 
 %%% [fuente] tabla_r4a_bootstrap.csv; contrastes_prueba.csv.
@@ -128,6 +132,7 @@ Las Tablas~\ref{tab:r4_regimen} y \ref{tab:r4_cruce} desglosan $D_k$ según el e
 \input{results_finales/inferencia/tabla_r4c_cruce}
 
 % ---------------------------------------------------------------------
+\FloatBarrier %%% [R-res] las flotantes de la subsección anterior no pasan de aquí
 \subsection{Costos de transacción y estrategias de referencia}\label{sec:res_referencias}
 
 %%% [fuente] tabla_b_prueba_operacion.csv; tabla_e_prueba_referencias.csv; tabla_f_validacion_referencias.csv.
@@ -152,6 +157,7 @@ Entre las referencias externas (Figura~\ref{fig:riqueza_referencias}), el activo
 \end{figure}
 
 % ---------------------------------------------------------------------
+\FloatBarrier %%% [R-res] las flotantes de la subsección anterior no pasan de aquí
 \subsection{Distribución adversarial de cada geometría}\label{sec:res_adversarial}
 
 %%% [fuente] complementarias/tabla_h_adversarial.csv y TABLAS_R8.md (r8_tiempos_adversarial.m).
@@ -170,11 +176,11 @@ Las geometrías difieren en hacia dónde va esa masa. Con $c_1$, la geometría~1
 \end{figure}
 
 % ---------------------------------------------------------------------
+\FloatBarrier %%% [R-res] las flotantes de la subsección anterior no pasan de aquí
 \subsection{Síntesis}\label{sec:res_sintesis}
 
 %%% [fuente] RESULTADOS.md §2 y §3.
 En síntesis: (i) la implementación fue numéricamente estable y reprodujo el nominal con $\eta=0$; (ii) en validación todo $\eta>0$ redujo la riqueza, con $\eta\ge0.30$ ambas geometrías se fueron a bajo riesgo y la regla de selección eligió $\eta=0.01$ en las dos; (iii) en prueba, con parámetros emparejados, no se encontró una diferencia media de crecimiento entre la geometría informada por el mercado y la de solo retornos, y las diferencias en pérdidas, concentración y costos fueron pequeñas y sin un signo consistente entre valores de $\delta$; (iv) las estrategias robustas terminaron la prueba con más riqueza, menos turnover y menos costo que el nominal del mismo $\delta$, de forma descriptiva y con un único intervalo exploratorio que excluye el cero; y (v) con el mismo portafolio, la geometría~2 asignó menos masa adversarial adicional que la geometría~1 a los meses de retorno de mercado negativo. Los resultados no permiten ordenar las estrategias a partir de la riqueza final, afirmar diferencias entre regímenes ni generalizar fuera del universo y del periodo estudiados.
 
-%%% [R-res] Coloca aquí todas las tablas y figuras pendientes; sin esto, LaTeX difería los Cuadros
-%%% de referencias en validación y de la distribución adversarial hasta después de la bibliografía.
-\clearpage
+%%% [R-res] Ninguna flotante pasa de aquí (antes de la bibliografía).
+\FloatBarrier
