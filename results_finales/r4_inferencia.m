@@ -166,8 +166,12 @@ function r4_inferencia()
 
     % --- A ---
     tex = tex_head('Prueba 2019--2025: media de $D_k$ y su intervalo del 95\,\% por bootstrap móvil por bloques ($B=10\,000$) con $\ell\in\{3,6,12\}$. $D_k$ en \% mensual; «\% $D_k>0$» sobre los 84 meses; empates: meses con $|D_k|<10^{-6}$. Contrastes principales: 1 y 2; 3 a 7 son exploratorios y no se ajustan por comparaciones múltiples.', ...
-        'tab:r4_bootstrap', '|c|l|r|r|r|r|c|c|c|');
-    tex(end + 1) = "\textbf{N.º} & \textbf{Contraste} & \textbf{Media} & \textbf{Mediana} & \textbf{\% $D_k>0$} & \textbf{Empates} & \textbf{IC $\ell=3$} & \textbf{IC $\ell=6$} & \textbf{IC $\ell=12$} \\ \hline";
+        'tab:r4_bootstrap', '|c|l|r|r|r|r|c|c|c|', '3pt');
+    % Encabezados en dos lineas para que la tabla quepa en el ancho de texto
+    tex(end + 1) = "\textbf{N.º} & \textbf{Contraste} & " + strjoin([hd("\textbf{Media}", "(\%)"), ...
+        hd("\textbf{Mediana}", "(\%)"), hd("\textbf{\%}", "$D_k>0$"), hd("\textbf{Empates}", "$|D_k|<10^{-6}$"), ...
+        hd("\textbf{IC 95\,\%}", "$\ell=3$"), hd("\textbf{IC 95\,\%}", "$\ell=6$"), hd("\textbf{IC 95\,\%}", "$\ell=12$")], ' & ') + ...
+        " \\ \hline";
     mdA = ["## A. Bootstrap por bloques (prueba 2019-2025)", "", "CSV: `tabla_r4a_bootstrap.csv`; .tex: `tabla_r4a_bootstrap.tex`", "", ...
            "| N.º | A | B | Media (%) | Mediana (%) | % D>0 | Empates | IC ℓ=3 (%) | IC ℓ=6 (%) | IC ℓ=12 (%) |", ...
            "|---|---|---|---:|---:|---:|---:|---:|---:|---:|"];
@@ -193,10 +197,10 @@ function r4_inferencia()
     % --- B ---
     hdr = strings(1, numel(GROUPS));
     for g = 1:numel(GROUPS)
-        hdr(g) = sprintf('\\textbf{%s} ($n=%d$)', GROUP_TEX{g}, nnz(mask(char(GROUPS(g)))));
+        hdr(g) = hd("\textbf{" + GROUP_TEX{g} + "}", sprintf('($n=%d$)', nnz(mask(char(GROUPS(g))))));
     end
     tex = tex_head('Prueba 2019--2025: desglose descriptivo por régimen. Cada celda: media de $D_k$ en \% mensual y, entre paréntesis, \% de meses del grupo con $D_k>0$. VIX alto: VIX$_k$ por encima de la mediana de su ventana; $r^{\mathrm{SPY}}_k$: retorno de SPY del mes $k$. Sin inferencia por grupo.', ...
-        'tab:r4_regimen', ['|c|l|' repmat('r|', 1, numel(GROUPS))]);
+        'tab:r4_regimen', ['|c|l|' repmat('r|', 1, numel(GROUPS))], '3pt');
     tex(end + 1) = "\textbf{N.º} & \textbf{Contraste} & " + strjoin(hdr, ' & ') + " \\ \hline";
     mdB = ["## B. Desglose por régimen (media % y, entre paréntesis, % D>0)", "", "CSV: `tabla_r4b_regimen.csv`; .tex: `tabla_r4b_regimen.tex`", "", ...
            "| N.º | A | B | " + strjoin(GROUPS + " (n=" + arrayfun(@(g) string(nnz(mask(char(g)))), GROUPS) + ")", ' | ') + " |", ...
@@ -303,11 +307,19 @@ function T = shown_check(chequeo, c, v, d)
 end
 
 
-function t = tex_head(caption, label, cols)
+function t = tex_head(caption, label, cols, sep)
+% sep: \tabcolsep (por defecto 4pt)
+    if nargin < 4, sep = '4pt'; end
     t = ["% Generado por results_finales/r4_inferencia.m; no editar a mano.", ...
-         "\begin{table}[h]", "\centering", "\footnotesize", "\setlength{\tabcolsep}{4pt}", ...
+         "\begin{table}[h]", "\centering", "\footnotesize", "\setlength{\tabcolsep}{" + string(sep) + "}", ...
          "\caption{" + string(caption) + "}\label{" + string(label) + "}", ...
          "\begin{tabular}{" + string(cols) + "}", "\hline"];
+end
+
+
+function s = hd(a, b)
+% Encabezado de columna en dos lineas (tabla anidada; no requiere makecell)
+    s = "\begin{tabular}[c]{@{}c@{}}" + string(a) + "\\" + string(b) + "\end{tabular}";
 end
 
 

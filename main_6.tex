@@ -2,6 +2,9 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
+%%% [R-res] El texto ya escribe \,\% de forma explícita; el espacio automático de babel-spanish antes de \%
+%%% falla en modo matemático ("Incompatible glue units" en $...\,\%$) y lo duplicaría. Se desactiva.
+\spanishplainpercent
 \usepackage[T1]{fontenc}
 \usepackage{amsmath, amssymb}
 \usepackage{geometry}
@@ -10,6 +13,8 @@
 \usepackage{csquotes}
 \usepackage{hyperref}
 \usepackage[authoryear]{natbib}
+%%% [R-res] graphicx: necesario para las figuras de resultados_6.tex.
+\usepackage{graphicx}
 
 \title{Portafolios de crecimiento robusto con costos de transacción:\\
 una aproximación Wasserstein--Kelly informada por estados del mercado estadounidense}
@@ -126,6 +131,9 @@ de un portafolio Wasserstein--Kelly con costos de transacción.
 
 
 \input{metodologia_6}
+
+%%% [R-res] Sección de Resultados (borrador del 5-nov-2026).
+\input{resultados_6}
 
 %%% [C33] Dir. p.10 (bibliografía): se unifican las etiquetas autor-año en español («y» en lugar de «and») y las iniciales de Li. Pendiente de revisión manual: formato de las referencias técnicas de CVX/MOSEK (versión y fecha de consulta).
 %%% [R33] Reporte T2-T5: se agregan las versiones (CVX 2.2 build 1148; MOSEK 9.1.9). Sigue pendiente la fecha de consulta de ambas referencias.
