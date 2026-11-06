@@ -1,0 +1,84 @@
+% =====================================================================
+%  discusion_6.tex  --  Sección de Discusión (se incluye desde main_6.tex)
+% ---------------------------------------------------------------------
+%  Borrador iniciado el 6-nov-2026 a partir de results_finales/ANALISIS_RESULTADOS_DISCUSION.md (§3 y §4).
+%  - Solo se citan obras que ya están en la bibliografía de main_6.tex.
+%  - Las cifras remiten a la Sección de Resultados (cada una con su CSV allí); aquí se repiten pocas.
+%  - Lo que es hipótesis (mecanismo de la geometría 2) se dice como hipótesis.
+% =====================================================================
+
+\section{Discusión}\label{sec:discusion}
+
+% ---------------------------------------------------------------------
+\subsection{Respuesta a la pregunta de investigación}\label{sec:disc_respuesta}
+
+La pregunta de investigación era si incorporar el retorno de mercado y el VIX en la geometría de transporte de un portafolio Wasserstein--Kelly con costos de transacción cambia su desempeño frente a una geometría definida solo sobre los retornos de los activos. Con el universo, el periodo, los costos y la regla de selección de este estudio, la respuesta es que no se encontró un efecto detectable. Con parámetros emparejados, la media de las diferencias mensuales de crecimiento logarítmico tiene signos opuestos según la configuración, sus intervalos del $95\,\%$ contienen el cero con las tres longitudes de bloque y la mediana de las diferencias es nula (Sección~\ref{sec:res_principal}). Las diferencias en pérdidas, concentración y costos también son pequeñas y su signo cambia con $\delta$ (Sección~\ref{sec:res_prueba}).
+
+Este es un resultado negativo, pero informativo: con un diseño que fija todo salvo la geometría, añadir variables de estado del mercado a la distancia no produjo una mejora sistemática. Sin embargo, no debe leerse como evidencia de que ambas geometrías sean equivalentes. Con 84 meses de prueba, los intervalos admiten diferencias medias de hasta $0.170\,\%$ mensual a favor de la geometría~2 o de $0.118\,\%$ a favor de la geometría~1, y la cobertura empírica del bootstrap, inferior a la nominal (Sección~\ref{sec:res_estabilidad}), sugiere que la incertidumbre real es algo mayor. El estudio no tiene potencia para detectar diferencias de ese tamaño, que acumuladas a lo largo de varios años no serían despreciables.
+
+% ---------------------------------------------------------------------
+\subsection{Por qué la geometría importa poco: la robustez útil está en radios pequeños}\label{sec:disc_eta}
+
+El resultado nulo tiene una explicación directa en la validación. Todo radio positivo redujo la riqueza frente al nominal, y la pérdida creció rápidamente con $\eta$, hasta que con $\eta\ge0.30$ ambas geometrías trasladaron la riqueza al activo de bajo riesgo (Sección~\ref{sec:res_validacion}). Una regla que maximiza el crecimiento, condicionada a $\eta>0$, elige por construcción el menor radio de la malla, y así ocurrió en las dos geometrías. Con $\eta=0.01$ el adversario apenas perturba la distribución empírica: mueve en promedio entre el $0.97\,\%$ y el $1.33\,\%$ de la probabilidad y el número efectivo de escenarios sigue cerca de 59 de 60 (Sección~\ref{sec:res_adversarial}). Con una perturbación tan pequeña, la forma de la bola casi no altera la decisión, lo que concuerda con la mediana nula de $D_k$ y con los muchos meses en que ambas geometrías eligen prácticamente el mismo portafolio.
+
+De aquí resulta una tensión estructural del diseño. La geometría solo tiene margen para cambiar la decisión cuando el radio es grande, y precisamente allí la validación muestra diferencias entre geometrías: entre $\eta=0.02$ y $\eta=0.15$, la geometría~2 perdió en general menos riqueza que la geometría~1. Pero esa es la región que el criterio de crecimiento descarta, porque cualquier robustez apreciable cuesta crecimiento. En otras palabras, bajo un objetivo de Kelly con costos y una selección por riqueza, la geometría importa sobre todo donde no conviene operar. Un estudio que fijara $\eta$ por otro criterio (por ejemplo, un nivel de protección deseado y no la riqueza de validación) podría encontrar diferencias mayores entre geometrías; este trabajo no lo evalúa.
+
+% ---------------------------------------------------------------------
+\subsection{Qué hace la geometría informada con el adversario}\label{sec:disc_mecanismo}
+
+La motivación de la geometría~2 era que el VIX y el retorno de mercado describen el estado en que ocurrieron los retornos \citep{whaley2000,french1987}, de modo que la bola de ambigüedad reflejara mejor la incertidumbre en estados de estrés. Los resultados muestran un efecto distinto del que esa motivación sugiere. Frente a un mismo portafolio, la geometría~2 asignó \emph{menos} masa adversarial adicional que la geometría~1 a los meses de la ventana con retorno de mercado negativo o con VIX alto, y la diferencia es muy marcada en validación (Sección~\ref{sec:res_adversarial}).
+
+Una explicación coherente con la construcción de los costos, que se plantea como hipótesis y no como resultado comprobado, es la siguiente. En la geometría~2, el costo de mover probabilidad de un mes a otro incluye la distancia entre sus retornos de mercado y sus niveles de VIX \eqref{eq:g2}. Los meses en que el portafolio pierde suelen ser meses de mercado negativo, cuyo estado difiere del de la mayoría de los meses de la ventana; trasladarles masa desde meses de estado distinto resulta entonces más caro, y con el mismo presupuesto relativo $\rho_k$ el adversario prefiere redistribuir entre meses de estado parecido. En la geometría~1 el costo solo compara los retornos de los activos, y el adversario puede llevar masa a los meses malos sin pagar por el cambio de estado. Así, incorporar el estado del mercado a la distancia no hace al adversario más pesimista sobre las crisis: lo restringe a perturbaciones dentro de un mismo estado. La diferencia, además, no es uniforme en el tiempo: en prueba hay tramos en que ambas geometrías trasladan una masa similar (Figura~\ref{fig:exceso_spy}), lo que indica que el efecto depende de la composición de cada ventana.
+
+Esto matiza la motivación económica de la Sección~\ref{sec:vacio}. Que una variable sea informativa sobre el estado del mercado no implica que añadirla a la distancia de transporte vuelva la robustez más protectora en ese estado; el efecto depende de cómo la variable cambia el costo relativo de las perturbaciones. La literatura sobre DRO con geometría de los datos \citep{liu2022} respalda que la elección de la distancia importa; los resultados de este trabajo ilustran que su efecto puede ir en una dirección distinta de la intuitiva, y que conviene analizar la distribución adversarial y no solo el desempeño.
+
+% ---------------------------------------------------------------------
+\subsection{Robustez frente al nominal y papel de los costos}\label{sec:disc_costos}
+
+En la comparación con el Kelly nominal, validación y prueba apuntan en direcciones opuestas. En validación, toda robustez costó crecimiento; en prueba, las cuatro estrategias Wasserstein--Kelly terminaron con más riqueza, menos turnover y menos costo que el nominal del mismo $\delta$, aunque solo uno de los cuatro contrastes tiene un intervalo que excluye el cero, y es exploratorio (Sección~\ref{sec:res_exploratorios}). Hay al menos dos lecturas compatibles con los datos: que se trate de la variabilidad de una sola trayectoria, o que la regularización que introduce la robustez rinda más en un periodo con episodios de alta volatilidad, como los de 2020 y 2022. Con un único periodo de prueba no es posible distinguirlas, y la inversión de signo entre tramos es en sí misma una advertencia contra extraer conclusiones de un solo periodo.
+
+Los costos de transacción, en cambio, tienen un efecto claro y de mayor magnitud. Al pasar de $\tau=0$ a $\tau=0.001$, el turnover acumulado del nominal se redujo casi a la mitad, mientras que la robustez con $\eta=0.01$ lo redujo después en una cantidad mucho menor (Sección~\ref{sec:res_referencias}). Además, la ventaja descriptiva en riqueza de las estrategias robustas sobre el nominal es mucho mayor que el costo que ahorran, por lo que no se explica por el ahorro de costos sino por asignaciones distintas. Para los trabajos que estudian portafolios de Kelly robustos sin modelar costos, como \citet{sunzou2025}, esto sugiere que parte de la estabilidad que se atribuye a la robustez puede obtenerse con un término de costos, y que la comparación entre modelos robustos y nominales es más justa cuando ambos pagan costos, como se hizo aquí, en la línea de los modelos log-óptimos robustos sensibles a costos \citep{hsiehyu2024}.
+
+% ---------------------------------------------------------------------
+\subsection{Supervivencia y concentración}\label{sec:disc_supervivencia}
+
+La cota de supervivencia $\delta$ garantiza un factor de crecimiento mínimo solo frente a los escenarios de la ventana. Fuera de muestra, las tres estrategias con $\delta=0.90$ tuvieron dos meses por debajo de esa cota, también con robustez (Sección~\ref{sec:res_prueba}). Esto es coherente con que el soporte de la bola sea finito: el adversario redistribuye probabilidad entre meses ya observados y no puede crear escenarios peores que los de la ventana, de modo que la robustez con radio pequeño no extiende la protección a pérdidas no observadas.
+
+Todas las estrategias de Kelly resultaron concentradas: prácticamente invertidas por completo, con el peso máximo en la cota $\bar x=0.25$ y un número efectivo de entre cuatro y cinco activos. Es coherente con un criterio que maximiza el crecimiento logarítmico esperado \citep{kelly1956} y que no penaliza la concentración por sí mismo, y la robustez con radio pequeño lo atenúa solo levemente. El portafolio de igual ponderación, sin optimización, terminó la prueba con una riqueza similar a la del nominal, con una caída máxima mucho menor y mejores razones de Sharpe y Calmar, mientras que en validación quedó claramente por debajo de todas las estrategias Kelly (Sección~\ref{sec:res_referencias}). Que la ventaja del enfoque de Kelly sobre una diversificación ingenua dependa del periodo es una advertencia adicional sobre el alcance de los resultados; como las referencias se implementaron después de evaluar la prueba y no tienen contrastes, esta comparación es solo descriptiva.
+%%% [R-disc] Si se quiere relacionar con la literatura de 1/N (p. ej., DeMiguel, Garlappi y Uppal, 2009), falta agregar la referencia a la bibliografía: PENDIENTE del autor. No se cita aquí para no introducir obras no revisadas.
+
+% ---------------------------------------------------------------------
+\subsection{Alcance de las conclusiones}\label{sec:disc_alcance}
+
+Las limitaciones de la Sección~\ref{sec:limit} condicionan la lectura de estos resultados. Las más relevantes para las conclusiones son cinco. Primero, el universo es fijo, sobrevivió hasta hoy y hay una sola trayectoria histórica, por lo que los resultados no se generalizan a otros universos o periodos. Segundo, la regla de selección se fijó después de ver la tabla de validación; la configuración de la geometría~1 quedó en el borde de la malla, y la de la geometría~2 depende de la tolerancia de empate (Sección~\ref{sec:res_validacion}). Tercero, el periodo de prueba ya había estado expuesto en corridas previas a la selección, de modo que no es una validación externa ciega. Cuarto, los pesos de la geometría~2 se fijaron a priori y el VIX entra solo por su nivel, por lo que el resultado nulo se refiere a esta especificación y no a cualquier geometría informada por el mercado. Quinto, con 84 meses y siete intervalos sin ajuste por multiplicidad, las afirmaciones estadísticas son necesariamente débiles. Dentro de esos límites, el resultado principal, la ausencia de un efecto detectable de la geometría con parámetros emparejados, es robusto a la longitud de bloque y no depende de la elección entre configuraciones.
+
+% ---------------------------------------------------------------------
+\subsection{Cumplimiento de los objetivos}\label{sec:disc_objetivos}
+
+La Tabla~\ref{tab:cumplimiento} resume cómo los resultados atienden cada objetivo. El objetivo general se cumplió: se evaluó el efecto de incorporar el retorno de mercado y el VIX en la geometría de transporte, con el Kelly nominal como referencia y en las cuatro dimensiones previstas, y la evaluación indica que, bajo este diseño, ese efecto no es detectable en el crecimiento y es pequeño y de signo variable en pérdidas, concentración y costos.
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\caption{Objetivos específicos y evidencia con que se atienden.}\label{tab:cumplimiento}
+\begin{tabular}{|p{4.2cm}|p{6.6cm}|p{3.6cm}|}
+\hline
+\textbf{Objetivo específico} & \textbf{Evidencia} & \textbf{Secciones} \\ \hline
+1. Desempeño de referencia del Kelly nominal con costos & Nominal con $\delta=0.80$ y $0.90$ en validación y prueba, con todas las métricas; además, nominal sin costos y tres referencias externas. & \ref{sec:res_validacion}, \ref{sec:res_prueba}, \ref{sec:res_referencias} \\ \hline
+2. Formular y validar el modelo con dos geometrías y la equivalencia con $\eta=0$ & Equivalencia exacta con el nominal en 132 meses y seis $\delta$; verificaciones de restricciones, primal--dual, instancia sintética y monotonía en el radio; ningún mes sin solución óptima. & \ref{sec:wk}, \ref{sec:geom}, \ref{sec:impl}, \ref{sec:res_estabilidad} \\ \hline
+3. Evaluación fuera de muestra con parámetros controlados & Seis estrategias con parámetros congelados en 2019--2025; contraste emparejado que fija $(\delta,\eta)$. & \ref{sec:res_prueba}, \ref{sec:res_principal} \\ \hline
+4. Comparación en crecimiento, pérdidas, concentración y costos, con incertidumbre & Métricas de las cuatro dimensiones; bootstrap móvil por bloques con tres longitudes; desglose por régimen; cobertura simulada del intervalo. & \ref{sec:res_prueba}--\ref{sec:res_exploratorios} \\ \hline
+5. Sensibilidad del desempeño y de la estabilidad numérica a $\eta$ y $\delta$ & Mallas $\delta\times\eta$ de validación; fuerte sensibilidad a $\eta$ y casi nula a $\delta$; umbral de traslado a bajo riesgo; sensibilidad de la regla de selección; estabilidad numérica en toda la malla. & \ref{sec:res_estabilidad}, \ref{sec:res_validacion} \\ \hline
+\end{tabular}
+\end{table}
+
+Respecto de la delimitación de la contribución, el aporte del trabajo es empírico y metodológico: una comparación controlada de dos geometrías bajo un protocolo idéntico, con costos de transacción, cuya conclusión es que la geometría informada por el mercado no aporta un valor detectable en estas condiciones. Se añade un análisis de la distribución adversarial que sugiere por qué ocurre así.
+
+% ---------------------------------------------------------------------
+\FloatBarrier %%% [R-disc] el Cuadro de cumplimiento queda dentro de su subsección
+\subsection{Trabajo futuro}\label{sec:disc_futuro}
+
+Los resultados sugieren varias extensiones, ninguna de ellas evaluada aquí: (i) fijar el radio con un criterio distinto de la riqueza de validación, por ejemplo un nivel de protección objetivo, para explorar la región en que la geometría sí cambia la decisión; (ii) probar pesos alternativos para las variables de estado y transformaciones como la variación logarítmica del VIX, sin usar el periodo de prueba para elegirlos; (iii) costos de transporte asimétricos, que abaraten mover masa hacia estados de estrés en lugar de encarecerlo; (iv) variantes como el Kelly fraccionario y otros niveles de costo $\tau$; y (v) otros universos, periodos y esquemas de validación con varias ventanas, que reduzcan la dependencia de una sola trayectoria.
+
+%%% [R-disc] Ninguna flotante pasa a la bibliografía.
+\FloatBarrier
