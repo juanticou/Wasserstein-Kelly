@@ -1,0 +1,18 @@
+% Generado por results_finales/r8_tiempos_adversarial.m; no editar a mano.
+\begin{table}[h]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Tiempo de solución por mes (segundos) de cada problema mensual, re-resuelto con el portafolio heredado guardado (modelado en CVX y solución con MOSEK). $C_k$ y $\rho_k$: construcción de la matriz de costos y del radio (milisegundos, prueba). Una medición por mes; MATLAB R2026a, CVX Version 2.2, Build 1148, MOSEK 9.1.9, 8 núcleos.}\label{tab:tiempos}
+\begin{tabular}{|l|r|r|r|r|r|r|r|}
+\hline
+ & \multicolumn{3}{c|}{\textbf{Prueba (84)}} & \multicolumn{2}{c|}{\textbf{Validación (48)}} & & \\ \cline{2-6}
+\textbf{Estrategia} & \textbf{Mediana} & \textbf{Media} & \textbf{Máx.} & \textbf{Mediana} & \textbf{Máx.} & \textbf{$C_k$, $\rho_k$ (ms)} & \textbf{No óptimos} \\ \hline
+Nominal (0.80) & 0.090 & 0.091 & 0.099 & 0.091 & 0.231 & 0.00 & 0 \\ \hline
+Nominal (0.90) & 0.090 & 0.091 & 0.103 & 0.090 & 0.096 & 0.00 & 0 \\ \hline
+G1 (0.80, 0.01) & 0.124 & 0.124 & 0.135 & 0.123 & 0.150 & 0.45 & 0 \\ \hline
+G1 (0.90, 0.01) & 0.122 & 0.124 & 0.144 & 0.123 & 0.133 & 0.45 & 0 \\ \hline
+G2 (0.80, 0.01) & 0.124 & 0.125 & 0.142 & 0.124 & 0.136 & 0.58 & 0 \\ \hline
+G2 (0.90, 0.01) & 0.123 & 0.128 & 0.323 & 0.123 & 0.132 & 0.57 & 0 \\ \hline
+\end{tabular}
+\end{table}

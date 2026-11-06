@@ -2,11 +2,11 @@
 \begin{table}[h]
 \centering
 \footnotesize
-\setlength{\tabcolsep}{4pt}
+\setlength{\tabcolsep}{3pt}
 \caption{Prueba 2019--2025: media de $D_k$ y su intervalo del 95\,\% por bootstrap móvil por bloques ($B=10\,000$) con $\ell\in\{3,6,12\}$. $D_k$ en \% mensual; «\% $D_k>0$» sobre los 84 meses; empates: meses con $|D_k|<10^{-6}$. Contrastes principales: 1 y 2; 3 a 7 son exploratorios y no se ajustan por comparaciones múltiples.}\label{tab:r4_bootstrap}
 \begin{tabular}{|c|l|r|r|r|r|c|c|c|}
 \hline
-\textbf{N.º} & \textbf{Contraste} & \textbf{Media} & \textbf{Mediana} & \textbf{\% $D_k>0$} & \textbf{Empates} & \textbf{IC $\ell=3$} & \textbf{IC $\ell=6$} & \textbf{IC $\ell=12$} \\ \hline
+\textbf{N.º} & \textbf{Contraste} & \begin{tabular}[c]{@{}c@{}}\textbf{Media}\\(\%)\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Mediana}\\(\%)\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{\%}\\$D_k>0$\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Empates}\\$|D_k|<10^{-6}$\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{IC 95\,\%}\\$\ell=3$\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{IC 95\,\%}\\$\ell=6$\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{IC 95\,\%}\\$\ell=12$\end{tabular} \\ \hline
 1 & $G_2(c_1)-G_1(c_1)$ & $-$0.038 & 0.000 & 50.0 & 6 & [$-$0.118, 0.038] & [$-$0.118, 0.038] & [$-$0.126, 0.038] \\ \hline
 2 & $G_2(c_2)-G_1(c_2)$ & 0.059 & 0.000 & 52.4 & 16 & [$-$0.039, 0.164] & [$-$0.035, 0.170] & [$-$0.029, 0.157] \\ \hline \hline
 3 & $G_2(c_2)-G_1(c_1)$ & $-$0.038 & $-$0.061 & 42.9 & 0 & [$-$0.202, 0.133] & [$-$0.205, 0.127] & [$-$0.210, 0.076] \\ \hline
