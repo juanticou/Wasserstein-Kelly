@@ -1,6 +1,6 @@
-# Tablas R8 (generadas por `results_finales/r8_tiempos_adversarial.m`)
+# Tablas R8 (generadas por `codigo/resultados_finales/r8_tiempos_adversarial.m`)
 
-Solo lee CSV; no optimiza ni elige parámetros. Fuentes: `results_v2/results_tiempos/tiempos_por_mes.csv`, `results_v2/results_tiempos/tiempos_resumen.csv`, `results_v2/results_tiempos/entorno_tiempos.csv`, `results_v2/results_probabilidades_adversariales/resumen_por_fecha.csv`, `results_v2/results_probabilidades_adversariales/verificaciones.csv`.
+Solo lee CSV; no optimiza ni elige parámetros. Fuentes: `resultados/v2/results_tiempos/tiempos_por_mes.csv`, `resultados/v2/results_tiempos/tiempos_resumen.csv`, `resultados/v2/results_tiempos/entorno_tiempos.csv`, `resultados/v2/results_probabilidades_adversariales/resumen_por_fecha.csv`, `resultados/v2/results_probabilidades_adversariales/verificaciones.csv`.
 
 ## G. Tiempos de solución por mes (segundos)
 

@@ -1,8 +1,8 @@
-# Tablas R2 (generadas por `results_finales/r2_tablas.m`)
+# Tablas R2 (generadas por `codigo/resultados_finales/r2_tablas.m`)
 
-Fuente: `results_v2/results_prueba_v2/metricas_por_tramo.csv`; la fila de cota delta activa sale de `r2_cota_delta.csv`. † = configuracion elegida en validacion (T9). Porcentajes con 2 decimales; las cifras exactas estan en los CSV.
+Fuente: `resultados/v2/results_prueba_v2/metricas_por_tramo.csv`; la fila de cota delta activa sale de `r2_cota_delta.csv`. † = configuracion elegida en validacion (T9). Porcentajes con 2 decimales; las cifras exactas estan en los CSV.
 
-Tablas (e) y (f): `results_v2/results_benchmarks/metricas_por_tramo_benchmarks.csv` (main_benchmarks.m). Nominal sin costos = Kelly nominal con tau = 0 y turnover canonico; — = no definido o no aplica.
+Tablas (e) y (f): `resultados/v2/results_benchmarks/metricas_por_tramo_benchmarks.csv` (main_benchmarks.m). Nominal sin costos = Kelly nominal con tau = 0 y turnover canonico; — = no definido o no aplica.
 
 ## (a) Prueba 2019-2025: desempeno
 

@@ -1,6 +1,6 @@
-# Tablas R4 (generadas por `results_finales/r4_inferencia.m`)
+# Tablas R4 (generadas por `codigo/resultados_finales/r4_inferencia.m`)
 
-Fuentes: `results_v2/results_bootstrap/tabla_bootstrap_contrastes.csv`, `results_v2/results_regimen/desglose_regimen.csv` y `clasificacion_meses.csv`. Contrastes numerados como en la Tabla `tab:contrastes`; c1 = (0.90, 0.01), c2 = (0.80, 0.01). D_k = log G^A - log G^B, en % mensual. Contraste principal: 1 y 2 (los demás son exploratorios).
+Fuentes: `resultados/v2/results_bootstrap/tabla_bootstrap_contrastes.csv`, `resultados/v2/results_regimen/desglose_regimen.csv` y `clasificacion_meses.csv`. Contrastes numerados como en la Tabla `tab:contrastes`; c1 = (0.90, 0.01), c2 = (0.80, 0.01). D_k = log G^A - log G^B, en % mensual. Contraste principal: 1 y 2 (los demás son exploratorios).
 
 ## A. Bootstrap por bloques (prueba 2019-2025)
 

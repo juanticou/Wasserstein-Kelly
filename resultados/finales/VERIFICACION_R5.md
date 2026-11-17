@@ -1,4 +1,4 @@
-# Verificación cruzada R5 (generada por `results_finales/r5_verificacion_cruzada.m`)
+# Verificación cruzada R5 (generada por `codigo/resultados_finales/r5_verificacion_cruzada.m`)
 
 Detalle en `verificacion_cruzada.csv`. Tolerancia relativa 1e-12 salvo donde se exige igualdad exacta (C y F: 0).
 

@@ -1,6 +1,6 @@
-# Figuras R3 (generadas por `results_finales/r3_figuras.m`)
+# Figuras R3 (generadas por `codigo/resultados_finales/r3_figuras.m`)
 
-Cada figura está en PDF (vectorial) y PNG. Fuente: `results_v2/`. † = configuración elegida en validación (T9).
+Cada figura está en PDF (vectorial) y PNG. Fuente: `resultados/v2/`. † = configuración elegida en validación (T9).
 
 | Archivo | Fuente | Qué muestra |
 |---|---|---|
