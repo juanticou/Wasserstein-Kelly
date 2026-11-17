@@ -6,8 +6,6 @@ Práctica investigativa (EAFIT, director: Prof. Diego Fonseca). Se comparan tres
 2. **Wasserstein–Kelly, Geometría 1 (G1)**: versión robusta en una bola de Wasserstein cuyo costo de transporte usa solo los retornos de las acciones.
 3. **Wasserstein–Kelly, Geometría 2 (G2)**: el costo de transporte combina retornos de las acciones, retorno de SPY y nivel del VIX, con pesos fijos (0.70, 0.15, 0.15).
 
-El texto del trabajo está en `main_6.tex`, que incluye `metodologia_6.tex`, `resultados_6.tex` y `discusion_6.tex`.
-
 ## Diseño experimental
 
 | Elemento | Valor |
@@ -31,18 +29,25 @@ Con δ ≤ 0.90 el problema siempre es factible; cualquier mes "no factible" es 
 
 ```
 Wasserstein-Kelly/
-├── data/
-│   ├── 01_import_data.py          descarga (Yahoo, FRED) y construcción del panel mensual
-│   ├── build_hybrid_panel.py      panel híbrido con el cierre del 31-dic-2025
-│   ├── audit/, audit_2026-01-01/  auditoría de datos y discrepancias entre fuentes
-│   ├── raw/, raw_2026-01-01/      precios diarios descargados (no se modifican)
+├── iniciar_rutas.m          agrega codigo/ al path de MATLAB
+├── requirements.txt         paquetes de Python
+├── data/                    datos y su preparación (Python)
+│   ├── 01_import_data.py        descarga (Yahoo, FRED) y panel mensual
+│   ├── build_hybrid_panel.py    panel híbrido con el cierre del 31-dic-2025
+│   ├── audit/, audit_2026-01-01/    auditoría de datos
+│   ├── raw/, raw_2026-01-01/        precios diarios (no se modifican)
 │   └── processed/, processed_2026-01-01/   paneles mensuales
-├── *.m                            MATLAB común y de la Geometría 1 (solvers, backtests, métricas, mallas, selección, bootstrap)
-├── wdro-market/                   Geometría 2 (costo de transporte con SPY y VIX, malla de validación)
-├── results_*/                     resultados de la línea base (cierre del 30-dic-2025)
-├── results_v2/                    resultados vigentes (panel híbrido, cierre del 31-dic-2025)
-├── results_finales/               tablas, figuras, inferencia, verificación cruzada (scripts r2_* a r6_*)
-└── main_6.tex, metodologia_6.tex, resultados_6.tex, discusion_6.tex
+├── codigo/                  MATLAB
+│   ├── nucleo/                  funciones comunes y G1: solvers, backtests, métricas, rutas, selección, bootstrap
+│   ├── geometria2/              costo de transporte con SPY y VIX, backtest y malla de validación de G2
+│   ├── pipeline/                scripts que se ejecutan, en el orden del MANIFIESTO (mallas, verificaciones, selección, prueba, bootstrap, régimen)
+│   ├── graficos/                funciones plot_*
+│   ├── resultados_finales/      r1_* a r8_*: tablas, figuras, inferencia, verificación cruzada e índice
+│   └── historico/               scripts de etapas previas, fuera del pipeline (se conservan como referencia)
+└── resultados/
+    ├── v2/                      resultados vigentes (panel híbrido, cierre del 31-dic-2025)
+    ├── linea_base/              resultados anteriores (cierre del 30-dic-2025)
+    └── finales/                 tablas (.csv/.tex), figuras (.pdf/.png), inferencia, MANIFIESTO.md, RESULTADOS.md
 ```
 
 ## Requisitos
@@ -50,7 +55,7 @@ Wasserstein-Kelly/
 - MATLAB R2026a con CVX 2.2 y MOSEK 9.1.9 (el que viene con CVX).
 - Python 3.13 con los paquetes de `requirements.txt`: `pip install -r requirements.txt`.
 
-Las versiones exactas están en `results_finales/MANIFIESTO.md`.
+Las versiones exactas están en `resultados/finales/MANIFIESTO.md`.
 
 ## Cómo ejecutar
 
@@ -61,25 +66,42 @@ py data/01_import_data.py --end 2026-01-01 --raw-dir <nueva> --proc-dir <nueva>
 py data/audit/02_audit_data.py --raw-dir ... --proc-dir ... --out-dir <nueva>
 ```
 
-**MATLAB**: las rutas se leen en `config_rutas.m` desde dos variables de entorno. Para los resultados vigentes, desde la raíz del proyecto:
+**MATLAB**, desde la raíz del proyecto:
 
 ```matlab
+iniciar_rutas                      % una vez por sesión (cada script también lo hace por su cuenta)
 setenv('WK_PANEL', fullfile(pwd, 'data', 'processed_2026-01-01', 'monthly_panel_hibrido.csv'));
-setenv('WK_RESULTS_ROOT', fullfile(pwd, 'results_v2'));
+setenv('WK_RESULTS_ROOT', fullfile(pwd, 'resultados', '<carpeta nueva>'));
+run('codigo/pipeline/main_grid_delta_eta.m')   % o r1_ejecutar({...}) para varios pasos
 ```
 
-El orden del pipeline (malla G1 → validación → malla G2 → verificaciones → selección → prueba → bootstrap → régimen) está en la tabla de `results_finales/MANIFIESTO.md`. `preparar_salida.m` detiene un script si su carpeta de salida ya tiene archivos (se puede forzar con `WK_PERMITIR_SOBRESCRIBIR=1`). Las mallas completas son pesadas: conviene probar antes con una sola combinación.
+`config_rutas.m` lee `WK_PANEL` y `WK_RESULTS_ROOT`; si están vacías usa `data/processed/monthly_panel.csv` y `resultados/linea_base/`. `preparar_salida.m` detiene un script si su carpeta de salida en la línea base ya tiene archivos (se puede forzar con `WK_PERMITIR_SOBRESCRIBIR=1`). Las mallas completas son pesadas: conviene probar antes con una sola combinación.
+
+El orden del pipeline (malla G1 → validación → malla G2 → verificaciones → selección → prueba → bootstrap → régimen) está en la tabla de `resultados/finales/MANIFIESTO.md`. Las tablas y figuras finales se regeneran con `r2_tablas`, `r3_figuras`, `r4_inferencia`, `r5_verificacion_cruzada`, `r6_resultados` y `r8_tiempos_adversarial`, que solo leen `resultados/v2/` y escriben en `resultados/finales/`.
 
 ## Resultados
 
-- Resultados vigentes: `results_v2/`.
-- Índice de tablas y figuras del documento: `results_finales/RESULTADOS.md`.
+- Resultados vigentes: `resultados/v2/`.
+- Índice de tablas y figuras: `resultados/finales/RESULTADOS.md`.
 - Todas las cifras de tablas y figuras se generan con scripts a partir de los CSV/.mat; ninguna se escribe a mano.
+
+## Rutas antiguas → nuevas
+
+`MANIFIESTO.md` y los reportes de `resultados/finales/` (`REPORTE_R1.md`, `REPORTE_SESION_2026-11-04.md`, `ANALISIS_RESULTADOS_DISCUSION.md`) se escribieron con las rutas anteriores a la reorganización:
+
+| Antes | Ahora |
+|---|---|
+| `*.m` en la raíz | `codigo/nucleo/`, `codigo/pipeline/`, `codigo/graficos/` o `codigo/historico/` |
+| `wdro-market/*.m` | `codigo/geometria2/` (`main_geometria_mercado.m` y `main_comparacion_modelos.m` en `codigo/historico/`) |
+| `results_finales/*.m` | `codigo/resultados_finales/` |
+| `results_finales/` (salidas) | `resultados/finales/` |
+| `results_v2/` | `resultados/v2/` |
+| `results_*` de la raíz y `wdro-market/results_validacion_grid_market/` | `resultados/linea_base/` (misma estructura interna) |
 
 ## Archivos retirados
 
-En la rama `limpieza-readme` se retiraron los experimentos descartados (`wdro-hypercube/`, `wdro-return/`), los resultados heredados (`results_out/`, `results_out_wdro/`, `results_prueba_fuera_muestra/`, `wdro-market/results_geometria_mercado/`, `wdro-market/results_comparacion_modelos/`) y reportes de fases cerradas. Se recuperan desde `main` o el historial:
+Se retiraron del repositorio los `.tex` del artículo (`main_6.tex`, `metodologia_6.tex`, `resultados_6.tex`, `discusion_6.tex`), los experimentos descartados (`wdro-hypercube/`, `wdro-return/`) y los resultados heredados de etapas previas. Se recuperan desde el historial, por ejemplo:
 
 ```bash
-git checkout main -- wdro-hypercube
+git checkout b4db6d5 -- metodologia_6.tex
 ```

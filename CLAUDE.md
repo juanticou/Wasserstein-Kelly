@@ -1,17 +1,19 @@
 # Proyecto: Portafolios Wasserstein–Kelly con costos de transacción
 
-Práctica investigativa (EAFIT, director: Prof. Diego Fonseca). Compara tres estrategias de asignación mensual sobre 10 acciones de EE. UU.: Kelly nominal, Wasserstein–Kelly con Geometría 1 (solo retornos) y Wasserstein–Kelly con Geometría 2 (retornos + retorno de SPY + VIX). El texto vigente del trabajo está en `main_6.tex` y `metodologia_6.tex` (las versiones `_1` y `_2` están obsoletas).
+Práctica investigativa (EAFIT, director: Prof. Diego Fonseca). Compara tres estrategias de asignación mensual sobre 10 acciones de EE. UU.: Kelly nominal, Wasserstein–Kelly con Geometría 1 (solo retornos) y Wasserstein–Kelly con Geometría 2 (retornos + retorno de SPY + VIX). Los `.tex` del artículo (`main_6.tex`, `metodologia_6.tex`, `resultados_6.tex`, `discusion_6.tex`) se retiraron del repositorio; se recuperan con `git checkout b4db6d5 -- metodologia_6.tex`.
 
 ## Cómo leer los documentos
-- `metodologia_6.tex` describe lo que el código DEBE hacer. Los marcadores `[PENDIENTE: ...]` son trabajo por hacer; los comentarios `%%% [C#]`, `%%% [R#]` y `%%% [D-p#]` son correcciones ya aplicadas al texto; `REVISAR` indica que el texto debe coincidir con el código y hay que verificarlo.
+- `metodologia_6.tex` (en el historial, commit `b4db6d5`) describe lo que el código DEBE hacer. Los marcadores `[PENDIENTE: ...]` son trabajo por hacer; los comentarios `%%% [C#]`, `%%% [R#]` y `%%% [D-p#]` son correcciones ya aplicadas al texto; `REVISAR` indica que el texto debe coincidir con el código y hay que verificarlo.
 - La fuente de verdad es el código: si el texto y el código difieren, no cambies el texto en silencio; repórtalo.
 
 ## Estructura de carpetas
-- Raíz `Wasserstein-Kelly/`: Python (`01_import_data.py`, `02_visualize_data.py`), `data/raw/`, `data/processed/monthly_panel.csv`, y el MATLAB común y de la Geometría 1 (`solve_nominal_kelly.m`, `solve_wdro_kelly.m`, `run_backtest_*.m`, `compute_metrics.m`, `extract_period_results.m`, `main_*.m`).
-- `wdro-market/`: Geometría 2 (`build_transport_cost_market.m`, `run_backtest_wdro_kelly_market.m`, `main_geometria_mercado.m`).
-- Rutas parametrizadas (`config_rutas.m`): `WK_PANEL` (panel) y `WK_RESULTS_ROOT` (raíz de los `results_*`). Panel vigente: `data/processed_2026-01-01/monthly_panel_hibrido.csv` (cierre del 31-dic-2025). Resultados vigentes y aprobados: `results_v2/`. Ver `results_finales/MANIFIESTO.md`.
-- `results_finales/`: tablas, figuras, inferencia, verificación cruzada e índice (`RESULTADOS.md`) de la fase de resultados (scripts `r2_*.m` a `r6_*.m`).
-- `wdro-hypercube/` y `wdro-return/`: experimentos DESCARTADOS de la metodología; se retiraron en la rama `limpieza-readme` (recuperables desde `main`). No los uses.
+- `data/`: Python (`01_import_data.py`, `build_hybrid_panel.py`, `audit/`), `data/raw/`, `data/processed/` y `data/processed_2026-01-01/` (panel vigente `monthly_panel_hibrido.csv`).
+- `codigo/nucleo/`: funciones comunes y de la Geometría 1 (`solve_*`, `run_backtest_*`, `compute_metrics.m`, `extract_period_results.m`, `select_parameters.m`, `config_rutas.m`, `raiz_proyecto.m`, …).
+- `codigo/geometria2/`: Geometría 2 (`build_transport_cost_market.m`, `run_backtest_wdro_kelly_market.m`, `main_validation_grid_market.m`, …).
+- `codigo/pipeline/`: scripts de los pasos 3–16 del MANIFIESTO y complementarios (`main_*.m`, `verify_*.m`, `test_*.m`, …). `codigo/graficos/`: `plot_*.m`. `codigo/resultados_finales/`: `r1_*.m` a `r8_*.m`. `codigo/historico/`: scripts de etapas previas, fuera del pipeline.
+- Rutas: cada script agrega `codigo/` al path (o `iniciar_rutas.m` en la raíz). `config_rutas.m` lee `WK_PANEL` (panel) y `WK_RESULTS_ROOT` (raíz de los `results_*`); vacía, usa `resultados/linea_base/`. Resultados vigentes y aprobados: `resultados/v2/`. Ver `resultados/finales/MANIFIESTO.md` (escrito con las rutas antiguas; la tabla de equivalencias está en `README.md`).
+- `resultados/linea_base/`: resultados con el cierre del 30-dic-2025 (antes `results_*` en la raíz). `resultados/finales/`: tablas, figuras, inferencia, verificación cruzada e índice (`RESULTADOS.md`) de la fase de resultados.
+- `wdro-hypercube/` y `wdro-return/`: experimentos DESCARTADOS de la metodología; se retiraron (recuperables desde el historial). No los uses.
 
 ## Diseño experimental (no lo cambies sin preguntar)
 - Datos mensuales ene-2010 a dic-2025. Ventana móvil N=60. Costo τ=0.001, x̄=0.25, γ=1. Solver: CVX + MOSEK.
