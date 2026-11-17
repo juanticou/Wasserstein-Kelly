@@ -1,0 +1,15 @@
+# Auxiliares de LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex*
+*.fdb_latexmk
+*.fls
+# PDF compilados y documentos sueltos en la raíz
+/*.pdf
+# R, MATLAB y Python
+.Rhistory
+*.asv
+__pycache__/
+.ipynb_checkpoints/

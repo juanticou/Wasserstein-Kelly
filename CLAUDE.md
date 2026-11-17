@@ -11,7 +11,7 @@ Práctica investigativa (EAFIT, director: Prof. Diego Fonseca). Compara tres est
 - `wdro-market/`: Geometría 2 (`build_transport_cost_market.m`, `run_backtest_wdro_kelly_market.m`, `main_geometria_mercado.m`).
 - Rutas parametrizadas (`config_rutas.m`): `WK_PANEL` (panel) y `WK_RESULTS_ROOT` (raíz de los `results_*`). Panel vigente: `data/processed_2026-01-01/monthly_panel_hibrido.csv` (cierre del 31-dic-2025). Resultados vigentes y aprobados: `results_v2/`. Ver `results_finales/MANIFIESTO.md`.
 - `results_finales/`: tablas, figuras, inferencia, verificación cruzada e índice (`RESULTADOS.md`) de la fase de resultados (scripts `r2_*.m` a `r6_*.m`).
-- `wdro-hypercube/` y `wdro-return/`: experimentos DESCARTADOS de la metodología. No los modifiques ni los uses.
+- `wdro-hypercube/` y `wdro-return/`: experimentos DESCARTADOS de la metodología; se retiraron en la rama `limpieza-readme` (recuperables desde `main`). No los uses.
 
 ## Diseño experimental (no lo cambies sin preguntar)
 - Datos mensuales ene-2010 a dic-2025. Ventana móvil N=60. Costo τ=0.001, x̄=0.25, γ=1. Solver: CVX + MOSEK.
